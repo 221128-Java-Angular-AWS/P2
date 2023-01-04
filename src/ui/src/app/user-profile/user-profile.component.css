@@ -1,0 +1,41 @@
+body {
+    width: 400px;
+    background-color: rgb(206, 206, 206);
+    border-style:double;
+}
+
+p {
+    border-color: black;
+    padding-left: 25px;
+    padding-bottom: 8px;;
+    
+}
+
+h3 {
+    width:125px;
+    color: black;
+    border-style: solid;
+    border-width: 2px;
+    text-align: center;
+    margin: auto;
+    
+}
+
+textarea {
+    resize:vertical;
+    width: 85%;
+    height:fit-content;
+    padding-left:25px;
+}
+
+.buttons {
+    width: 200px;
+    display: inline;
+    text-align: center;
+    border-width: 5px;
+}
+
+.center-button {
+    text-align: center;
+    margin-bottom: 20px;
+}
