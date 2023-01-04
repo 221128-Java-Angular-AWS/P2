@@ -1,1 +1,13 @@
-<p>feed works!</p>
+<div id="feed">
+    <div id="newPost">
+        <textarea id="newPostText" #postText placeholder="Create a new post!"></textarea>
+        <br>
+        <button (click)="addImageLink()">Add Image</button>
+        <button (click)="createPost(postText.value)">Squawk</button>
+        <div *ngIf="imageLink!=''">
+            <div id="imagePreviewDiv">
+                <img id="imagePreview" [src]="imageLink">
+            </div>
+        </div>
+    </div>
+</div>
