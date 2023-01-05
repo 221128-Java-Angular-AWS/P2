@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PostsService } from '../Services/posts.service';
+import { Post, PostsService } from '../Services/posts.service';
 
 @Component({
   selector: 'app-feed',
@@ -13,7 +13,10 @@ export class FeedComponent {
 
   createPost(text: string): void{
     if(text != "" || this.imageLink != ""){
-      this.postsService.createPost(text, this.imageLink);
+      this.postsService.createPost(text, this.imageLink).subscribe(post => {
+        console.log(post);
+      });
+      
       (<HTMLInputElement>document.getElementById("newPostText")).value = "";
       this.imageLink = "";
     }
