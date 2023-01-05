@@ -1,27 +1,30 @@
 <html>
-    <body>
-        <h3> User Profile </h3>
-        <p>Username: {{username}}</p>
-        <p>Firstname: {{firstName}}</p>
-        <p>Lastname: {{lastName}}</p>
-        <p>Bio: <br>
-            {{desc}}</p>
+    <div *ngIf="!editUser" class="row container-fluid" id="show/hide">
+        <body>
+            <h2> User Profile </h2>
+            <p>Username: {{currentUser.username}}</p>
+            <p>Firstname: {{currentUser.firstName}}</p>
+            <p>Lastname: {{currentUser.lastName}}</p>
+            <p>Bio: <br>{{currentUser.desc}}</p>
 
-        <div class="center-button">
-            <button onclick="editMode()">Edit</button>
-        </div>
-    </body>
+            <div *ngIf ="activeUser" class="center-button">
+                <button type="button" class="edit-button" (click)="editMode()"> Edit </button>
+            </div>
+        </body>
+    </div>
 
-    <body>
-        <h3> User Profile </h3>
-        <p>Username: <input type = "text"></p>
-        <p>Firstname: <input type = "text"></p>
-        <p>Lastname: <input type = "text"></p>
-        <p>Bio: <br><textarea></textarea></p>
-        
-        <div class="center-button">
-            <button onclick="save()">Save</button>
-            <button onclick="cancel()">Cancel</button>
-        </div>
-    </body>
+    <div *ngIf="editUser" class="row container-fluid" id="show/hide">
+        <body>
+            <h2> User Profile </h2>
+            <p>Username: <input id ="username" #username type = "text" value={{currentUser.username}}></p>
+            <p>Firstname: <input id = "firstName" #firstName type = "text" value={{currentUser.firstName}}></p>
+            <p>Lastname: <input id = "lastName" #lastName type = "text" value={{currentUser.lastName}}></p>
+            <p>Bio: <br><textarea id = "bio" #bio value = {{currentUser.desc}}></textarea></p>
+            
+            <div class="center-button">
+                <button (click)="save(username.value, firstName.value, lastName.value, bio.value)"> Save </button>
+                <button (click)="cancel()"> Cancel </button>
+            </div>
+        </body>
+    </div>
 </html>

@@ -7,18 +7,19 @@ body {
 p {
     border-color: black;
     padding-left: 25px;
-    padding-bottom: 8px;;
-    
+    padding-bottom: 8px;
+    padding-right: 25px;
+    word-wrap: break-word;
 }
 
-h3 {
-    width:125px;
-    color: black;
-    border-style: solid;
-    border-width: 2px;
+h2 {
+    width: auto;
+    background-color: rgb(120, 120, 120);
+    color: white;
     text-align: center;
     margin: auto;
-    
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 textarea {
@@ -29,10 +30,7 @@ textarea {
 }
 
 .buttons {
-    width: 200px;
     display: inline;
-    text-align: center;
-    border-width: 5px;
 }
 
 .center-button {
