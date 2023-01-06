@@ -10,6 +10,7 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
 import { SettingsComponent } from './settings/settings.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { LoginRegisterComponent } from './login-register/login-register.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
