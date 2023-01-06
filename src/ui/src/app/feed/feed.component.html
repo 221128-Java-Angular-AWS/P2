@@ -1,1 +1,5 @@
-<p>feed works!</p>
+<div class="feedContainer">
+  <div *ngFor="let post of posts" class="postContainer">
+    <app-post [post]="post"></app-post>
+  </div>
+</div>
