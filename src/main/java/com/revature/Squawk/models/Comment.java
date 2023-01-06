@@ -76,8 +76,8 @@ public class Comment {
         return datePosted;
     }
 
-    public void setPostedDate(LocalDateTime postedDate) {
-        this.datePosted = postedDate;
+    public void setPostedDate(LocalDateTime datePosted) {
+        this.datePosted = datePosted;
     }
 
     public String getMessage() {
@@ -107,7 +107,7 @@ public class Comment {
                 "commentId=" + commentId +
                 ", post=" + post +
                 ", user=" + user +
-                ", postedDate=" + datePosted +
+                ", datePosted=" + datePosted +
                 ", message='" + message + '\'' +
                 '}';
     }
