@@ -10,6 +10,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
 import { FormsModule } from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     PostDetailComponent,
     SettingsComponent,
     NavbarComponent,
-    LoginRegisterComponent
+    LoginRegisterComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

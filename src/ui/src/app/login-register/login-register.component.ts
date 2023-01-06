@@ -25,7 +25,7 @@ export class LoginRegisterComponent {
     //this.strFormOutput = "Checkz for user";
     if (userMap.has(validationInput)) {this.strFormOutput="valid"}
     else { this.strFormOutput=`This username and/or password is invalid and your input was ${this.username},
-        ${this.password} and the first key is ${Array.from(this.users.keys())}`;}
+        ${this.password}}`;}
   }
 
   resetUserPassword(): void {

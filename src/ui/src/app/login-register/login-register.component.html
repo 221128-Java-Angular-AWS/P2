@@ -16,11 +16,30 @@
 <div class="check-validity" *ngIf="strFormOutput">{{strFormOutput}}</div>
 
 <button type="submit" class="submit-userpassword" (click)="onSubmit(); resetUserPassword()">Login</button>
+
+<div class="register">
+    Don't have an account?
+    <nav>
+    <a routerLink="/register">
+        <button type="button">register</button>
+    </a>
+    </nav>
+  </div>
+  <div class="register">
+    Don't have an account?
+    <nav>
+    <a routerLink="/register">
+        register
+    </a>
+    </nav>
+  </div>
+<!--
 <ul>
-    <!--{{users.size}}-->
+    {{users.size}}
 <li *ngFor="let userM of users.keys()">
     <div *ngIf="users.get(userM)">
     {{userM}}->{{users.get(userM)}}
     </div>
 </li>
 </ul>
+-->
