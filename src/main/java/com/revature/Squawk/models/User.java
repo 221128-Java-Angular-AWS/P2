@@ -33,11 +33,11 @@ public class User {
     private String bio;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    @JsonManagedReference
+    @JsonManagedReference(value = "post_user")
     List<Post> posts;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    @JsonManagedReference
+    @JsonManagedReference(value = "like_user")
     List<Like> likes;
 
     public User() {

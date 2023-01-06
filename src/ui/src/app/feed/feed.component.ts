@@ -14,7 +14,7 @@ export class FeedComponent {
   createPost(text: string): void{
     if(text != "" || this.imageLink != ""){
       this.postsService.createPost(text, this.imageLink).subscribe(post => {
-        console.log(post);
+        console.log("Returned Post: ", post);
       });
       
       (<HTMLInputElement>document.getElementById("newPostText")).value = "";
