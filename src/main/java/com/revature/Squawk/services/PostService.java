@@ -18,7 +18,7 @@ public class PostService {
     }
 
     public Post createPost(Post post){
-        return new Post();
+        return postRepo.save(post);
     }
 
     public Post getPost(Integer postId){
