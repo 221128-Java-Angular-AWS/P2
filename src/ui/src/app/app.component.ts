@@ -10,16 +10,17 @@ export class AppComponent {
 
   //These 2 will be sent into the module to display the current account or the account that made a post
   user = {
-    username : "joejoeMan",
+    username : "ZaWorldo1867",
     firstName : "Dio",
     lastName : "Brando",
-    desc: "MudaMudaMudaMudaMudaMudaMudaMudaMudaMudaMudaMuda"
+    desc: "MudaMudaMudaMudaMudaMudaMudaMudaMudaMudaMudaMuda",
+    pic: "assets/DioImg.jpg"
   }
 
   active = true;
 
-  updateUser(user2: any) {
-    this.user = user2;
+  updateUser(user: any) {
+    this.user = user;
     console.log("Updated: " + this.user.username);
   }
 }

@@ -7,7 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class UserProfileComponent { 
 
-  @Input() user = { username : '', firstName : '', lastName : '', desc : '' };
+  @Input() user = { username : '', firstName : '', lastName : '', desc : '', pic : '' };
 
   @Input() activeUser = false;
 
@@ -19,7 +19,8 @@ export class UserProfileComponent {
     username : '',
     firstName : '',
     lastName : '',
-    desc : ''
+    desc : '',
+    pic : ''
   }
 
   ngOnInit() {
@@ -27,6 +28,7 @@ export class UserProfileComponent {
     this.currentUser.firstName = this.user.firstName;
     this.currentUser.lastName = this.user.lastName;
     this.currentUser.desc = this.user.desc;
+    this.currentUser.pic = this.user.pic;
   }
   
   editMode(): void {
