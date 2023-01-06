@@ -33,18 +33,18 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(Post post, User user, LocalDateTime postedDate, String message) {
+    public Comment(Post post, User user, LocalDateTime datePosted, String message) {
         this.post = post;
         this.user = user;
-        this.datePosted = postedDate;
+        this.datePosted = datePosted;
         this.message = message;
     }
 
-    public Comment(Integer commentId, Post post, User user, LocalDateTime postedDate, String message) {
+    public Comment(Integer commentId, Post post, User user, LocalDateTime datePosted, String message) {
         this.commentId = commentId;
         this.post = post;
         this.user = user;
-        this.datePosted = postedDate;
+        this.datePosted = datePosted;
         this.message = message;
     }
 
