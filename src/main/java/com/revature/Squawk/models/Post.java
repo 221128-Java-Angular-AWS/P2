@@ -1,65 +1,121 @@
 package com.revature.Squawk.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
-@Entity(name = "user_posts") // not sure if a table named posts is great when in a application handling http requests
-@Table(schema = "public")
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
+
+@Entity(name = "Posts")
 public class Post {
     @Id
     @Column(name = "post_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer postId;
 
     @Column
-    private String title;
+    private String message;
 
-    @Column
-    private String body;
+    @Column(name = "image_link")
+    private String imageLink;
+
+    @Column(name = "date_posted")
+    private LocalDateTime datePosted;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JsonBackReference
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    @JsonManagedReference
+    List<Like> likes;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    @JsonManagedReference
+    List<Comment> comments;
 
     public Post() {
     }
 
-    public Post(String title, String body) {
-        this.title = title;
-        this.body = body;
+    public Post(String message, String imageLink, LocalDateTime datePosted, User user) {
+        this.message = message;
+        this.imageLink = imageLink;
+        this.datePosted = datePosted;
+        this.user = user;
     }
 
-    public Post(Integer id, String title, String body) {
-        this.id = id;
-        this.title = title;
-        this.body = body;
+    public Post(Integer postId, String message, String imageLink, LocalDateTime datePosted, User user) {
+        this.postId = postId;
+        this.message = message;
+        this.imageLink = imageLink;
+        this.datePosted = datePosted;
+        this.user = user;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getPostId() {
+        return postId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPostId(Integer postId) {
+        this.postId = postId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getMessage() {
+        return message;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public String getBody() {
-        return body;
+    public String getImageLink() {
+        return imageLink;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+
+    public LocalDateTime getDatePosted() {
+        return datePosted;
+    }
+
+    public void setDatePosted(LocalDateTime datePosted) {
+        this.datePosted = datePosted;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Post post = (Post) o;
+        return Objects.equals(postId, post.postId) && Objects.equals(message, post.message) && Objects.equals(imageLink, post.imageLink) && Objects.equals(datePosted, post.datePosted) && Objects.equals(user, post.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(postId, message, imageLink, datePosted, user);
     }
 
     @Override
     public String toString() {
-        return "Posts{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", body='" + body + '\'' +
+        return "Post{" +
+                "postId=" + postId +
+                ", message='" + message + '\'' +
+                ", imageLink='" + imageLink + '\'' +
+                ", datePosted=" + datePosted +
+                ", user=" + user +
                 '}';
     }
 }

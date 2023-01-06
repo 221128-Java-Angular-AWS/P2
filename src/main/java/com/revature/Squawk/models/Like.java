@@ -1,62 +1,48 @@
 package com.revature.Squawk.models;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
+import java.util.Objects;
 
-// mark entity classes as @Entity, indicates this is a class that describes objects to persist in a database
-// the @Table annotation is used to set attributes that control how the table schema will be built
-
-
-
-@Entity(name = "likes")
-@Table(schema = "public")
+@Entity(name = "Likes")
 public class Like {
-    // describing the table values while creating the object here
+
     @Id
     @Column(name = "like_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer likeId;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
-    //@Column(name = "post_id") this annotation cannot be used for ManyToOne
-    @JoinColumn(name = "post_id")
-    private Post post;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JsonBackReference
-    //@Column(name = "user_id")
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JsonBackReference
+    @JoinColumn(name = "post_id")
+    private Post post;
 
     public Like() {
     }
 
-    public Like(Post post, User user) {
-        this.post = post;
+    public Like(User user, Post post) {
         this.user = user;
+        this.post = post;
     }
 
-    public Like(Integer id, Post post, User user) {
-        this.id = id;
-        this.post = post;
+    public Like(Integer likeId, User user, Post post) {
+        this.likeId = likeId;
         this.user = user;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
         this.post = post;
+    }
+
+    public Integer getLikeId() {
+        return likeId;
+    }
+
+    public void setLikeId(Integer likeId) {
+        this.likeId = likeId;
     }
 
     public User getUser() {
@@ -67,13 +53,34 @@ public class Like {
         this.user = user;
     }
 
-    // there probably will never be a reason to use this but why not have it
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Like like = (Like) o;
+        return Objects.equals(likeId, like.likeId) && Objects.equals(user, like.user) && Objects.equals(post, like.post);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(likeId, user, post);
+    }
+
     @Override
     public String toString() {
         return "Like{" +
-                "id=" + id +
-                ", post=" + post +
+                "likeId=" + likeId +
                 ", user=" + user +
+                ", post=" + post +
                 '}';
     }
 }

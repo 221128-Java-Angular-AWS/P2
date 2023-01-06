@@ -1,0 +1,39 @@
+body {
+    width: 400px;
+    background-color: rgb(206, 206, 206);
+    border-style:double;
+}
+
+p {
+    border-color: black;
+    padding-left: 25px;
+    padding-bottom: 8px;
+    padding-right: 25px;
+    word-wrap: break-word;
+}
+
+h2 {
+    width: auto;
+    background-color: rgb(120, 120, 120);
+    color: white;
+    text-align: center;
+    margin: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+textarea {
+    resize:vertical;
+    width: 85%;
+    height:fit-content;
+    padding-left:25px;
+}
+
+.buttons {
+    display: inline;
+}
+
+.center-button {
+    text-align: center;
+    margin-bottom: 20px;
+}
