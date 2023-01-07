@@ -22,7 +22,7 @@ public class PostService {
     }
 
     public Post getPost(Integer postId){
-        return new Post();
+        return postRepo.findByPostId(postId);
     }
 
     public List<Post> getPosts(){

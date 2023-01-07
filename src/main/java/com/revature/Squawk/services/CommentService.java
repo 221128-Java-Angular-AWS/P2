@@ -18,18 +18,24 @@ public class CommentService {
     }
 
     public Comment createComment(Comment comment){
-        return new Comment();
+        return commentRepo.save(comment);
     }
 
-    public List<Comment> getComments(Integer postId){
-        return new ArrayList<Comment>();
+    public Comment getCommentById(Integer commentId) {
+        return commentRepo.findByCommentId(commentId);
     }
 
-    public Comment updateComment(Comment comment){
-        return new Comment();
+    public List<Comment> getCommentsByPostId(Integer postId) {
+        return commentRepo.findByPostId(postId);
     }
 
-    public void deleteComment(Comment comment){
+    public Comment updateComment(Comment updatedComment) {
+        Comment comment = commentRepo.findByCommentId(updatedComment.getCommentId());
+        comment.setMessage(updatedComment.getMessage());
+        return commentRepo.save(comment);
+    }
 
+    public void deleteComment(Comment comment) {
+        commentRepo.deleteByCommentId(comment.getCommentId());
     }
 }
