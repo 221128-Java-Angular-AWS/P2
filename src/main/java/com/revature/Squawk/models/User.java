@@ -57,10 +57,6 @@ public class User {
         this.bio = bio;
     }
 
-    public User(Integer userId) {
-        this.userId = userId;
-    }
-
     public User(Integer userId, String firstName, String lastName, String username, String password, String email, String bio) {
         this.userId = userId;
         this.firstName = firstName;
