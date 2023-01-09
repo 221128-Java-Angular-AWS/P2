@@ -18,7 +18,7 @@ public class PostService {
     }
 
     public Post createPost(Post post){
-        return postRepo.save(post);
+        return new Post();
     }
 
     public Post getPost(Integer postId){
@@ -26,7 +26,7 @@ public class PostService {
     }
 
     public List<Post> getPosts(){
-        return new ArrayList<Post>();
+        return postRepo.findAll();
     }
 
     public List<Post> getPosts(Integer userId){
