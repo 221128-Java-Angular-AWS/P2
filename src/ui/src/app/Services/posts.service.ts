@@ -71,18 +71,18 @@ export class Post{
   message: string;
   imageLink: string;
   datePosted?: string;
-  userId?: number;
+  user?: number;
   username: string;
   clicked?: boolean;
   comments: Comment[];
   likes: Like[];
 
-  constructor(message: string, imageLink: string, username: string, likes: Like[], comments: Comment[], userId?: number, datePosted?: string, postId?: number, clicked?: boolean){
+  constructor(message: string, imageLink: string, username: string, likes: Like[], comments: Comment[], user?: number, datePosted?: string, postId?: number, clicked?: boolean){
     this.postId = postId;
     this.message = message;
     this.imageLink = imageLink;
     this.datePosted = datePosted;
-    this.userId = userId;
+    this.user = user;
     this.clicked = clicked;
     this.likes = likes;
     this.comments = comments;
