@@ -15,12 +15,12 @@ public class Comment {
     private Integer commentId;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonBackReference (value = "comment_post")
     @JoinColumn(name = "post_id")
     private Post post;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonBackReference (value = "comment_user")
     @JoinColumn(name = "user_id")
     private User user;
 

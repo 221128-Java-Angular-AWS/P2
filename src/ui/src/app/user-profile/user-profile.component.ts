@@ -44,6 +44,8 @@ export class UserProfileComponent {
     newUser.lastName = lName;
     newUser.bio = newDesc;
 
+    this.currentUser = newUser;
+    
     this.userService.updateUser(newUser).subscribe();
 
     this.editUser = false;

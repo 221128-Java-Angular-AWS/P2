@@ -6,6 +6,7 @@ import jdk.jfr.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -36,7 +37,6 @@ public class UserController {
     @PutMapping
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public @ResponseBody User updateUser(@RequestBody User user){
-        System.out.println("We got here!/////////////////////////////////////////////////////////");
         return userService.updateUser(user);
     }
 

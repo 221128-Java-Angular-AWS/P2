@@ -30,8 +30,10 @@ public class UserService {
 
     public User updateUser(User user){
 
-        System.out.println("We got here!/////////////////////////////////////////////////////////");
         User originalUser = userRepo.findById(user.getUserId()).orElseThrow();
+
+        System.out.println("Updated: " + user.getUsername() + " to " + originalUser.getUsername());
+
         originalUser.setUsername(user.getUsername());
         originalUser.setFirstName(user.getFirstName());
         originalUser.setLastName(user.getLastName());

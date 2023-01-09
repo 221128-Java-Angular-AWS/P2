@@ -33,14 +33,12 @@ public class User {
     @Column
     private String bio;
 
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "user")
-    @JsonBackReference(value = "post_user")
-    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @JsonManagedReference(value = "post_user")
     List<Post> posts;
 
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "user")
-    @JsonBackReference(value = "like_user")
-    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @JsonManagedReference(value = "like_user")
     List<Like> likes;
 
     public User() {
