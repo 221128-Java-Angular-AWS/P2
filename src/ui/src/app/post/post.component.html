@@ -7,7 +7,7 @@
   <div [style]="{'margin-left': '25px', 'margin-top':'20px'}" *ngIf="post.comments.length > 0 && !post.clicked">
     <span>{{post.comments[0].username}}</span>
     <span [style]="{'font-size':'12px'}"> commented:</span>
-    <span [style]="{'font-size':'12px', 'float': 'right'}">{{post.comments[0].date}}</span>
+    <span [style]="{'font-size':'12px', 'float': 'right'}">{{post.comments[0].postedDate}}</span>
     <div class="commentContent">{{post.comments[0].message}}</div>
   </div>
   <button *ngIf="post.comments.length > 1 && !post.clicked" (click)="clickMoreComments(post)">Read comments</button>
@@ -15,7 +15,7 @@
     <div [style]="{'margin-left': '25px', 'margin-top':'20px'}" *ngFor="let comment of post.comments">
       <span>{{comment.username}}</span>
       <span [style]="{'font-size':'12px'}"> commented:</span>
-      <span [style]="{'font-size':'12px', 'float': 'right'}">{{comment.date}}</span>
+      <span [style]="{'font-size':'12px', 'float': 'right'}">{{comment.postedDate}}</span>
       <div class="commentContent">{{comment.message}}</div>
     </div>
   </div>
