@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
+
 import { Post } from '../post';
 import { Comment } from '../comment';
+
+import { Post, PostsService } from '../Services/posts.service';
+
 
 @Component({
   selector: 'app-feed',
@@ -8,27 +12,26 @@ import { Comment } from '../comment';
   styleUrls: ['./feed.component.css']
 })
 export class FeedComponent {
-  //DUMMY DATA to be replaced once the backend is filled out
-  posts: Post[] = [
-    {
-      id: 0,
-      username: 'Joe Chill',
-      userId: 0,
-      date: Date(),
-      content: 'lol just got some new pearls, pretty sweet',
-      likes: 1,
-      comments: 2,
-      clicked: false
-    },
-    {
-      id: 1,
-      username: 'Bruce Wayne',
-      userId: 1,
-      date: Date(),
-      content: ":'(",
-      likes: 0,
-      comments: 0,
-      clicked: false
+
+  imageLink: string = "";
+  constructor(private postsService: PostsService) {
+  }
+
+  createPost(text: string): void{
+    if(text != "" || this.imageLink != ""){
+      this.postsService.createPost(text, this.imageLink).subscribe(post => {
+        console.log("Returned Post: ", post);
+      });
+
+      (<HTMLInputElement>document.getElementById("newPostText")).value = "";
+      this.imageLink = "";
     }
-  ];
+  }
+
+  addImageLink(): void{
+    let link = prompt("add a link to an image");
+    if(link != null){
+      this.imageLink = link;
+    }
+  }
 }
