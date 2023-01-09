@@ -1,4 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input} from '@angular/core';
+import { User } from 'app/model/user';
+import { UserService } from 'app/user.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -7,26 +9,22 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class UserProfileComponent { 
 
-  @Input() user = { username : '', firstName : '', lastName : '', desc : '' };
-
   @Input() activeUser = false;
 
-  @Output() updateUserEvent = new EventEmitter<any>();
+  @Input() userId = -1;
 
   editUser = false;
 
-  currentUser = {
-    username : '',
-    firstName : '',
-    lastName : '',
-    desc : ''
-  }
+  currentUser = new User;
+
+  constructor (private userService: UserService) {}
 
   ngOnInit() {
-    this.currentUser.username = this.user.username;
-    this.currentUser.firstName = this.user.firstName;
-    this.currentUser.lastName = this.user.lastName;
-    this.currentUser.desc = this.user.desc;
+
+    this.userService.getUser(this.userId).subscribe((response:User) => {
+      this.currentUser = response;
+    })
+
   }
   
   editMode(): void {
@@ -38,12 +36,18 @@ export class UserProfileComponent {
   }
 
   save(uName: string, fName: string, lName: string, newDesc: string): void {
-    this.currentUser.username = uName;
-    this.currentUser.firstName = fName;
-    this.currentUser.lastName = lName;
-    this.currentUser.desc = newDesc;
 
-    this.updateUserEvent.emit(this.currentUser);
+    let newUser = new User;
+    newUser.userId = this.currentUser.userId;
+    newUser.username = uName;
+    newUser.firstName = fName;
+    newUser.lastName = lName;
+    newUser.bio = newDesc;
+
+    this.currentUser = newUser;
+    
+    this.userService.updateUser(newUser).subscribe();
+
     this.editUser = false;
   }
 }

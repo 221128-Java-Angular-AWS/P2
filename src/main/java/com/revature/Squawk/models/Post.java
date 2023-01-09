@@ -26,15 +26,16 @@ public class Post {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JsonBackReference(value = "post_user")
+
     @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    @JsonManagedReference(value = "like_post")
+    @JsonManagedReference (value = "like_post")
     List<Like> likes;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    @JsonManagedReference(value = "comment_post")
+    @JsonManagedReference (value = "comment_post")
     List<Comment> comments;
 
     public Post() {

@@ -15,17 +15,17 @@ public class Comment {
     private Integer commentId;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonBackReference(value = "comment_post")
+    @JsonBackReference (value = "comment_post")
     @JoinColumn(name = "post_id")
     private Post post;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonBackReference(value = "comment_user")
+    @JsonBackReference (value = "comment_user")
     @JoinColumn(name = "user_id")
     private User user;
 
     @Column(name = "posted_date")
-    private LocalDateTime datePosted;
+    private LocalDateTime postedDate;
 
     @Column
     private String message;
@@ -33,18 +33,18 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(Post post, User user, LocalDateTime datePosted, String message) {
+    public Comment(Post post, User user, LocalDateTime postedDate, String message) {
         this.post = post;
         this.user = user;
-        this.datePosted = datePosted;
+        this.postedDate = postedDate;
         this.message = message;
     }
 
-    public Comment(Integer commentId, Post post, User user, LocalDateTime datePosted, String message) {
+    public Comment(Integer commentId, Post post, User user, LocalDateTime postedDate, String message) {
         this.commentId = commentId;
         this.post = post;
         this.user = user;
-        this.datePosted = datePosted;
+        this.postedDate = postedDate;
         this.message = message;
     }
 
@@ -73,11 +73,11 @@ public class Comment {
     }
 
     public LocalDateTime getPostedDate() {
-        return datePosted;
+        return postedDate;
     }
 
-    public void setPostedDate(LocalDateTime datePosted) {
-        this.datePosted = datePosted;
+    public void setPostedDate(LocalDateTime postedDate) {
+        this.postedDate = postedDate;
     }
 
     public String getMessage() {
@@ -95,12 +95,12 @@ public class Comment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Comment comment = (Comment) o;
-        return Objects.equals(commentId, comment.commentId) && Objects.equals(post, comment.post) && Objects.equals(user, comment.user) && Objects.equals(datePosted, comment.datePosted) && Objects.equals(message, comment.message);
+        return Objects.equals(commentId, comment.commentId) && Objects.equals(post, comment.post) && Objects.equals(user, comment.user) && Objects.equals(postedDate, comment.postedDate) && Objects.equals(message, comment.message);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(commentId, post, user, datePosted, message);
+        return Objects.hash(commentId, post, user, postedDate, message);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class Comment {
                 "commentId=" + commentId +
                 ", post=" + post +
                 ", user=" + user +
-                ", datePosted=" + datePosted +
+                ", postedDate=" + postedDate +
                 ", message='" + message + '\'' +
                 '}';
     }
