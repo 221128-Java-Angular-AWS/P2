@@ -1,10 +1,5 @@
-import { Component } from '@angular/core';
-
-import { Post } from '../post';
-import { Comment } from '../comment';
-
+import { Component, OnInit } from '@angular/core';
 import { Post, PostsService } from '../Services/posts.service';
-
 
 @Component({
   selector: 'app-feed',
@@ -13,13 +8,16 @@ import { Post, PostsService } from '../Services/posts.service';
 })
 export class FeedComponent {
 
+  posts: Post[] = [];
+
   imageLink: string = "";
   constructor(private postsService: PostsService) {
   }
 
   createPost(text: string): void{
     if(text != "" || this.imageLink != ""){
-      this.postsService.createPost(text, this.imageLink).subscribe(post => {
+      // NOTE: I added "The Riddler" to satisfy the method signature due to the expanded Post class constructor. -Travis M.
+      this.postsService.createPost(text, this.imageLink, "The Riddler").subscribe(post => {
         console.log("Returned Post: ", post);
       });
 
@@ -33,5 +31,12 @@ export class FeedComponent {
     if(link != null){
       this.imageLink = link;
     }
+  }
+
+  ngOnInit(): void {
+    this.postsService.getPosts()
+    .subscribe((posts) => {
+      this.posts = posts;
+    });
   }
 }

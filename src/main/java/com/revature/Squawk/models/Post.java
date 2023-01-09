@@ -95,6 +95,10 @@ public class Post {
         this.user = user;
     }
 
+    public String getUsername() {
+        return user.getUsername();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

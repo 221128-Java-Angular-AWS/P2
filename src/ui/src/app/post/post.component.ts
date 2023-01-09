@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Post } from '../post';
+import { Component, Input  } from '@angular/core';
+import { Post } from '../Services/posts.service';
 import { Comment } from '../comment';
 
 @Component({
@@ -7,51 +7,13 @@ import { Comment } from '../comment';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
-export class PostComponent implements OnInit {
+export class PostComponent {
   @Input()
   post!: Post;
-  postComments: Comment[] = [];
+  comments: Comment[] = [];
 
-  ngOnInit(): void {
-    for (let i = 1; i < this.comments.length; i++) {
-      if (this.comments[i].postId === this.post.id) {
-        this.postComments.push(this.comments[i]);
-      }
-    }
+
+  clickMoreComments(post: Post): void {
+    post.clicked = true;
   }
-
-  clickMoreComments(): void {
-    console.log('User requested more comments');
-    this.post.clicked = true;
-    for (let i = 0; i < this.postComments.length; i++) {
-      console.log(this.postComments[i].content);
-    }
-  }
-
-  comments: Comment[] = [
-    {
-      id: 0,
-      userId: 1,
-      postId: 0,
-      username: "Bruce Wayne",
-      date: Date(),
-      content: "wtf dude"
-    },
-    {
-      id: 1,
-      userId: 2,
-      postId: 0,
-      username: 'The Joker',
-      date: Date(),
-      content: "lol XD gottem"
-    },
-    {
-      id: 2,
-      userId: 2,
-      postId: 1,
-      username: 'The Joker',
-      date: Date(),
-      content: "cry more kid lmao"
-    }
-  ]
 }
