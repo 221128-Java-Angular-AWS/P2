@@ -1,5 +1,6 @@
 package com.revature.Squawk.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -54,6 +55,10 @@ public class User {
         this.password = password;
         this.email = email;
         this.bio = bio;
+    }
+
+    public User(Integer userId) {
+        this.userId = userId;
     }
 
     public User(Integer userId, String firstName, String lastName, String username, String password, String email, String bio) {

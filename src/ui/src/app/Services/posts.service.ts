@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, retry, throwError } from 'rxjs';
-import { User } from './users.service';
+import { catchError, retry, throwError, Observable, of } from 'rxjs';
+import { Comment } from '../comment';
+import { Like } from '../like';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,8 @@ export class PostsService {
 
   baseUrl: string = "http://localhost:8080";
 
+  postsUrl: string = "/posts/feed";
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -19,10 +22,10 @@ export class PostsService {
   }
 
 
-  createPost(postText: string, imageLink: string){
+  createPost(postText: string, imageLink: string, username: string){
     //make the post
-    let user: User = new User(1, 'braydensn', 'password1234', 'Brayden', 'Nordine', 'brayden018@revature.net', 'Just a coder makin this app')
-    let newPost = new Post(postText, imageLink, 1);
+    //NOTE: I added the username and empty arrays to satisfy the expanded constructor. -Travis M.
+    let newPost = new Post(postText, imageLink, username, [], [], 1);
     console.log("New Post: ", newPost);
     return this.http.post<Post>(this.baseUrl + "/posts", JSON.stringify(newPost), this.httpOptions)
       .pipe(
@@ -31,7 +34,7 @@ export class PostsService {
       );
   }
 
-  
+
   errorHand1(error: any){
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {
@@ -45,6 +48,21 @@ export class PostsService {
     return throwError(errorMessage);
   }
 
+
+
+  getPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(this.baseUrl + this.postsUrl)
+    .pipe(
+      catchError(this.handleError<Post[]>('getPosts', []))
+    );
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    }
+  }
 }
 
 export class Post{
@@ -52,14 +70,21 @@ export class Post{
   message: string;
   imageLink: string;
   datePosted?: string;
-  user: number;
+  user?: number;
+  username: string;
+  clicked?: boolean;
+  comments: Comment[];
+  likes: Like[];
 
-  constructor(message: string, imageLink: string, user: number, datePosted?: string, postId?: number){
+  constructor(message: string, imageLink: string, username: string, likes: Like[], comments: Comment[], user?: number, datePosted?: string, postId?: number, clicked?: boolean){
     this.postId = postId;
     this.message = message;
     this.imageLink = imageLink;
     this.datePosted = datePosted;
     this.user = user;
+    this.clicked = clicked;
+    this.likes = likes;
+    this.comments = comments;
+    this.username = username;
   }
-
 }
