@@ -88,6 +88,8 @@ public class Comment {
         this.message = message;
     }
 
+    public String getUsername() { return user.getUsername(); }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

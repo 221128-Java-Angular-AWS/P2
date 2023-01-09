@@ -24,8 +24,9 @@ public class Post {
     @Column(name = "date_posted")
     private LocalDateTime datePosted;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JsonBackReference (value = "post_user")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JsonBackReference(value = "post_user")
+
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -93,6 +94,10 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getUsername() {
+        return user.getUsername();
     }
 
     @Override
