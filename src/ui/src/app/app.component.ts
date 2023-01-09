@@ -5,22 +5,17 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'ui';
 
-  //These 2 will be sent into the module to display the current account or the account that made a post
-  user = {
-    username : "ZaWorldo1867",
-    firstName : "Dio",
-    lastName : "Brando",
-    desc: "MudaMudaMudaMudaMudaMudaMudaMudaMudaMudaMudaMuda",
-    pic: "assets/DioImg.jpg"
-  }
-
+  //This will compare if the logged in user is the same as the current user profile
   active = true;
 
-  updateUser(user: any) {
-    this.user = user;
-    console.log("Updated: " + this.user.username);
+  //This value will be grabbed from the session cookie
+  userId = 1;
+
+  constructor () {
+
   }
 }

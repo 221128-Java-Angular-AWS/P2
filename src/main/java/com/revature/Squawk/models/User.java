@@ -1,5 +1,6 @@
 package com.revature.Squawk.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -32,12 +33,14 @@ public class User {
     @Column
     private String bio;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    @JsonManagedReference(value = "post_user")
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "user")
+    @JsonBackReference(value = "post_user")
+    @JsonManagedReference
     List<Post> posts;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    @JsonManagedReference(value = "like_user")
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "user")
+    @JsonBackReference(value = "like_user")
+    @JsonManagedReference
     List<Like> likes;
 
     public User() {

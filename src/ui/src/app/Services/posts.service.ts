@@ -21,7 +21,6 @@ export class PostsService {
   createPost(postText: string, imageLink: string){
     //make the post
     let newPost = new Post(postText, imageLink, 1);
-    console.log("New Post: ", newPost);
     return this.http.post<Post>(this.baseUrl + "/posts", JSON.stringify(newPost), this.httpOptions)
       .pipe(
         retry(1),

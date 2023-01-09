@@ -25,16 +25,16 @@ public class Post {
     private LocalDateTime datePosted;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonBackReference(value = "post_user")
+    @JsonBackReference
     @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    @JsonManagedReference(value = "like_post")
+    @JsonManagedReference
     List<Like> likes;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    @JsonManagedReference(value = "comment_post")
+    @JsonManagedReference
     List<Comment> comments;
 
     public Post() {

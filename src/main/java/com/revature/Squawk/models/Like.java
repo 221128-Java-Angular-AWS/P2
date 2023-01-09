@@ -14,12 +14,12 @@ public class Like {
     private Integer likeId;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonBackReference(value = "like_user")
+    @JsonBackReference
     @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonBackReference(value = "like_post")
+    @JsonBackReference
     @JoinColumn(name = "post_id")
     private Post post;
 
