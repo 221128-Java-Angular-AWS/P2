@@ -22,11 +22,11 @@ public class PostService {
     }
 
     public Post getPost(Integer postId){
-        return new Post();
+        return postRepo.findById(postId).orElse(new Post());
     }
 
     public List<Post> getPosts(){
-        return new ArrayList<Post>();
+        return postRepo.findAll();
     }
 
     public List<Post> getPosts(Integer userId){
