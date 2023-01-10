@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { User } from '../user';
+import { User, UsersService } from '../Services/users.service';
 
 @Component({
   selector: 'app-login-register',
@@ -12,19 +12,24 @@ export class LoginRegisterComponent {
   user?: User;
 
   registerForm = this.formBuilder.group({
-    username: '',
-    password: '',
-    email: '',
-    firstName: '',
-    lastName: ''
+    username: [''],
+    password: [''],
+    email: [''],
+    firstName: [''],
+    lastName: [''],
+    bio: ['']
   });
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private usersService : UsersService
   ){}
 
   onSubmit(): void{
-    console.log(this.registerForm.value);
+    // console.log(this.registerForm.value.username);
+    this.usersService.createUser(this.registerForm.value.username!, this.registerForm.value.password!, this.registerForm.value.email!, this.registerForm.value.firstName!, this.registerForm.value.lastName!, this.registerForm.value.bio!).subscribe(user =>{
+      console.log("posted user: "+ user.toString());
+    })
     this.registerForm.reset();
   }
 }

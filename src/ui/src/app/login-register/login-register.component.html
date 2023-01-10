@@ -5,7 +5,7 @@
       <label for="username">
         username
       </label>
-      <input id="username" type="text" formControlName="username">
+      <input id="username" type="text" formControlName="username" required>
     </div>
   
     <div>
@@ -34,8 +34,15 @@
           Last Name
         </label>
         <input id="lastName" type="text" formControlName="lastName">
-      </div>
-  
+    </div>
+    
+    <div>
+      <label for="bio">
+        Bio
+      </label>
+      <input id="bio" type="text" formControlName="bio">
+  </div>
+
     <button class="button" type="submit">Register</button>
   
   </form>
