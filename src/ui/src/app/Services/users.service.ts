@@ -14,11 +14,11 @@ export class User{
   private firstName?: string;
   private lastName?: string;
   private username: string;
-  private password: string;
+  private password?: string;
   private email?: string;
   private bio?: string;
 
-  constructor(userId: number, username: string, password: string, firstName?: string, lastName?: string, email?: string, bio?: string) {
+  constructor(userId: number, username: string, password?: string, firstName?: string, lastName?: string, email?: string, bio?: string) {
     this.userId = userId;
     this.username = username;
     this.password = password;
