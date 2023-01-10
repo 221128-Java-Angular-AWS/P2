@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, retry, throwError, Observable, of } from 'rxjs';
 import { Comment } from '../comment';
 import { Like } from '../like';
@@ -36,6 +36,14 @@ export class PostsService {
       );
   }
 
+  deletePostById(postId: number) {
+    return this.http.delete(this.baseUrl + "/posts/" + postId, this.httpOptions)
+    .pipe(
+      catchError(this.handleError<Post>('deletePost'))
+    )
+    // Deletion won't go through without a subscription
+    .subscribe(() => {})
+  }
 
   errorHand1(error: any){
     let errorMessage = '';
