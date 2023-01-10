@@ -1,6 +1,6 @@
 import { Component, Input} from '@angular/core';
 import { User } from 'app/model/user';
-import { UserService } from 'app/user.service';
+import { UsersService } from 'app/Services/users.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -15,9 +15,9 @@ export class UserProfileComponent {
 
   editUser = false;
 
-  currentUser = new User;
+  currentUser = new User('', this.userId);
 
-  constructor (private userService: UserService) {}
+  constructor (private userService: UsersService) {}
 
   ngOnInit() {
 
@@ -37,7 +37,7 @@ export class UserProfileComponent {
 
   save(uName: string, fName: string, lName: string, newDesc: string): void {
 
-    let newUser = new User;
+    let newUser = new User('', -1);
     newUser.userId = this.currentUser.userId;
     newUser.username = uName;
     newUser.firstName = fName;
