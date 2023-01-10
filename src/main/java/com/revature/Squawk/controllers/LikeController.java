@@ -19,37 +19,42 @@ public class LikeController {
         this.likeService = likeService;
     }
 
-    // allow a user to like a post
+    // allow a user to like a post, maybe return like count to update the view
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
     public @ResponseBody Like likePost(@RequestBody Like like){
         System.out.println(like.toString());
+        // instead probably change to either return like count or -1
+        like = likeService.likePost(like);
+        Integer likeCount = likeService.getLikeCount(like.getPost().getPostId());
+        System.out.println(likeCount);
         return likeService.likePost(like);
     }
 
     // check to see if a user has liked a post
-    @GetMapping
+    @GetMapping(value = "/{userId}/{postId}")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public @ResponseBody Like getLike(@RequestBody Like like){
+    public @ResponseBody Boolean getLike(@PathVariable Integer userId, @PathVariable Integer postId){
         System.out.println("Like hit");
-        System.out.println(like.getPost().getPostId());
-        System.out.println(like.getUser().getUserId());
         // either test for null or change to boolean in service, this is to test if a user has liked a post already
-        return likeService.getLike(like);
+        return likeService.getLikeStatus(userId, postId);
     }
 
     // return the like count for a post to add to the post information
-    @GetMapping(value = "/count")
+    @GetMapping(value = "/count/{postId}")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public @ResponseBody Integer getLikeCount(@RequestBody Post post){
+    public @ResponseBody Integer getLikeCount(@PathVariable Integer postId){
         // NOTE the request body has to be an object type in order to be deserialized
-        return likeService.getLikeCount(post.getPostId());
+        System.out.println("Getting likes request body:");
+        return likeService.getLikeCount(postId);
     }
 
     // update to reflect whether a like was successfully deleted or not
-    @DeleteMapping
+    @DeleteMapping(value = "/{userId}/{postId}")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public void deleteLike(@RequestBody Like like){
-        likeService.deleteLike(like);
+    public Boolean deleteLike(@PathVariable Integer userId, @PathVariable Integer postId){
+        System.out.println("Attempting to delete like:");
+        System.out.println("user: " + userId + " post: " + postId);
+        return(likeService.deleteLike(userId, postId));
     }
 }

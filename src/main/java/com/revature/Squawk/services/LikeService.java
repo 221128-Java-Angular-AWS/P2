@@ -35,13 +35,31 @@ public class LikeService {
         return likeRepo.getLike(like.getPost().getPostId(), like.getUser().getUserId());
     }
 
+    public Like getLike(Integer userId, Integer postId){
+        System.out.println("@getLike in service user: " + userId + " post: " + postId);
+        Like like = likeRepo.getLike(postId, userId);
+        return like;
+    }
+
+    // TODO: getLikeId method causes NullPointerException, could just test for like being null
+    // Overload for get request parameters, retruns boolean whether a user has liked a post or not
+    public Boolean getLikeStatus(Integer userId, Integer postId){
+        Like like = likeRepo.getLike(postId, userId);
+        if (like.getLikeId() != null) {
+            return true;
+        }
+        return false;
+    }
+
     public Integer getLikeCount(Integer postId) {
+        System.out.println("Made it to service");
         return likeRepo.getLikeCount(postId);
     }
 
     // allow users to unlike a post, return true if successfull, false if not
-    public boolean deleteLike(Like like){
-        like = getLike(like);
+    public boolean deleteLike(Integer userId, Integer postId){
+        Like like = getLike(userId, postId);
+        System.out.println("@service: user: " + userId + " post: " + postId);
         if (like.getLikeId() != null) {
             likeRepo.deleteById(like.getLikeId());
             return true;
