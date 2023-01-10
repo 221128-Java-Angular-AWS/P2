@@ -1,21 +1,22 @@
-export class User {
+import { Post } from "app/Services/posts.service";
 
-        userId: number;
-        firstName?: string;
-        lastName?: string;
-        username: string;
-        password?: string;
-        email?: string;
-        bio?: string;
-              
-        constructor(userId: number, username: string, password?: string, firstName?: string, lastName?: string, email?: string, bio?: string) {
-          this.userId = userId;
-          this.username = username;
-          this.password = password;
-          this.firstName = firstName; 
-          this.lastName = lastName;
-          this.email = email;
-          this.bio = bio;
-        }
-
+export class User{
+  userId ?: number | null;
+  username ?: string;
+  password?: string;
+  email?: string;
+  firstName?: string;
+  lastName?: string;
+  bio?: string;
+  posts?: Post[];
+  constructor(username: string, userId?:  number|null, password?: string, email?: string, 
+    firstName?: string, lastName?: string, bio?: string) {
+      this.userId = userId;
+      this.username = username;
+      this.password = password;
+      this.email = email;
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.bio = bio;
+    }
 }

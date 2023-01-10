@@ -17,7 +17,7 @@ public class UserService {
     }
 
     public User createUser(User user){
-        return new User();
+        return userRepo.save(user);
     }
 
     public User authenticateUser(String username, String password){

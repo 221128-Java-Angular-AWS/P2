@@ -26,7 +26,7 @@ export class PostsService {
   createPost(postText: string, imageLink: string, username: string){
     //make the post
     //NOTE: I added the username and empty arrays to satisfy the expanded constructor. -Travis M.
-    let user: User = new User(1, "braydensn")
+    let user: User = new User("braydensn", 1)
     let newPost = new Post(postText, imageLink, [], [], username, user);
     console.log("New Post: ", newPost);
     return this.http.post<Post>(this.baseUrl + "/posts", JSON.stringify(newPost), this.httpOptions)
