@@ -1,7 +1,7 @@
 import { User } from "./user";
 
 export let userMap: Map<string, User> = new Map<string, User>();
-
+/*
 userMap.set("ab1 AB2", {username: "ab1", password: "Ab4!", email: "abc@gmail.com"});
 userMap.set("lister gist", {username: "lister", password:"gist", email: "abd@gmail.com"});
 userMap.set('blue boss', {username: 'blue', password: 'boss', email: 'bboss@yahoo.net'})
@@ -22,3 +22,4 @@ for (var u_ of userList) {
     let password_string = u_.password;
     userMap.set(username_string + " " + password_string, u_);
 }
+*/

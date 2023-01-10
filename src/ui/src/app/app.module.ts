@@ -11,7 +11,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RegisterComponent } from './register/register.component';
+import { ResetCredentialsComponent } from './reset-credentials/reset-credentials.component';
+//import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { RegisterComponent } from './register/register.component';
     SettingsComponent,
     NavbarComponent,
     LoginRegisterComponent,
-    RegisterComponent
+    ResetCredentialsComponent,
+   // RegisterComponent
   ],
   imports: [
     

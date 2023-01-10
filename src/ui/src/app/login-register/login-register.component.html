@@ -1,4 +1,4 @@
-<h4>Login:)</h4>
+<h4>Login</h4>
 <div class="form-group">
     <label for="username">username:</label>
     <input type="text" class="form-control" id="username" required
@@ -12,24 +12,16 @@
     <input type="text" class="form-control" id="password" required
     [(ngModel)]="password" name="password">
 </div>
-<div class="output-name">{{username}} and {{password}} were inputs</div>
+<div class="output-name">{{username}} and {{password}} were inputs and returns {{strFormOutput}}</div>
 <div class="check-validity" *ngIf="strFormOutput">{{strFormOutput}}</div>
 
-<button type="submit" class="submit-userpassword" (click)="onSubmit(); resetUserPassword()">Login</button>
+<button type="submit" class="submit-userpassword" (click)="onSubmit(); checkUsernamePassword()">Login</button>
 
 <div class="register">
-    Don't have an account?
+    Forgot Username or Password?
     <nav>
-    <a routerLink="/register">
+    <a routerLink="/credentials">
         <button type="button">register</button>
-    </a>
-    </nav>
-  </div>
-  <div class="register">
-    Don't have an account?
-    <nav>
-    <a routerLink="/register">
-        register
     </a>
     </nav>
   </div>

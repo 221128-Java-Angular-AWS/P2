@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { User } from '../user';
-import { userMap } from '../userMap';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-reset-credentials',
+  templateUrl: './reset-credentials.component.html',
+  styleUrls: ['./reset-credentials.component.css']
 })
-export class RegisterComponent {
-  users = userMap;
+export class ResetCredentialsComponent {
+
   username: string="";
   password: string="";
   email: string="";
@@ -16,6 +15,7 @@ export class RegisterComponent {
   listUsernames: string[] = [];
   listEmails: string[] = [];
 
+  /*
   validate(): void {
     this.getUsernamesAndEmails();
 
@@ -34,16 +34,9 @@ export class RegisterComponent {
        }
     }
   }
-  createUser(): void {
-    let user = new User(this.username,this.password,this.email);
-    userMap.set(this.username + " "+ this.password, user);
-  }
+  */
 
 
-  getUsernamesAndEmails() {
-    for (let user of this.users.values()) {
-      this.listEmails.push(user.email);
-      this.listUsernames.push(user.username);
-    }
-  }
 }
+
+
