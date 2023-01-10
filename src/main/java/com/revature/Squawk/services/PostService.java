@@ -18,11 +18,11 @@ public class PostService {
     }
 
     public Post createPost(Post post){
-        return new Post();
+        return postRepo.save(post);
     }
 
     public Post getPost(Integer postId){
-        return new Post();
+        return postRepo.findById(postId).orElse(new Post());
     }
 
     public List<Post> getPosts(){
