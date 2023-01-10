@@ -15,13 +15,11 @@ public class LikeService {
     }
 
     public Like likePost(Like like){
-        // add logic to check for existing like here also disable on front end if user already liked post
+        // check for existing like here could disable on front end if user already liked post
         if (getLike(like) == null) {
             likeRepo.save(like);
-            //likeRepo.likePost(like.getPost().getPostId(), like.getUser().getUserId());
             like = getLike(like);
         }
-        // set up an error to throw if the like already existed
         return like;
     }
 

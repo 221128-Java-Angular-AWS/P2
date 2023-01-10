@@ -32,7 +32,7 @@ public class LikeController {
     @GetMapping(value = "/{userId}/{postId}")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public @ResponseBody Boolean getLike(@PathVariable Integer userId, @PathVariable Integer postId){
-        // either test for null or change to boolean in service, this is to test if a user has liked a post already
+        // returns boolean, not currently used
         return likeService.getLikeStatus(userId, postId);
     }
 
@@ -44,7 +44,6 @@ public class LikeController {
         return likeService.getLikeCount(postId);
     }
 
-    // update to reflect whether a like was successfully deleted or not
     @DeleteMapping(value = "/{userId}/{postId}")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public Boolean deleteLike(@PathVariable Integer userId, @PathVariable Integer postId){
