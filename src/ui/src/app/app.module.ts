@@ -12,6 +12,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LikeComponent } from './like/like.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     PostDetailComponent,
     SettingsComponent,
     NavbarComponent,
-    LoginRegisterComponent
+    LoginRegisterComponent,
+    LikeComponent
   ],
   imports: [
     BrowserModule,
