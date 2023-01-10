@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Post, PostsService } from '../Services/posts.service';
 
 @Component({
@@ -35,9 +35,20 @@ export class FeedComponent {
   }
 
   ngOnInit(): void {
+    console.log('Called feed init');
     this.postsService.getPosts()
     .subscribe((posts) => {
       this.posts = posts;
     });
   }
+
+  removePost(postId: number): void {
+    console.log('Deleting post from feed');
+    this.posts.splice(postId, 1);
+    // this.ngOnInit();
+  }
+
+  @Output() removePostFromFeed = this.removePost.bind(this);
+
+
 }

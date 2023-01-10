@@ -8,8 +8,8 @@ import { Comment } from '../comment';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent {
-  @Input()
-  post!: Post;
+  @Input() post!: Post;
+  @Input() removePostFromFeed!: Function;
   comments: Comment[] = [];
 
   constructor(private postsService: PostsService) {
@@ -22,5 +22,6 @@ export class PostComponent {
 
   deletePostById(postId: number): void {
     this.postsService.deletePostById(postId);
+    this.removePostFromFeed(postId);
   }
 }
