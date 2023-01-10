@@ -25,19 +25,17 @@ public class PostController {
     public @ResponseBody Post createNewPost(@RequestBody Post post){
         post.setDatePosted(LocalDateTime.now());
         System.out.println(post);
-        return postService.createPost(post);
+        Post returnPost = postService.createPost(post);
+        System.out.println("Return: " + returnPost);
+        return returnPost;
     }
-
-//    @GetMapping
-//    @ResponseStatus(value = HttpStatus.ACCEPTED)
-//    public @ResponseBody Post getPost(@RequestBody Integer postId){
-//        return postService.getPost(postId);
-//    }
-
+    
     @GetMapping(value = "/{postId}")
-    @ResponseStatus(value = HttpStatus.OK)
-    public @ResponseBody Post getPost(@PathVariable Integer postId) {
-        return postService.getPost(postId);
+    @ResponseStatus(value = HttpStatus.ACCEPTED)
+    public @ResponseBody Post getPost(@PathVariable Integer postId){
+        Post post = postService.getPost(postId);
+        System.out.println(post);
+        return post;
     }
 
     @GetMapping(value = "/feed")

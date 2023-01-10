@@ -19,6 +19,7 @@ export class FeedComponent {
       // NOTE: I added "The Riddler" to satisfy the method signature due to the expanded Post class constructor. -Travis M.
       this.postsService.createPost(text, this.imageLink, "The Riddler").subscribe(post => {
         console.log("Returned Post: ", post);
+        this.posts.push(post);
       });
 
       (<HTMLInputElement>document.getElementById("newPostText")).value = "";

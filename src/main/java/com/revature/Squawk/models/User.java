@@ -44,6 +44,10 @@ public class User {
     public User() {
     }
 
+    public User(Integer userId) {
+        this.userId = userId;
+    }
+
     public User(String firstName, String lastName, String username, String password, String email, String bio) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -51,10 +55,6 @@ public class User {
         this.password = password;
         this.email = email;
         this.bio = bio;
-    }
-
-    public User(Integer userId) {
-        this.userId = userId;
     }
 
     public User(Integer userId, String firstName, String lastName, String username, String password, String email, String bio) {

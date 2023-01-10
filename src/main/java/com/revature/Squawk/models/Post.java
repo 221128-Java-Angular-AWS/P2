@@ -88,6 +88,7 @@ public class Post {
         this.datePosted = datePosted;
     }
 
+
     public User getUser() {
         return user;
     }
@@ -96,6 +97,9 @@ public class Post {
         this.user = user;
     }
 
+    public Integer getUserId() {
+        return this.user != null ? user.getUserId() : null;
+    }
     public String getUsername() {
         return user.getUsername();
     }

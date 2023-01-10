@@ -28,7 +28,7 @@ public class Reply {
     @JsonProperty
     private User user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JsonBackReference(value = "reply_comment")
     @JoinColumn(name = "comment_id")
     @JsonProperty

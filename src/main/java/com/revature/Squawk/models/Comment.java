@@ -34,7 +34,7 @@ public class Comment {
     @Column
     private String message;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "comment", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "comment")
     @JsonManagedReference(value = "reply_comment")
     List<Reply> replies;
 
