@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-import { User } from '../user';
-import { userMap } from '../userMap';
-import { HttpClientModule } from '@angular/common/http';
-import { AuthenticationService } from 'app/Services/authentication.service';
-
+import { FormBuilder } from '@angular/forms';
+import { User, UsersService } from '../Services/users.service';
 
 @Component({
   selector: 'app-login-register',
@@ -11,50 +8,27 @@ import { AuthenticationService } from 'app/Services/authentication.service';
   styleUrls: ['./login-register.component.css']
 })
 export class LoginRegisterComponent {
-  constructor(private authService: AuthenticationService) {}
 
-  submitted: boolean = false;
-  username: string = "";
-  password: string ="";
-  strFormOutput?: string;
   user?: User;
-  users = userMap;
 
-  onSubmit() { 
-    this.submitted=true; 
-    this.checkUsernamePassword();}
+  registerForm = this.formBuilder.group({
+    username: [''],
+    password: [''],
+    email: [''],
+    firstName: [''],
+    lastName: [''],
+    bio: ['']
+  });
 
-  checkUsernamePassword(): User | void {
-    
-    this.authService.authenticateUser(this.username, this.password).subscribe(users => {
-      this.strFormOutput = JSON.stringify(users);
-      this.user = users;
-    });
-    this.strFormOutput = "OOO";
+  constructor(
+    private formBuilder: FormBuilder,
+    private usersService : UsersService
+  ){}
 
-    //let keyArr = Array.from(this.users.keys() );
-    //keyList.push(this.username);
-    //keyList.push(this.password);
-    
-    //this.strFormOutput = "Checkz for user";
-    /*
-    let validationInput: string = this.username + " " + this.password;
-    if (userMap.has(validationInput)) {this.strFormOutput="valid"}
-    else { this.strFormOutput=`This username and/or password is invalid and your input was ${this.username},
-        ${this.password}}`;}
-    */
+  onSubmit(): void{
+    this.usersService.createUser(this.registerForm.value.username!, this.registerForm.value.password!, this.registerForm.value.email!, this.registerForm.value.firstName!, this.registerForm.value.lastName!, this.registerForm.value.bio!).subscribe(user =>{
+      console.log("posted user: "+ JSON.stringify(user));
+    })
+    this.registerForm.reset();
   }
-
-  goToUserPage() {}
-
-  resetUserPassword(): void {
-    this.username="";
-    this.password="";
-  }
-
-  printNotification() {
-      this.strFormOutput
-  }
-
-
 }

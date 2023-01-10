@@ -1,37 +1,50 @@
-<h4>Login</h4>
-<div class="form-group">
-    <label for="username">username:</label>
-    <input type="text" class="form-control" id="username" required
-    [(ngModel)]="username" name="username" #name="ngModel">
-    <!--<div [hidden]="username.valid || username.pristine" class="alert alert-danger">
-        Username is required!
-    -->
-</div>
-<div class="form-group">
-    <label for="password">password:</label>
-    <input type="text" class="form-control" id="password" required
-    [(ngModel)]="password" name="password">
-</div>
-<div class="output-name">{{username}} and {{password}} were inputs and returns {{strFormOutput}}</div>
-<div class="check-validity" *ngIf="strFormOutput">{{strFormOutput}}</div>
 
-<button type="submit" class="submit-userpassword" (click)="onSubmit(); checkUsernamePassword()">Login</button>
+<p>login-register works!</p>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
-<div class="register">
-    Forgot Username or Password?
-    <nav>
-    <a routerLink="/credentials">
-        <button type="button">register</button>
-    </a>
-    </nav>
-  </div>
-<!--
-<ul>
-    {{users.size}}
-<li *ngFor="let userM of users.keys()">
-    <div *ngIf="users.get(userM)">
-    {{userM}}->{{users.get(userM)}}
+    <div>
+      <label for="username">
+        username
+      </label>
+      <input id="username" type="text" formControlName="username" required>
     </div>
-</li>
-</ul>
--->
+  
+    <div>
+      <label for="password">
+        password
+      </label>
+      <input id="password" type="text" formControlName="password">
+    </div>
+
+    <div>
+        <label for="email">
+          email
+        </label>
+        <input id="email" type="text" formControlName="email">
+      </div>
+
+    <div>
+      <label for="firstName">
+        First Name
+      </label>
+      <input id="firstName" type="text" formControlName="firstName">
+    </div>
+
+    <div>
+        <label for="lastName">
+          Last Name
+        </label>
+        <input id="lastName" type="text" formControlName="lastName">
+    </div>
+    
+    <div>
+      <label for="bio">
+        Bio
+      </label>
+      <input id="bio" type="text" formControlName="bio">
+  </div>
+
+    <button class="button" type="submit">Register</button>
+  
+  </form>
+

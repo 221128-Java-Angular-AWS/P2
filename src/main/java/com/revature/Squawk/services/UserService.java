@@ -1,12 +1,16 @@
 package com.revature.Squawk.services;
 
+
 import com.revature.Squawk.models.User;
 import com.revature.Squawk.models.UserAuth;
 import com.revature.Squawk.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import java.util.Optional;
 import java.util.List;
+
 
 @Service
 public class UserService {
@@ -18,7 +22,7 @@ public class UserService {
     }
 
     public User createUser(User user){
-        return new User();
+        return userRepo.save(user);
     }
 
     public List<User> authenticateUser(UserAuth userAuth){
@@ -27,11 +31,21 @@ public class UserService {
     }
 
     public User getUser(Integer userId){
-        return new User();
+        return userRepo.findById(userId).orElseThrow();
     }
 
     public User updateUser(User user){
-        return new User();
+
+        User originalUser = userRepo.findById(user.getUserId()).orElseThrow();
+
+        System.out.println("Updated: " + user.getUsername() + " to " + originalUser.getUsername());
+
+        originalUser.setUsername(user.getUsername());
+        originalUser.setFirstName(user.getFirstName());
+        originalUser.setLastName(user.getLastName());
+        originalUser.setBio(user.getBio());
+
+        return userRepo.save(originalUser);
     }
 
     public void deleteUser(User user){
@@ -40,5 +54,6 @@ public class UserService {
     public List<User> allUsers(){
         return userRepo.allUsers();
     }
+
 
 }

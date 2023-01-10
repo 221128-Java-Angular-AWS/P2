@@ -1,1 +1,23 @@
-<p>post works!</p>
+<div class="post">
+  <span [style]="{'font-size':'20px'}">{{post.username}}</span>
+  <span> posted:</span>
+  <span [style]="{'font-size':'12px', 'float': 'right'}">{{post.datePosted}}</span>
+  <button (click)="deletePostById(post.postId!)">X</button>
+  <div class="postContent">{{post.message}}<div *ngIf="post.imageLink != ''"><img class="postImage" [src]="post.imageLink"></div></div>
+  <div [style]="{'margin-bottom': '5px'}">{{post.likes.length}} likes - {{post.comments.length}} comments</div>
+  <div [style]="{'margin-left': '25px', 'margin-top':'20px'}" *ngIf="post.comments.length > 0 && !post.clicked">
+    <span>{{post.comments[0].username}}</span>
+    <span [style]="{'font-size':'12px'}"> commented:</span>
+    <span [style]="{'font-size':'12px', 'float': 'right'}">{{post.comments[0].postedDate}}</span>
+    <div class="commentContent">{{post.comments[0].message}}</div>
+  </div>
+  <button *ngIf="post.comments.length > 1 && !post.clicked" (click)="clickMoreComments(post)">Read comments</button>
+  <div *ngIf="post.clicked">
+    <div [style]="{'margin-left': '25px', 'margin-top':'20px'}" *ngFor="let comment of post.comments">
+      <span>{{comment.username}}</span>
+      <span [style]="{'font-size':'12px'}"> commented:</span>
+      <span [style]="{'font-size':'12px', 'float': 'right'}">{{comment.postedDate}}</span>
+      <div class="commentContent">{{comment.message}}</div>
+    </div>
+  </div>
+</div>

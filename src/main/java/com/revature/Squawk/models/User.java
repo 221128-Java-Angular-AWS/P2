@@ -1,5 +1,6 @@
 package com.revature.Squawk.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -41,6 +42,10 @@ public class User {
     List<Like> likes;
 
     public User() {
+    }
+
+    public User(Integer userId) {
+        this.userId = userId;
     }
 
     public User(String firstName, String lastName, String username, String password, String email, String bio) {

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, retry, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { catchError, retry, throwError, Observable, of } from 'rxjs';
+import { Comment } from '../comment';
+import { Like } from '../like';
+import { User } from 'app/model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +14,8 @@ export class PostsService {
 
   baseUrl: string = "http://localhost:8080";
 
+  postsUrl: string = "/posts/feed";
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -18,9 +23,11 @@ export class PostsService {
   }
 
 
-  createPost(postText: string, imageLink: string){
+  createPost(postText: string, imageLink: string, username: string){
     //make the post
-    let newPost = new Post(postText, imageLink, 1);
+    //NOTE: I added the username and empty arrays to satisfy the expanded constructor. -Travis M.
+    let user: User = new User("braydensn", 1)
+    let newPost = new Post(postText, imageLink, [], [], username, user);
     console.log("New Post: ", newPost);
     return this.http.post<Post>(this.baseUrl + "/posts", JSON.stringify(newPost), this.httpOptions)
       .pipe(
@@ -29,7 +36,15 @@ export class PostsService {
       );
   }
 
-  
+  deletePostById(postId: number) {
+    return this.http.delete(this.baseUrl + "/posts/" + postId, this.httpOptions)
+    .pipe(
+      catchError(this.handleError<Post>('deletePost'))
+    )
+    // Deletion won't go through without a subscription
+    .subscribe(() => {})
+  }
+
   errorHand1(error: any){
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {
@@ -43,6 +58,21 @@ export class PostsService {
     return throwError(errorMessage);
   }
 
+
+
+  getPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(this.baseUrl + this.postsUrl)
+    .pipe(
+      catchError(this.handleError<Post[]>('getPosts', []))
+    );
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    }
+  }
 }
 
 export class Post{
@@ -50,14 +80,21 @@ export class Post{
   message: string;
   imageLink: string;
   datePosted?: string;
-  userId?: number;
+  user?: User;
+  username?: string;
+  clicked?: boolean;
+  comments: Comment[];
+  likes: Like[];
 
-  constructor(message: string, imageLink: string, userId?: number, datePosted?: string, postId?: number){
+  constructor(message: string, imageLink: string, likes: Like[], comments: Comment[], username?: string, user?: User, datePosted?: string, postId?: number, clicked?: boolean){
     this.postId = postId;
     this.message = message;
     this.imageLink = imageLink;
     this.datePosted = datePosted;
-    this.userId = userId;
+    this.user = user;
+    this.clicked = clicked;
+    this.likes = likes;
+    this.comments = comments;
+    this.username = username;
   }
-
 }

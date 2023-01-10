@@ -22,11 +22,11 @@ public class PostService {
     }
 
     public Post getPost(Integer postId){
-        return new Post();
+        return postRepo.findById(postId).orElse(new Post());
     }
 
     public List<Post> getPosts(){
-        return new ArrayList<Post>();
+        return postRepo.findAll();
     }
 
     public List<Post> getPosts(Integer userId){
@@ -39,5 +39,9 @@ public class PostService {
 
     public void deletePost(Post post){
 
+    }
+
+    public void deletePostById(Integer postId) {
+        postRepo.deleteById(postId);
     }
 }
