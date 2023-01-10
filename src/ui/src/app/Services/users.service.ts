@@ -1,30 +1,36 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders ,HttpParams } from '@angular/common/http';
+import { User } from 'app/model/user';
+import { Observable } from 'rxjs';
 import { first } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 export class UsersService {
 
-  constructor() { }
-}
+  private usersUrl: string;
 
-export class User{
-  private userId: number;
-  private firstName?: string;
-  private lastName?: string;
-  private username: string;
-  private password?: string;
-  private email?: string;
-  private bio?: string;
+  httpOptions = {
+    headers : new HttpHeaders({
+      "Content-Type" : "application/json"})
+    }
 
-  constructor(userId: number, username: string, password?: string, firstName?: string, lastName?: string, email?: string, bio?: string) {
-    this.userId = userId;
-    this.username = username;
-    this.password = password;
-    this.firstName = firstName; 
-    this.lastName = lastName;
-    this.email = email;
-    this.bio = bio;
+  constructor(private http : HttpClient) {
+    this.usersUrl = "http://localhost:8080/users";
+  }
+
+  public getUser(id : number) : Observable<User> {
+
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("userId", id);
+    
+    return this.http.get<User>(this.usersUrl, {params:queryParams});
+  }
+
+  public updateUser(user : User) : Observable<User> {
+
+    console.log(user.userId);
+    console.log(user.username);
+
+    return this.http.put<User>(this.usersUrl, user, this.httpOptions);
   }
 }
