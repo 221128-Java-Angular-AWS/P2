@@ -62,4 +62,10 @@ public class PostController {
         postService.deletePost(post);
     }
 
+    @DeleteMapping(value = "/{postId}")
+    @ResponseStatus(value = HttpStatus.ACCEPTED)
+    public void deletePostById(@PathVariable Integer postId){
+        postService.deletePostById(postId);
+    }
+
 }
