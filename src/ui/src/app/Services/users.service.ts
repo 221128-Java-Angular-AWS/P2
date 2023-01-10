@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from './posts.service';
+import { first } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,22 +18,23 @@ export class UsersService {
     })
   }
   createUser(username: string, password: string, email: string, firstName: string, lastName: string, bio: string){
-    let newUser = new User(username, password, email, firstName, lastName, bio);
+    let newUser = new User(username, null, password, email, firstName, lastName, bio);
     return this.http.post<User>(this.baseUrl + this.userUrl, JSON.stringify(newUser), this.httpOptions);
   }
 }
 
 export class User{
-  userId ?: number;
-  username : string;
-  password: string;
-  email: string;
-  firstName: string;
-  lastName: string;
+  userId ?: number | null;
+  username ?: string;
+  password?: string;
+  email?: string;
+  firstName?: string;
+  lastName?: string;
   bio?: string;
   posts?: Post[];
-  constructor(username: string, password: string, email: string, 
-    firstName: string, lastName: string, bio?: string) {
+  constructor(username: string, userId?:  number|null, password?: string, email?: string, 
+    firstName?: string, lastName?: string, bio?: string) {
+      this.userId = userId;
       this.username = username;
       this.password = password;
       this.email = email;

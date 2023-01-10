@@ -30,3 +30,8 @@ button {
   margin-left: 25px;
   background-color: rgb(71, 171, 252)
 }
+
+.postImage{
+  max-height: 300px;
+  margin: 10px 0px;
+}

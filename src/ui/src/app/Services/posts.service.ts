@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, retry, throwError, Observable, of } from 'rxjs';
 import { Comment } from '../comment';
 import { Like } from '../like';
-
+import { User } from './users.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,8 @@ export class PostsService {
   createPost(postText: string, imageLink: string, username: string){
     //make the post
     //NOTE: I added the username and empty arrays to satisfy the expanded constructor. -Travis M.
-    let newPost = new Post(postText, imageLink, username, [], [], 1);
+    let user: User = new User("braydensn", 1)
+    let newPost = new Post(postText, imageLink, [], [], username, user);
     console.log("New Post: ", newPost);
     return this.http.post<Post>(this.baseUrl + "/posts", JSON.stringify(newPost), this.httpOptions)
       .pipe(
@@ -71,13 +72,13 @@ export class Post{
   message: string;
   imageLink: string;
   datePosted?: string;
-  user?: number;
-  username: string;
+  user?: User;
+  username?: string;
   clicked?: boolean;
   comments: Comment[];
   likes: Like[];
 
-  constructor(message: string, imageLink: string, username: string, likes: Like[], comments: Comment[], user?: number, datePosted?: string, postId?: number, clicked?: boolean){
+  constructor(message: string, imageLink: string, likes: Like[], comments: Comment[], username?: string, user?: User, datePosted?: string, postId?: number, clicked?: boolean){
     this.postId = postId;
     this.message = message;
     this.imageLink = imageLink;
