@@ -12,6 +12,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     PostDetailComponent,
     SettingsComponent,
     NavbarComponent,
-    LoginRegisterComponent
+    LoginRegisterComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
