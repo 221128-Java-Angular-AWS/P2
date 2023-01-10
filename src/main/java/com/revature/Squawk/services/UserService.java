@@ -1,5 +1,6 @@
 package com.revature.Squawk.services;
 
+
 import com.revature.Squawk.models.User;
 import com.revature.Squawk.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,7 @@ public class UserService {
     public void deleteUser(User user){
 
     }
+
 
 
 
