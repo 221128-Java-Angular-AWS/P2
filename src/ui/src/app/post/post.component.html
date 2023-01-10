@@ -2,6 +2,7 @@
   <span [style]="{'font-size':'20px'}">{{post.username}}</span>
   <span> posted:</span>
   <span [style]="{'font-size':'12px', 'float': 'right'}">{{post.datePosted}}</span>
+  <button (click)="deletePostById(post.postId!)">X</button>
   <div class="postContent">{{post.message}}<div *ngIf="post.imageLink != ''"><img class="postImage" [src]="post.imageLink"></div></div>
   <div [style]="{'margin-bottom': '5px'}">{{post.likes.length}} likes - {{post.comments.length}} comments</div>
   <div [style]="{'margin-left': '25px', 'margin-top':'20px'}" *ngIf="post.comments.length > 0 && !post.clicked">
