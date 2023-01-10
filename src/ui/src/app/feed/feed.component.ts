@@ -34,6 +34,10 @@ export class FeedComponent {
     }
   }
 
+  removeImageLink(): void{
+    this.imageLink = "";
+  }
+
   ngOnInit(): void {
     this.postsService.getPosts()
     .subscribe((posts) => {
