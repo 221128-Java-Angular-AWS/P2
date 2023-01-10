@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public class CommentService {
-    private CommentRepository commentRepo;
+    private final CommentRepository commentRepo;
 
     @Autowired
     public CommentService(CommentRepository commentRepo) {

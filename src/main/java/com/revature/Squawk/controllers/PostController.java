@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/posts")
 public class PostController {
-    private PostService postService;
+    private final PostService postService;
 
     @Autowired
     public PostController(PostService postService) {
@@ -28,9 +28,15 @@ public class PostController {
         return postService.createPost(post);
     }
 
-    @GetMapping
-    @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public @ResponseBody Post getPost(@RequestBody Integer postId){
+//    @GetMapping
+//    @ResponseStatus(value = HttpStatus.ACCEPTED)
+//    public @ResponseBody Post getPost(@RequestBody Integer postId){
+//        return postService.getPost(postId);
+//    }
+
+    @GetMapping(value = "/{postId}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public @ResponseBody Post getPost(@PathVariable Integer postId) {
         return postService.getPost(postId);
     }
 

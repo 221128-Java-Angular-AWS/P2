@@ -20,6 +20,8 @@ public interface CommentRepository extends JpaRepository<Comment, Integer> {
     @Query(value = "SELECT * FROM comments WHERE post_id = :postId ORDER BY posted_date", nativeQuery = true)
     List<Comment> findByPostId(@Param("postId") Integer postId);
 
+
+
     // delete by comment id
     @Query(value = "DELETE FROM comments WHERE comment_id = :commentId", nativeQuery = true)
     @Modifying
