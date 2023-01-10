@@ -35,7 +35,6 @@ export class FeedComponent {
   }
 
   ngOnInit(): void {
-    console.log('Called feed init');
     this.postsService.getPosts()
     .subscribe((posts) => {
       this.posts = posts;
@@ -43,9 +42,7 @@ export class FeedComponent {
   }
 
   removePost(postId: number): void {
-    console.log('Deleting post from feed');
     this.posts.splice(postId, 1);
-    // this.ngOnInit();
   }
 
   @Output() removePostFromFeed = this.removePost.bind(this);
