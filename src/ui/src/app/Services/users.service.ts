@@ -18,8 +18,6 @@ export class UsersService {
   }
   createUser(username: string, password: string, email: string, firstName: string, lastName: string, bio: string){
     let newUser = new User(username, password, email, firstName, lastName, bio);
-    console.log(newUser);
-    console.log((JSON.stringify(newUser)));
     return this.http.post<User>(this.baseUrl + this.userUrl, JSON.stringify(newUser), this.httpOptions);
   }
 }

@@ -24,17 +24,18 @@ public class Post {
     @Column(name = "date_posted")
     private LocalDateTime datePosted;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JsonBackReference(value = "post_user")
+
     @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    @JsonManagedReference(value = "like_post")
+    @JsonManagedReference (value = "like_post")
     List<Like> likes;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    @JsonManagedReference(value = "comment_post")
+    @JsonManagedReference (value = "comment_post")
     List<Comment> comments;
 
     public Post() {
@@ -93,6 +94,10 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getUsername() {
+        return user.getUsername();
     }
 
     @Override

@@ -1,3 +1,12 @@
-export class User{
-    constructor(public username: string, public password: string, public email: string, firstName: string, lastName: string) {}
+import { Post } from './Services/posts.service';
+
+export interface User {
+  userId: number;
+  bio: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  username: string;
+  posts: Post[];
 }

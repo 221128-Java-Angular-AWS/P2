@@ -26,9 +26,8 @@ export class LoginRegisterComponent {
   ){}
 
   onSubmit(): void{
-    // console.log(this.registerForm.value.username);
     this.usersService.createUser(this.registerForm.value.username!, this.registerForm.value.password!, this.registerForm.value.email!, this.registerForm.value.firstName!, this.registerForm.value.lastName!, this.registerForm.value.bio!).subscribe(user =>{
-      console.log("posted user: "+ user.toString());
+      console.log("posted user: "+ JSON.stringify(user));
     })
     this.registerForm.reset();
   }
