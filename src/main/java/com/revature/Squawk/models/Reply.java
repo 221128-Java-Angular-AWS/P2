@@ -3,8 +3,6 @@ package com.revature.Squawk.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -22,13 +20,13 @@ public class Reply {
     @JsonProperty
     private Post post;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JsonBackReference(value = "reply_user")
     @JoinColumn(name = "user_id")
     @JsonProperty
     private User user;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference(value = "reply_comment")
     @JoinColumn(name = "comment_id")
     @JsonProperty
@@ -44,6 +42,15 @@ public class Reply {
     }
 
     public Reply(Post post, User user, Comment comment, LocalDateTime postedDate, String message) {
+        this.post = post;
+        this.user = user;
+        this.comment = comment;
+        this.postedDate = postedDate;
+        this.message = message;
+    }
+
+    public Reply(Integer replyId, Post post, User user, Comment comment, LocalDateTime postedDate, String message) {
+        this.replyId = replyId;
         this.post = post;
         this.user = user;
         this.comment = comment;

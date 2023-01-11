@@ -60,11 +60,12 @@ export class CommentsService {
       .pipe(retry(1), catchError(this.handleError<Reply[]>('getReply', [])));
   }
 
-  postReply(postId: number, commentId: number, reply: Reply): Observable<Reply> {
-    const url = `${this.baseUrl}/posts/${postId}/comments/${commentId}`;
-    console.log(postId);
-    console.log(commentId);
-    console.log(reply);
+  postReply(postId: number, commentId: number, comment: Comment, reply: Reply): Observable<Reply> {
+    const url = `${this.baseUrl}/posts/${postId}/comments/${comment.commentId}`;
+    console.log('postId: ', postId);
+    console.log('commentId: ', commentId);
+    console.log('reply: ', reply);
+    reply.comment = comment;
     return this.http.post<Reply>(url, JSON.stringify(reply), this.options)
       .pipe(retry(1), catchError(this.handleError<Reply>('postReply')));
   }

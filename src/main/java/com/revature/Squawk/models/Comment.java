@@ -34,7 +34,7 @@ public class Comment {
     @Column
     private String message;
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "comment")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "comment")
     @JsonManagedReference(value = "reply_comment")
     List<Reply> replies;
 
@@ -54,6 +54,15 @@ public class Comment {
         this.user = user;
         this.postedDate = postedDate;
         this.message = message;
+    }
+
+    public Comment(Integer commentId, Post post, User user, LocalDateTime postedDate, String message, List<Reply> replies) {
+        this.commentId = commentId;
+        this.post = post;
+        this.user = user;
+        this.postedDate = postedDate;
+        this.message = message;
+        this.replies = replies;
     }
 
     public Integer getCommentId() {

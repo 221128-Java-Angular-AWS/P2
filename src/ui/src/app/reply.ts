@@ -14,7 +14,7 @@ export class Reply {
     post?: Post;
     comment?: Comment;
 
-    constructor(commentId: number, userId: number, message: string, username?: string, user?: User, comment?: Comment, post?: Post, postId?: number, id?: number, postedDate?: string) {
+    constructor(commentId: number, userId: number, message: string, username?: string, post?: Post, comment?: Comment, user?: User, postId?: number, id?: number, postedDate?: string) {
         this.id = id;
         this.postId = postId;
         this.commentId = commentId;

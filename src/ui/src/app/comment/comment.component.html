@@ -1,7 +1,20 @@
 <div [style]="{'margin-left': '25px', 'margin-top':'20px'}" *ngFor="let comment of comments">
     <span>{{comment.username}}</span>
     <span [style]="{'font-size':'12px'}"> commented:</span>
-    <button (click)="deleteComment(comment);">Delete</button>
+    <button (click)="deleteComment(comment);">X</button>
     <span [style]="{'font-size':'12px', 'float': 'right'}">{{comment.postedDate | date:'MM-dd-yyyy hh:mm:ss a'}}</span>
     <div class="commentContent">{{comment.message}}</div>
+    <div id="newPost">
+        <textarea id="newPostText" #postText placeholder="Create a new reply!"></textarea>
+        <br>
+        <button (click)="createReply(post, comment, postText.value); postText.value = '';">Squawk</button>
+    </div>
+
+    <div [style]="{'margin-left': '50px', 'margin-top':'20px'}" *ngFor="let reply of comment.replies">
+        <span>{{reply.username}}</span>
+        <span [style]="{'font-size':'12px'}"> commented:</span>
+        <button (click)="deleteComment(comment);">X</button>
+        <span [style]="{'font-size':'12px', 'float': 'right'}">{{reply.postedDate | date:'MM-dd-yyyy hh:mm:ss a'}}</span>
+        <div class="commentContent">{{reply.message}}</div>
+    </div>
 </div>

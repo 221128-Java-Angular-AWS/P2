@@ -14,8 +14,7 @@ export class PostComponent {
   post!: Post;
 
   @Input()
-  posts!: Post[];
-  comments!: Comment[];
+  posts!: Post[]
 
   clicked: boolean = false;
   
@@ -24,7 +23,7 @@ export class PostComponent {
 
   createComment(post: Post, message: string) {
     let user = new User("test", 1);
-    let comment = new Comment((post.postId ? post.postId : 1), user.userId, message, user, post);
+    let comment = new Comment((post.postId ? post.postId : 1), (user.userId ? user.userId : 1), message, user, post);
     this.commentService.postComment((post.postId ? post.postId : 1), comment).subscribe((comment) => {
       this.post.comments.push(comment);
     });

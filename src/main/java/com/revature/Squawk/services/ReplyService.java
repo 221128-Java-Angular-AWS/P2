@@ -37,4 +37,8 @@ public class ReplyService {
     public void deleteReply(Reply reply) {
         replyRepo.deleteByReplyId(reply.getReplyId());
     }
+
+    public void deleteReplyByCommentId(Integer commentId) {
+        replyRepo.deleteByCommentId(commentId);
+    }
 }

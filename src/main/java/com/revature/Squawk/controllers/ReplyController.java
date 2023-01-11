@@ -37,6 +37,7 @@ public class ReplyController {
         reply.setPost(post);
         reply.setComment(comment);
         reply.setPostedDate(now);
+        System.out.println(reply.toString());
         return replyService.createReply(reply);
     }
 

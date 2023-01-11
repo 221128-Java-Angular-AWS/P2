@@ -24,4 +24,9 @@ public interface ReplyRepository extends JpaRepository<Reply, Integer> {
     @Query(value = "DELETE FROM replies WHERE reply_id = :replyId", nativeQuery = true)
     @Modifying
     void deleteByReplyId(@Param("replyId") Integer replyId);
+
+    // delete all by comment id
+    @Query(value = "DELETE FROM replies WHERE comment_id = :commentId", nativeQuery = true)
+    @Modifying
+    void deleteByCommentId(@Param("commentId") Integer commentId);
 }

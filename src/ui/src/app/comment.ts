@@ -3,9 +3,9 @@ import { User } from "./model/user";
 import { Post } from "./Services/posts.service";
 
 export class Comment {
-  id?: number;
+  commentId?: number;
   postId: number;
-  userId: number | undefined | null;
+  userId: number;
   username?: string;
   postedDate?: string;
   message: string;
@@ -13,11 +13,11 @@ export class Comment {
   user?: User;
   post?: Post;
 
-  constructor(postId: number, userId: number | undefined | null, message: string, user?: User, post?: Post, id?: number, username?: string, postedDate?: string, replies?: Reply[]) {
+  constructor(postId: number, userId: number, message: string, user?: User, post?: Post, commentId?: number, username?: string, postedDate?: string, replies?: Reply[]) {
     this.postId = postId;
     this.userId = userId;
     this.message = message;
-    this.id = id;
+    this.commentId = commentId;
     this.username = username;
     this.postedDate = postedDate;
     this.replies = replies;

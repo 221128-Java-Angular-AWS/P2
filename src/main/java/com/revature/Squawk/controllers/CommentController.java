@@ -3,10 +3,7 @@ package com.revature.Squawk.controllers;
 import com.revature.Squawk.models.Comment;
 import com.revature.Squawk.models.Post;
 import com.revature.Squawk.models.User;
-import com.revature.Squawk.services.CommentService;
-import com.revature.Squawk.services.LikeService;
-import com.revature.Squawk.services.PostService;
-import com.revature.Squawk.services.UserService;
+import com.revature.Squawk.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +18,13 @@ import java.util.Objects;
 public class CommentController {
     private final PostService postService;
     private final CommentService commentService;
+    private final ReplyService replyService;
 
     @Autowired
-    public CommentController(PostService postService, CommentService commentService) {
+    public CommentController(PostService postService, CommentService commentService, ReplyService replyService) {
         this.postService = postService;
         this.commentService = commentService;
+        this.replyService = replyService;
     }
 
     @PostMapping(value = "/{postId}/comments")
@@ -61,6 +60,7 @@ public class CommentController {
     public void deleteCommentById(@PathVariable Integer postId, @RequestBody Comment deleteComment) {
         Comment comment = commentService.getCommentById(deleteComment.getCommentId());
         if (comment != null && Objects.equals(comment.getPost().getPostId(), postId)) {
+            replyService.deleteReplyByCommentId(comment.getCommentId());
             commentService.deleteComment(comment);
         }
     }
