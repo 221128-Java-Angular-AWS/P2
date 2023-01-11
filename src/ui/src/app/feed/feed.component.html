@@ -1,17 +1,18 @@
 <div class="feedContainer">
   <div *ngFor="let post of posts" class="postContainer">
-    <app-post [post]="post"></app-post>
+    <app-post [post]="post" [removePostFromFeed]="removePostFromFeed"></app-post>
   </div>
   <div id="feed">
       <div id="newPost">
           <textarea id="newPostText" #postText placeholder="Create a new post!"></textarea>
           <br>
-          <button (click)="addImageLink()">Add Image</button>
-          <button style="float:right" (click)="createPost(postText.value)">Squawk</button>
+          <button class="postCreationButton" (click)="addImageLink()">Add Image</button>
+          <button class="postCreationButton" style="float:right" (click)="createPost(postText.value)">Squawk</button>
           <div *ngIf="imageLink!=''">
               <div id="imagePreviewDiv">
                   <img id="imagePreview" [src]="imageLink">
               </div>
+              <button id="imagePreviewDelete" (click)="removeImageLink()">X</button>
           </div>
       </div>
   </div>

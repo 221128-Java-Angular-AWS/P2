@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CookieService } from 'app/Services/cookie-service.service';
 import { User } from '../user';
 
 @Component({
@@ -8,6 +9,8 @@ import { User } from '../user';
 })
 export class ResetCredentialsComponent {
 
+  constructor(public cookieService: CookieService) {}
+  user?: User;
   username: string="";
   password: string="";
   email: string="";
@@ -15,6 +18,13 @@ export class ResetCredentialsComponent {
   listUsernames: string[] = [];
   listEmails: string[] = [];
 
+  getCookies(): void {
+    if (typeof this.cookieService.getCurrentUser() === "undefined") {
+      this.out ="You are not currently signed in!"
+    } else{
+    this.out =  this.cookieService.getCurrentUser()?.username + " is currently signed in" ;
+    }
+  }
   /*
   validate(): void {
     this.getUsernamesAndEmails();
