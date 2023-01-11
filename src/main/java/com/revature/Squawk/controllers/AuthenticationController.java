@@ -32,7 +32,7 @@ public class AuthenticationController {
         return "pong!";
     }
 
-    @GetMapping(value = "all")
+    @GetMapping(value = "/all")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public @ResponseBody List<User> allUsers() {
         return userService.allUsers();
