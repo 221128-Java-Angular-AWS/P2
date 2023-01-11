@@ -1,6 +1,6 @@
 <div class="feedContainer">
   <div *ngFor="let post of posts" class="postContainer">
-    <app-post [post]="post"></app-post>
+    <app-post [post]="post" [removePostFromFeed]="removePostFromFeed"></app-post>
   </div>
   <div id="feed">
       <div id="newPost">
