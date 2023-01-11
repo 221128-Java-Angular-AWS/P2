@@ -29,13 +29,14 @@ export class AuthenticationService {
     return throwError(errorMessage);
   }
 
-  authenticateUser(username: string, password: string): Observable<User> {
+  authenticateUser(username: string, password: string): Observable<User[]> {
     let userAuth: UserAuth = new UserAuth(username, password);
     
-    return this.http.post<User>(this.baseUrl + "/auth/login", JSON.stringify(userAuth), this.httpOptions).pipe(
+    return this.http.post<User[]>(this.baseUrl + "/auth/login", JSON.stringify(userAuth), this.httpOptions).pipe(
         catchError(this.errorHandler)
         );
     }
+
   
   }
 
