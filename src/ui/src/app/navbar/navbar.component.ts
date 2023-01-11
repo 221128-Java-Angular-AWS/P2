@@ -13,7 +13,6 @@ export class NavbarComponent {
   constructor(private userService: UsersService){}
 
   searchForUsers(filter: string){
-    console.log("filter:", filter);
     if(filter == ""){
       this.users = [];
     }
@@ -23,5 +22,10 @@ export class NavbarComponent {
         this.users = users;
       });
     }
+  }
+
+  goToUserProfile(userId:number|null|undefined){
+    //navigate to the user profile
+    console.log(userId);
   }
 }
