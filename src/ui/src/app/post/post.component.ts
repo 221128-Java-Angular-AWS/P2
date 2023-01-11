@@ -58,7 +58,7 @@ export class PostComponent {
     if (message.includes("youtube.com/watch?v=")) {
       this.embedYoutube = true;
       let cutoff = message.lastIndexOf("youtube.com/watch?v=") + 20;
-      let valid = /^[a-zA-Z0-9_]*$/;
+      let valid = /^[-a-zA-Z0-9_]*$/;
       for (let i = cutoff; i < message.length; i++) {
         if (!message[i].match(valid)) {
           return "https://youtube.com/embed/" + message.slice(cutoff, i);
