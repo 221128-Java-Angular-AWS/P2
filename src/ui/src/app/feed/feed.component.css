@@ -13,7 +13,7 @@
 }
 
 #newPost{
-    background-color: green;
+    background-color: azure;
     padding: 5px;
 }
 
@@ -30,11 +30,30 @@
     display: inline-block;
     padding: 5px;
     border-width: 2px;
-    border-color: red;
+    border-color:rgb(0,70,255);
     border-style: solid;
 }
 
 #imagePreview{
     max-width: 200px;
     max-height: 100px;
+}
+
+#imagePreviewDelete{
+    color:rgb(0,70,255); 
+    font-size:20px;
+    font-weight: bold; 
+    background-color: transparent; 
+    border:none;
+    vertical-align: top; 
+    margin-top: 10px;
+}
+
+.postCreationButton{
+    background-color:deepskyblue;
+    border-width: 1px;
+    border-color:gray;
+    border-radius: 10px;
+    font-weight: bold;
+    padding:5px;
 }
