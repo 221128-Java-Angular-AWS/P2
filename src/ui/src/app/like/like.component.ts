@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { RequestUser, RequestPost, RequestLike, LikeService } from '../Services/likes.service';
+import { RequestUser, RequestPost, RequestLike, LikeService } from 'app/Services/likes.service';
+import { Post, PostsService } from 'app/Services/posts.service';
+import { PostComponent } from 'app/post/post.component';
+import { User } from 'app/model/user';
+
 
 @Component({
   selector: 'app-like',
@@ -16,12 +20,16 @@ export class LikeComponent {
   likeCount: number | undefined;
   hasLiked: boolean | undefined;
 
-  constructor(remote: LikeService) {
+  @Input()
+  postItem!: Post;
+
+  constructor(remote: LikeService, private postsService: PostsService) {
     this.remote = remote;
   }
 
   ngOnInit(): void {
-    this.doGetLikeCount()
+    this.doGetLikeCount();
+    this.doGetUserLikePost();
   }
 
   userId: number = 12 // just for now
@@ -35,6 +43,7 @@ export class LikeComponent {
   post: RequestPost = new RequestPost(this.postId);
   like: RequestLike = new RequestLike(this.user, this.post);
 
+  
   doPostRequest() {
     this.remote.doPostLikePostAsUser(this.like).subscribe(() =>
       this.doGetLikeCount()
@@ -45,7 +54,8 @@ export class LikeComponent {
   doGetLikeCount() {
     console.log(this.like);
     this.remote.doGetLikeCountForPost(this.like).subscribe(
-      (likeCount: number | undefined) => this.likeCount = likeCount
+      (likeCount: number | undefined) => 
+      this.likeCount = likeCount
     );
   }
 
@@ -61,9 +71,19 @@ export class LikeComponent {
     this.remote.doDeleteLikeForPostUser(this.like).subscribe(() =>
       this.doGetLikeCount()
     );
+  }
 
-    // added to try and update like count
-
+  // add button handling based around if a user has liked a post or not
+  //new attempt to pass in information from the template
+  // TODO: this will work with some refactoring of like and delete like to take arguments
+  // can just create the like structure in here and pass off the the other methods.
+  handleButtonClick(postId: any, user: any) {
+    console.log("userId: " + user.userId + " postId: " + postId);
+    //if (this.hasLiked = false) {
+    //  this.doPostRequest();
+    //} else {
+    //  this.doDeleteUserLikePost();
+    //}
   }
 }
 

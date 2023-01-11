@@ -98,19 +98,6 @@ export class LikeService {
 
 }
 
-// export class Like {
-//   constructor(postId: number, userId: number, likeId?: number) {
-//     this.postId = postId;
-//     this.userId = userId;
-//     this.likeId = likeId;
-    
-//   }
-
-//   likeId: number | null | undefined;
-//   postId: number;
-//   userId: number;
-// }
-
 // all of this spaghetti down here is to match the expected input of the server...
 export class RequestUser {
   constructor(userId: number) {

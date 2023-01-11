@@ -10,6 +10,7 @@ import { User } from 'app/model/user';
 })
 export class PostsService {
 
+  // making changes by adding like service in here
   constructor(private http: HttpClient) {}
 
   baseUrl: string = "http://localhost:8080";
