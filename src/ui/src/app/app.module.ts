@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ResetCredentialsComponent } from './reset-credentials/reset-credentials.component';
 import { LoginComponent } from './login/login.component';
 import { LikeComponent } from './like/like.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { LikeComponent } from './like/like.component';
     LoginRegisterComponent,
     ResetCredentialsComponent,
     LoginComponent,
-    LikeComponent
+    LikeComponent,
+    LogoutComponent
    // RegisterComponent
 
   ],
