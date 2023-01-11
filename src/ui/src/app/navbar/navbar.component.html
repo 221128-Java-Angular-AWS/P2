@@ -1,1 +1,21 @@
-<p>navbar works!</p>
+<div id="navbar">
+    <table>
+        <tr>
+            <th><label>Search For User: </label></th>
+            <th><input #searchbar id="searchbar" type="search" (search)="searchForUsers(searchbar.value)"></th>
+            <th><button id="searchButton" (click)="searchForUsers(searchbar.value)">Search</button></th>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div id="searchResults" *ngIf="users.length > 0">
+                    <div *ngFor="let user of users">
+                        <!--These will link to the person's profile eventually-->
+                        <div class="searchResult">{{user.username}}</div>
+                    </div>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</div>

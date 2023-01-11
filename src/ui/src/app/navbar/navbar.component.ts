@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UsersService } from 'app/Services/users.service';
+import { User } from 'app/model/user';
 
 @Component({
   selector: 'app-navbar',
@@ -6,5 +8,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  users: User[] = [];
 
+  constructor(private userService: UsersService){}
+
+  searchForUsers(filter: string){
+    console.log("filter:", filter);
+    if(filter == ""){
+      this.users = [];
+    }
+    else{
+      this.userService.searchUsers(filter)
+      .subscribe((users) => {
+        this.users = users;
+      });
+    }
+  }
 }

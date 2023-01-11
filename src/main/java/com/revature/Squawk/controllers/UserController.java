@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -31,6 +32,12 @@ public class UserController {
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public @ResponseBody User getUser(@RequestParam Integer userId){
         return userService.getUser(userId);
+    }
+
+    @GetMapping(value = "/search")
+    @ResponseStatus(value = HttpStatus.ACCEPTED)
+    public @ResponseBody List<User> searchUsers(@RequestParam String filter){
+        return userService.searchUsers(filter);
     }
 
     @PutMapping

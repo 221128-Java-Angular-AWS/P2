@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 public interface UserRepository extends JpaRepository<User, Integer> {
 
+    public List<User> findByUsernameContains(String filter);
 }
