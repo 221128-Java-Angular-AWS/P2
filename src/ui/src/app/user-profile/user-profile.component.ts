@@ -1,5 +1,6 @@
 import { Component, Input} from '@angular/core';
 import { User } from 'app/model/user';
+import { CookieService } from 'app/Services/cookie-service.service';
 import { UsersService } from 'app/Services/users.service';
 
 @Component({
@@ -15,16 +16,16 @@ export class UserProfileComponent {
 
   editUser = false;
 
-  currentUser = new User('', this.userId);
+  currentUser?: User;
 
-  constructor (private userService: UsersService) {}
+  constructor (private userService: UsersService, private cookieService: CookieService) {}
 
   ngOnInit() {
-
-    this.userService.getUser(this.userId).subscribe((response:User) => {
-      this.currentUser = response;
-    })
-
+    //this.userService.getUser(this.userId).subscribe((response:User) => {
+  //  this.currentUser = response;
+    if(this.cookieService.getCurrentUser() != undefined){
+    this.currentUser = this.cookieService.getCurrentUser()
+    }
   }
   
   editMode(): void {
@@ -38,7 +39,9 @@ export class UserProfileComponent {
   save(uName: string, fName: string, lName: string, newDesc: string): void {
 
     let newUser = new User('', -1);
-    newUser.userId = this.currentUser.userId;
+    if (this.currentUser != undefined ) {
+    newUser.userId = this.currentUser.userId;}
+
     newUser.username = uName;
     newUser.firstName = fName;
     newUser.lastName = lName;
@@ -49,5 +52,6 @@ export class UserProfileComponent {
     this.userService.updateUser(newUser).subscribe();
 
     this.editUser = false;
+    
   }
 }
