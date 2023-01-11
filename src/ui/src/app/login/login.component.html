@@ -1,28 +1,34 @@
-<h4>Login</h4>
-<div class="form-group">
-    <label for="username">username:</label>
-    <input type="text" class="form-control" id="username" required
-    [(ngModel)]="username" name="username" #name="ngModel">
-    <!--<div [hidden]="username.valid || username.pristine" class="alert alert-danger">
-        Username is required!
-    -->
-</div>
-<div class="form-group">
-    <label for="password">password:</label>
-    <input type="text" class="form-control" id="password" required
-    [(ngModel)]="password" name="password">
-</div>
-<div class="output-name">{{username}} and {{password}} were inputs and returns {{strFormOutput}}</div>
-<div class="check-validity" *ngIf="strFormOutput">{{strFormOutput}}</div>
-<div class="check-user-login" *ngIf="strFormOutput">{{strFormOutput}}</div>
 
-<button type="submit" class="submit-userpassword" (click)="onSubmit(); checkUsernamePassword()">Login</button>
 
-<div class="register">
-    Forgot Username or Password?
+<div class="login">
+    <h2>Login</h2>
+    <div class="form-group">
+        <label for="username">username :</label>
+        <input type="text" class="form-control" id="username" required
+        [(ngModel)]="username" name="username" #name="ngModel">
+        <!--<div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+            Username is required!
+        -->
+    </div>
+
+    <div class="form-group">
+        <label for="password">password :</label>
+        <input type="text" class="form-control" id="password" required
+        [(ngModel)]="password" name="password">
+    </div>
+
+
+    <!-- <div class="output-name">{{username}} and {{password}} were inputs and returns {{strFormOutput}}</div> -->
+    <div class="check-validity" *ngIf="strFormOutput">{{strFormOutput}}</div>
+    <div class="check-user-login" *ngIf="strFormOutput">{{strFormOutput}}</div>
+
+    <button type="submit" class="submit-userpassword" (click)="onSubmit(); checkUsernamePassword()">Login</button>
+
+    <div class="register"></div>
+    <!-- Forgot Username or Password? -->
     <nav>
     <a routerLink="/credentials">
-        <button type="button">register</button>
+        <!-- <button type="button">register</button> -->
     </a>
     </nav>
   </div>
