@@ -33,6 +33,12 @@
 }
 .searchResult{
     width:200px;
+    padding-left:4px;
+    padding-right:4px;
     background-color: white;
     border: solid gray 1px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
+

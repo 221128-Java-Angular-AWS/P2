@@ -11,7 +11,7 @@
                 <div id="searchResults" *ngIf="users.length > 0">
                     <div *ngFor="let user of users">
                         <!--These will link to the person's profile eventually-->
-                        <div class="searchResult">{{user.username}}</div>
+                        <div class="searchResult"><div>{{user.username}}</div><div style="color:gray">Posts: {{user.posts?.length}}</div></div>
                     </div>
                 </div>
             </td>
