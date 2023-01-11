@@ -103,14 +103,14 @@ export class RequestUser {
   constructor(userId: number) {
     this.userId = userId;
   }
-  userId: number;
+  userId: number | undefined;
 }
   
 export class RequestPost {
   constructor(postId: number) {
     this.postId = postId;
   }
-  postId: number;
+  postId: number | undefined;
 }
 
 // the actual class structure I need to pass in the JSON body
