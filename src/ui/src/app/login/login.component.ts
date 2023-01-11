@@ -3,8 +3,7 @@ import { User } from '../user';
 import { userMap } from '../userMap';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from 'app/Services/authentication.service';
-
-
+import { CookieService } from 'app/Services/cookie.service';
 
 
 @Component({
@@ -13,14 +12,15 @@ import { AuthenticationService } from 'app/Services/authentication.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private authService: AuthenticationService) {}
+  constructor(private authService: AuthenticationService, private cookieService: CookieService) {}
 
   submitted: boolean = false;
   username: string = "";
   password: string ="";
   strFormOutput?: string;
   user?: User;
-  users = userMap;
+  u?: User;
+  strout?: string = "Here is the first name!";
 
   onSubmit() { 
     this.submitted=true; 
@@ -29,22 +29,10 @@ export class LoginComponent {
   checkUsernamePassword(): User | void {
     
     this.authService.authenticateUser(this.username, this.password).subscribe(users => {
-      this.strFormOutput = JSON.stringify(users);
-      this.user = users;
+      this.user = users[0];
+      this.printNotification(this.user);
+      this.cookieService.setCurrentUser(this.user);
     });
-    this.strFormOutput = "OOO";
-
-    //let keyArr = Array.from(this.users.keys() );
-    //keyList.push(this.username);
-    //keyList.push(this.password);
-    
-    //this.strFormOutput = "Checkz for user";
-    /*
-    let validationInput: string = this.username + " " + this.password;
-    if (userMap.has(validationInput)) {this.strFormOutput="valid"}
-    else { this.strFormOutput=`This username and/or password is invalid and your input was ${this.username},
-        ${this.password}}`;}
-    */
   }
 
   goToUserPage() {}
@@ -54,7 +42,8 @@ export class LoginComponent {
     this.password="";
   }
 
-  printNotification() {
-      this.strFormOutput
+  printNotification(user: User) {
+      this.strout = user.username + " just signed in";
+
   }
 }

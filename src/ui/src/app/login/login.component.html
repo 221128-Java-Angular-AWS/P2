@@ -14,6 +14,7 @@
 </div>
 <div class="output-name">{{username}} and {{password}} were inputs and returns {{strFormOutput}}</div>
 <div class="check-validity" *ngIf="strFormOutput">{{strFormOutput}}</div>
+<div class="check-user-login" *ngIf="strFormOutput">{{strFormOutput}}</div>
 
 <button type="submit" class="submit-userpassword" (click)="onSubmit(); checkUsernamePassword()">Login</button>
 
@@ -25,6 +26,7 @@
     </a>
     </nav>
   </div>
+  <div class="myOutput" *ngIf="strout">{{strout}}</div>
 <!--
 <ul>
     {{users.size}}
