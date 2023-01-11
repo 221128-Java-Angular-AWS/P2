@@ -41,8 +41,8 @@ export class FeedComponent {
     });
   }
 
-  removePost(postId: number): void {
-    this.posts.splice(postId, 1);
+  removePost(post: Post): void {
+    this.posts.splice(this.posts.indexOf(post), 1);
   }
 
   @Output() removePostFromFeed = this.removePost.bind(this);

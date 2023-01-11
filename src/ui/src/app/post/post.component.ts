@@ -30,9 +30,9 @@ export class PostComponent {
     post.clicked = true;
   }
 
-  deletePostById(postId: number): void {
-    this.postsService.deletePostById(postId);
-    this.removePostFromFeed(postId);
+  deletePost(post: Post): void {
+    this.postsService.deletePostById(post.postId!);
+    this.removePostFromFeed(post);
   }
 
    parseForYoutube(message: String) {
