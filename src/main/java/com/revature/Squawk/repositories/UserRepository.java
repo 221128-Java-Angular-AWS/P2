@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
-    @Query(value = "SELECT * FROM users u WHERE u.username = :username and u.password = :password", nativeQuery = true)
-    List<User> authUser(
+    @Query(value = "SELECT * FROM users u WHERE u.username = :username and u.password = :password LIMIT 1", nativeQuery = true)
+    User authUser(
             @Param("username") String username,
             @Param("password") String password
     );

@@ -25,7 +25,7 @@ public class UserService {
         return userRepo.save(user);
     }
 
-    public List<User> authenticateUser(UserAuth userAuth){
+    public User authenticateUser(UserAuth userAuth){
         System.out.println(userAuth.username + userAuth.password);
         return userRepo.authUser(userAuth.username, userAuth.password);
     }
