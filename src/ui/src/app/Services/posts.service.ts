@@ -4,6 +4,7 @@ import { catchError, retry, throwError, Observable, of } from 'rxjs';
 import { Comment } from '../comment';
 import { Like } from '../like';
 import { User } from 'app/model/user';
+import { SafeResourceUrl } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -85,8 +86,11 @@ export class Post{
   clicked?: boolean;
   comments: Comment[];
   likes: Like[];
+  youtubeLink?: string;
+  embedYoutube?: boolean;
+  safeYoutubeLink?: SafeResourceUrl;
 
-  constructor(message: string, imageLink: string, likes: Like[], comments: Comment[], username?: string, user?: User, datePosted?: string, postId?: number, clicked?: boolean){
+  constructor(message: string, imageLink: string, likes: Like[], comments: Comment[], username?: string, user?: User, datePosted?: string, postId?: number, clicked?: boolean, youtubeLink?: string, embedYoutube?: boolean, safeYoutubeLink?: SafeResourceUrl){
     this.postId = postId;
     this.message = message;
     this.imageLink = imageLink;
@@ -96,5 +100,8 @@ export class Post{
     this.likes = likes;
     this.comments = comments;
     this.username = username;
+    this.youtubeLink = youtubeLink;
+    this.embedYoutube = embedYoutube;
+    this.safeYoutubeLink = safeYoutubeLink;
   }
 }
