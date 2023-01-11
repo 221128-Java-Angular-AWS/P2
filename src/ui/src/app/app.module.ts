@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FeedComponent } from './feed/feed.component';
@@ -13,7 +12,10 @@ import { LoginRegisterComponent } from './login-register/login-register.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommentComponent } from './comment/comment.component';
+import { ResetCredentialsComponent } from './reset-credentials/reset-credentials.component';
+import { LoginComponent } from './login/login.component';
 import { LikeComponent } from './like/like.component';
+
 
 @NgModule({
   declarations: [
@@ -26,14 +28,20 @@ import { LikeComponent } from './like/like.component';
     NavbarComponent,
     LoginRegisterComponent,
     CommentComponent,
+    ResetCredentialsComponent,
+    LoginComponent,
     LikeComponent
+   // RegisterComponent
+
   ],
   imports: [
+    
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
