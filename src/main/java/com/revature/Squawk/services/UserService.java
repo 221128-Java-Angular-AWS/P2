@@ -1,5 +1,6 @@
 package com.revature.Squawk.services;
 
+
 import com.revature.Squawk.models.User;
 import com.revature.Squawk.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class UserService {
     }
 
     public User createUser(User user){
-        return new User();
+        return userRepo.save(user);
     }
 
     public User authenticateUser(String username, String password){
@@ -45,6 +46,7 @@ public class UserService {
     public void deleteUser(User user){
 
     }
+
 
 
 

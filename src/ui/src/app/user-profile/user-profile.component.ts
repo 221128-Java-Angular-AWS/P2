@@ -15,7 +15,7 @@ export class UserProfileComponent {
 
   editUser = false;
 
-  currentUser = new User(this.userId, '');
+  currentUser = new User('', this.userId);
 
   constructor (private userService: UsersService) {}
 
@@ -37,7 +37,7 @@ export class UserProfileComponent {
 
   save(uName: string, fName: string, lName: string, newDesc: string): void {
 
-    let newUser = new User(-1,'');
+    let newUser = new User('', -1);
     newUser.userId = this.currentUser.userId;
     newUser.username = uName;
     newUser.firstName = fName;

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, retry, throwError, Observable, of } from 'rxjs';
 import { Comment } from '../comment';
 import { Like } from '../like';
@@ -26,7 +26,7 @@ export class PostsService {
   createPost(postText: string, imageLink: string, username: string){
     //make the post
     //NOTE: I added the username and empty arrays to satisfy the expanded constructor. -Travis M.
-    let user: User = new User(1, "braydensn")
+    let user: User = new User("braydensn", 1)
     let newPost = new Post(postText, imageLink, [], [], username, user);
     console.log("New Post: ", newPost);
     return this.http.post<Post>(this.baseUrl + "/posts", JSON.stringify(newPost), this.httpOptions)
@@ -36,6 +36,14 @@ export class PostsService {
       );
   }
 
+  deletePostById(postId: number) {
+    return this.http.delete(this.baseUrl + "/posts/" + postId, this.httpOptions)
+    .pipe(
+      catchError(this.handleError<Post>('deletePost'))
+    )
+    // Deletion won't go through without a subscription
+    .subscribe(() => {})
+  }
 
   errorHand1(error: any){
     let errorMessage = '';

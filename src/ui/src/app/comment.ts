@@ -5,7 +5,7 @@ import { Post } from "./Services/posts.service";
 export class Comment {
   id?: number;
   postId: number;
-  userId: number;
+  userId: number | undefined | null;
   username?: string;
   postedDate?: string;
   message: string;
@@ -13,7 +13,7 @@ export class Comment {
   user?: User;
   post?: Post;
 
-  constructor(postId: number, userId: number, message: string, user?: User, post?: Post, id?: number, username?: string, postedDate?: string, replies?: Reply[]) {
+  constructor(postId: number, userId: number | undefined | null, message: string, user?: User, post?: Post, id?: number, username?: string, postedDate?: string, replies?: Reply[]) {
     this.postId = postId;
     this.userId = userId;
     this.message = message;

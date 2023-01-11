@@ -10,9 +10,10 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
 import { SettingsComponent } from './settings/settings.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommentComponent } from './comment/comment.component';
+import { LikeComponent } from './like/like.component';
 
 @NgModule({
   declarations: [
@@ -24,12 +25,14 @@ import { CommentComponent } from './comment/comment.component';
     SettingsComponent,
     NavbarComponent,
     LoginRegisterComponent,
-    CommentComponent
+    CommentComponent,
+    LikeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],

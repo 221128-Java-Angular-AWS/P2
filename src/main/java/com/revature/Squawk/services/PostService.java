@@ -40,4 +40,8 @@ public class PostService {
     public void deletePost(Post post){
 
     }
+
+    public void deletePostById(Integer postId) {
+        postRepo.deleteById(postId);
+    }
 }

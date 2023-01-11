@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 				"com.revature.Squawk.controllers, " +
 				"com.revature.Squawk.services," +
 				"com.revature.Squawk.repositories")
+
 public class SquawkApplication {
 
 	public static void main(String[] args) {

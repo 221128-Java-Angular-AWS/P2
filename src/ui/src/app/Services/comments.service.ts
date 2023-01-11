@@ -23,7 +23,7 @@ export class CommentsService {
       return of(result as T);
     }
   }
-
+  
   getComments(postId: number): Observable<Comment[]> {
     const url = `${this.baseUrl}/posts/${postId}/comments;`;
     return this.http.get<Comment[]>(url)
