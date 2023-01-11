@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CookieService } from 'app/Services/cookie.service';
+import { CookieService } from 'app/Services/cookie-service.service';
 import { User } from '../user';
 
 @Component({

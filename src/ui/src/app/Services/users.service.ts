@@ -29,6 +29,13 @@ export class UsersService {
     return this.http.get<User>(this.userUrl, {params:queryParams});
   }
 
+  public searchUsers(filter: string) : Observable<User[]> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("filter", filter);
+
+    return this.http.get<User[]>(this.baseUrl + this.userUrl + "/search", {params:queryParams});
+  }
+
   public updateUser(user : User) : Observable<User> {
 
     console.log(user.userId);

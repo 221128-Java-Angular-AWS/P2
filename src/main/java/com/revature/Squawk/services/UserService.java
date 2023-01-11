@@ -6,9 +6,6 @@ import com.revature.Squawk.models.UserAuth;
 import com.revature.Squawk.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
-import java.util.Optional;
 import java.util.List;
 
 
@@ -32,6 +29,10 @@ public class UserService {
 
     public User getUser(Integer userId){
         return userRepo.findById(userId).orElseThrow();
+    }
+
+    public List<User> searchUsers(String filter){
+        return userRepo.findByUsernameContainsIgnoreCase(filter);
     }
 
     public User updateUser(User user){

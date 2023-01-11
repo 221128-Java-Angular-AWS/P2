@@ -3,7 +3,7 @@ import { User } from '../user';
 import { userMap } from '../userMap';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from 'app/Services/authentication.service';
-import { CookieService } from 'app/Services/cookie.service';
+import { CookieService } from 'app/Services/cookie-service.service';
 
 
 @Component({

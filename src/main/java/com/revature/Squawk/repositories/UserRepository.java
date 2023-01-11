@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
+import java.util.List;
+
 public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(value = "SELECT * FROM users u WHERE u.username = :username and u.password = :password", nativeQuery = true)
     List<User> authUser(
@@ -20,4 +22,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     List<User> allUsers();
 
 
+    public List<User> findByUsernameContainsIgnoreCase(String filter);
 }
