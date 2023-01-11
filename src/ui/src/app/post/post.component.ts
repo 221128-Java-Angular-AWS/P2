@@ -1,5 +1,5 @@
 import { Component, Input  } from '@angular/core';
-import { Post } from '../Services/posts.service';
+import { Post, PostsService } from '../Services/posts.service';
 import { Comment } from '../comment';
 
 @Component({
@@ -12,8 +12,15 @@ export class PostComponent {
   post!: Post;
   comments: Comment[] = [];
 
+  constructor(private postsService: PostsService) {
+
+  }
 
   clickMoreComments(post: Post): void {
     post.clicked = true;
+  }
+
+  deletePostById(postId: number): void {
+    this.postsService.deletePostById(postId);
   }
 }

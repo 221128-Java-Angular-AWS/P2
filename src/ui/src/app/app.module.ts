@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FeedComponent } from './feed/feed.component';
@@ -12,6 +11,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ResetCredentialsComponent } from './reset-credentials/reset-credentials.component';
+import { LoginComponent } from './login/login.component';
+import { LikeComponent } from './like/like.component';
+
 
 @NgModule({
   declarations: [
@@ -22,14 +25,21 @@ import { HttpClientModule } from '@angular/common/http';
     PostDetailComponent,
     SettingsComponent,
     NavbarComponent,
-    LoginRegisterComponent
+    LoginRegisterComponent,
+    ResetCredentialsComponent,
+    LoginComponent,
+    LikeComponent
+   // RegisterComponent
+
   ],
   imports: [
+    
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

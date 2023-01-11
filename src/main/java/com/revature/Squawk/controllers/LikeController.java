@@ -16,21 +16,37 @@ public class LikeController {
         this.likeService = likeService;
     }
 
+    // allow a user to like a post, maybe return like count to update the view
+    // TODO: remove commented code when confirmed no errors
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public @ResponseBody Like likePost(@RequestBody Integer postId, Integer userId){
-        return likeService.likePost(postId, userId);
+    public @ResponseBody Like likePost(@RequestBody Like like){
+        // instead probably change to either return like count or -1
+        like = likeService.likePost(like);
+//        Integer likeCount = likeService.getLikeCount(like.getPost().getPostId());
+//        System.out.println(likeCount);
+        return likeService.likePost(like);
     }
 
-    @GetMapping
+    // check to see if a user has liked a post
+    @GetMapping(value = "/{userId}/{postId}")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public @ResponseBody Like getLike(@RequestBody Integer postId, Integer userId){
-        return likeService.getLike(postId, userId);
+    public @ResponseBody Boolean getLike(@PathVariable Integer userId, @PathVariable Integer postId){
+        // returns boolean, not currently used
+        return likeService.getLikeStatus(userId, postId);
     }
 
-    @DeleteMapping
+    // return the like count for a post to add to the post information
+    @GetMapping(value = "/count/{postId}")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public void deleteLike(@RequestBody Integer postId, Integer userId){
-        likeService.deleteLike(postId, userId);
+    public @ResponseBody Integer getLikeCount(@PathVariable Integer postId){
+        // NOTE the request body has to be an object type in order to be deserialized
+        return likeService.getLikeCount(postId);
+    }
+
+    @DeleteMapping(value = "/{userId}/{postId}")
+    @ResponseStatus(value = HttpStatus.ACCEPTED)
+    public Boolean deleteLike(@PathVariable Integer userId, @PathVariable Integer postId){
+        return(likeService.deleteLike(userId, postId));
     }
 }
