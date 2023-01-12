@@ -63,4 +63,12 @@
 
 #squawkIcon + b{
     vertical-align: middle;
+    font-size: 25px;
+}
+
+#linkDiv{
+    display: flex; 
+    height: 100%; 
+    align-items: center; 
+    padding-right: 5px;
 }
