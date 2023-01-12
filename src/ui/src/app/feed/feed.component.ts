@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { Post, PostsService } from '../Services/posts.service';
 import { User } from 'app/model/user';
 import { CookieService } from 'app/Services/cookie-service.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -12,19 +13,16 @@ export class FeedComponent {
 
   posts: Post[] = [];
   currentUser: User | undefined;
+  showNewPostArea: boolean = true;
 
   imageLink: string = "";
-  constructor(private postsService: PostsService, private cookieService: CookieService) {
+  constructor(private postsService: PostsService, private cookieService: CookieService, private router: Router, private activeRoute: ActivatedRoute) {
   }
 
   createPost(text: string): void{
-    //temporary measure until login is in its own page
-    this.currentUser = this.cookieService.getCurrentUser()
-
-    //we'll want to do this instead
-    //if(this.currentUser == undefined){
-    //  this.currentUser = this.cookieService.getCurrentUser()
-    //}
+    if(this.currentUser == undefined){
+     this.currentUser = this.cookieService.getCurrentUser()
+    }
     if(this.currentUser == undefined){
       alert("Must be signed in to create posts");
     }
@@ -52,11 +50,31 @@ export class FeedComponent {
   }
 
   ngOnInit(): void {
-    this.postsService.getPosts()
-    .subscribe((posts) => {
-      this.posts = posts;
-    });
     this.currentUser = this.cookieService.getCurrentUser();
+    if(this.router.url.includes("user")){
+      this.activeRoute.params.subscribe((routeParams = {}) => {
+        this.pageChanged(routeParams);
+      });
+      
+    }
+    else{
+      this.postsService.getPosts()
+      .subscribe((posts) => {
+        this.posts = posts;
+      });
+    }
+  }
+
+  pageChanged(routeParams: Params){
+    this.postsService.getPostsFromUser(routeParams["id"])
+      .subscribe((posts) => {
+        this.posts = posts;
+      });
+    if(this.currentUser?.userId == routeParams["id"]){
+      this.showNewPostArea = true;
+    }else{
+      this.showNewPostArea = false;
+    }
   }
 
   removePost(post: Post): void {

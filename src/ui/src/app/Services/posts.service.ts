@@ -67,6 +67,15 @@ export class PostsService {
     );
   }
 
+  getPostsFromUser(userId: number): Observable<Post[]>{
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("userId", userId);
+    return this.http.get<Post[]>(this.baseUrl + "/posts/user", {params:queryParams})
+    .pipe(
+      catchError(this.handleError<Post[]>('getPosts', []))
+    );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
@@ -82,6 +91,7 @@ export class Post{
   datePosted?: string;
   user?: User;
   username?: string;
+  userId?: number
   clicked?: boolean;
   comments: Comment[];
   likes: Like[];
@@ -89,12 +99,13 @@ export class Post{
   embedYoutube?: boolean;
   safeYoutubeLink?: SafeResourceUrl;
 
-  constructor(message: string, imageLink: string, likes: Like[], comments: Comment[], username?: string, user?: User, datePosted?: string, postId?: number, clicked?: boolean, youtubeLink?: string, embedYoutube?: boolean, safeYoutubeLink?: SafeResourceUrl){
+  constructor(message: string, imageLink: string, likes: Like[], comments: Comment[], username?: string, user?: User, userId?: number, datePosted?: string, postId?: number, clicked?: boolean, youtubeLink?: string, embedYoutube?: boolean, safeYoutubeLink?: SafeResourceUrl){
     this.postId = postId;
     this.message = message;
     this.imageLink = imageLink;
     this.datePosted = datePosted;
     this.user = user;
+    this.userId = userId;
     this.clicked = clicked;
     this.likes = likes;
     this.comments = comments;
