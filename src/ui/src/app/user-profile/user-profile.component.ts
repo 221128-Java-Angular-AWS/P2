@@ -72,7 +72,6 @@ export class UserProfileComponent {
 
     let newUser = new User('', -1);
     if (this.currentUser != undefined ) {
-    let tempId = this.currentUser.userId;
     newUser.userId = this.currentUser.userId;}
     
     newUser.username = uName;
