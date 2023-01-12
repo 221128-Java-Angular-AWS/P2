@@ -15,7 +15,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer postId;
 
-    @Column
+    @Column(length = 1000)
     private String message;
 
     @Column(name = "image_link")
