@@ -26,17 +26,10 @@ export class CommentComponent {
   @Input() reply!: Reply;
 
   canDeleteComment(comment: Comment): boolean {
-    console.log(this.cookieService.getCurrentUser()?.userId == comment.userId);
-    console.log(this.cookieService.getCurrentUser()?.userId);
-    console.log(comment.userId);
-    console.log(comment);
     return this.cookieService.getCurrentUser()?.userId == comment.userId;
   }
 
   canDeleteReply(reply: Reply): boolean {
-    console.log(this.cookieService.getCurrentUser()?.userId == reply.userId);
-    console.log(this.cookieService.getCurrentUser()?.userId);
-    console.log(reply.userId);
     return this.cookieService.getCurrentUser()?.userId == reply.userId;
   }
 
