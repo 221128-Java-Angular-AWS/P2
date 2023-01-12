@@ -121,6 +121,10 @@ public class Comment {
         return user.getUsername();
     }
 
+    public Integer getUserId() {
+        return user.getUserId();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

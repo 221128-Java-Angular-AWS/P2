@@ -25,21 +25,26 @@ export class PostComponent {
   canDelete: boolean = false;
 
   clicked: boolean = false;
-  
+
   constructor(
     private postsService: PostsService,
     private commentService: CommentsService,
     public _sanitizer: DomSanitizer,
     private cookieService: CookieService
-  ) {}
+  ) { }
 
   createComment(post: Post, message: string) {
-    let user = new User("test", 1);
-    let comment = new Comment((post.postId ? post.postId : 1), (user.userId ? user.userId : 1), message, user, post);
-    this.commentService.postComment((post.postId ? post.postId : 1), comment).subscribe((comment) => {
-      this.post.comments.push(comment);
-      this.commentService.getComments(this.post.postId ? this.post.postId : 1);
-    });
+    let user: User | undefined = this.cookieService.getCurrentUser();
+    if (user == undefined) {
+      alert('Must be signed in to create comments');
+    } else if (user) {
+      let comment = new Comment((post.postId ? post.postId : 1), (user.userId ? user.userId : 1), message, user, post);
+      this.commentService.postComment((post.postId ? post.postId : 1), comment).subscribe((comment) => {
+        this.post.comments.push(comment);
+        this.commentService.getComments(this.post.postId ? this.post.postId : 1);
+      });
+    }
+
   }
 
   embedYoutube: Boolean = false;
@@ -62,7 +67,7 @@ export class PostComponent {
     this.removePostFromFeed(post);
   }
 
-   parseForYoutube(message: String) {
+  parseForYoutube(message: String) {
     if (message.includes("youtube.com/watch?v=")) {
       this.embedYoutube = true;
       let cutoff = message.lastIndexOf("youtube.com/watch?v=") + 20;
