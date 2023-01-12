@@ -8,6 +8,8 @@ import { first } from 'rxjs';
 @Injectable({providedIn: 'root'})
 export class UsersService {
 
+  strOut?: string = "new user here:";
+
   constructor(private http: HttpClient) { }
   baseUrl: string = "http://localhost:8080";
   userUrl: string = "/users";
@@ -40,8 +42,8 @@ export class UsersService {
 
     console.log(user.userId);
     console.log(user.username);
-
-    return this.http.put<User>(this.baseUrl + this.userUrl, user, this.httpOptions);
+ 
+    return this.http.put<User>(this.baseUrl + this.userUrl + "/update", user, this.httpOptions);
   }
 }
 

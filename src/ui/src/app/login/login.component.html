@@ -7,7 +7,6 @@
         <input type="text" class="form-control" id="username" required
         [(ngModel)]="username" name="username" #name="ngModel">
         <!--<div [hidden]="username.valid || username.pristine" class="alert alert-danger">
-            Username is required!
         -->
     </div>
 
@@ -17,8 +16,7 @@
         [(ngModel)]="password" name="password">
     </div>
 
-
-    <!-- <div class="output-name">{{username}} and {{password}} were inputs and returns {{strFormOutput}}</div> -->
+    
     <div class="check-validity" *ngIf="strFormOutput">{{strFormOutput}}</div>
     <div class="check-user-login" *ngIf="strFormOutput">{{strFormOutput}}</div>
 
@@ -28,18 +26,7 @@
     <!-- Forgot Username or Password? -->
     <nav>
     <a routerLink="/credentials">
-        <!-- <button type="button">register</button> -->
     </a>
     </nav>
   </div>
   <div class="myOutput" *ngIf="strout">{{strout}}</div>
-<!--
-<ul>
-    {{users.size}}
-<li *ngFor="let userM of users.keys()">
-    <div *ngIf="users.get(userM)">
-    {{userM}}->{{users.get(userM)}}
-    </div>
-</li>
-</ul>
--->
