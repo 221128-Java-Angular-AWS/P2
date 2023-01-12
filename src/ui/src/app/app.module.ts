@@ -14,9 +14,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { ResetCredentialsComponent } from './reset-credentials/reset-credentials.component';
 import { LoginComponent } from './login/login.component';
 import { LikeComponent } from './like/like.component';
+
 import { HomeComponent } from './pages/home/home.component';
 import { UserPageComponent } from './pages/user-page/user-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { LogoutComponent } from './logout/logout.component';
+
 
 
 @NgModule({
@@ -32,6 +35,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
     ResetCredentialsComponent,
     LoginComponent,
     LikeComponent,
+    LogoutComponent,
     HomeComponent,
     UserPageComponent,
     LoginPageComponent

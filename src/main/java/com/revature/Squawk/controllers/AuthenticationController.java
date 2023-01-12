@@ -22,7 +22,6 @@ public class AuthenticationController {
     @PostMapping(value = "/login")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public @ResponseBody List<User> authenticateUser(@RequestBody UserAuth userAuth){
-        System.out.println(userAuth.username + userService.authenticateUser(userAuth));
         return userService.authenticateUser(userAuth);
     }
     @PostMapping(value = "/login2")

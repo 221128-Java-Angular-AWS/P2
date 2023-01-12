@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { Post, PostsService } from '../Services/posts.service';
 import { Comment } from '../comment';
+import { CookieService } from 'app/Services/cookie-service.service';
+import { User } from 'app/model/user';
 
 @Component({
   selector: 'app-post',
@@ -12,8 +14,9 @@ export class PostComponent {
   @Input() post!: Post;
   @Input() removePostFromFeed!: Function;
   comments: Comment[] = [];
+  canDelete: boolean = false;
 
-  constructor(private postsService: PostsService, public _sanitizer: DomSanitizer) {
+  constructor(private postsService: PostsService, public _sanitizer: DomSanitizer, private cookieService: CookieService) {
 
   }
 
@@ -22,6 +25,7 @@ export class PostComponent {
   safeYoutubeLink!: SafeResourceUrl;
 
   ngOnInit(): void {
+    this.canDelete = (this.cookieService.getCurrentUser()?.userId == this.post.userId);
     this.youtubeLink = this.parseForYoutube(this.post.message) || this.youtubeLink;
     this.safeYoutubeLink = this._sanitizer.bypassSecurityTrustResourceUrl(this.youtubeLink);
   }

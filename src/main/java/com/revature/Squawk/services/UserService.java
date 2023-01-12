@@ -24,7 +24,6 @@ public class UserService {
     }
 
     public List<User> authenticateUser(UserAuth userAuth){
-        System.out.println(userAuth.username + userAuth.password);
         return userRepo.authUser(userAuth.username, userAuth.password);
     }
 
@@ -47,11 +46,7 @@ public class UserService {
     }
 
     public User updateUser(User user){
-
         User originalUser = userRepo.findById(user.getUserId()).orElseThrow();
-
-        System.out.println("Updated: " + user.getUsername() + " to " + originalUser.getUsername());
-
         originalUser.setUsername(user.getUsername());
         originalUser.setFirstName(user.getFirstName());
         originalUser.setLastName(user.getLastName());
