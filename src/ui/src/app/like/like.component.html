@@ -1,2 +1,5 @@
 <!-- -->
-<div><button id="like" (click)="handleButtonClick([postItem.postId])">Like</button></div>
+<div *ngIf="hasLiked == false; else elseBlock"><button id="like" (click)="handleButtonClick([postItem.postId])">
+    Like</button>  Likes - {{likeCount}}</div>
+    <ng-template #elseBlock><button id="like" (click)="handleButtonClick([postItem.postId])">
+        Un-Like</button>  Likes - {{likeCount}}</ng-template>
