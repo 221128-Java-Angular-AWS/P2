@@ -8,11 +8,12 @@
         <tr>
             <td></td>
             <td>
-                <div id="searchResults" *ngIf="users.length > 0">
+                <div id="searchResults" *ngIf="users.length > 0 || noResults">
                     <div *ngFor="let user of users">
                         <!--These will link to the person's profile eventually-->
                         <div class="searchResult" [routerLink]="['user', user.userId]" (click)="resetSearch()"><div>{{user.username}}</div><div style="color:gray">Posts: {{user.posts?.length}}</div></div>
                     </div>
+                    <div *ngIf="noResults" id="noSearchResults">No Users Found</div>
                 </div>
             </td>
             <td></td>
