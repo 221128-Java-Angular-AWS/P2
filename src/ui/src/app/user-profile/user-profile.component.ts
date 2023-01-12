@@ -85,10 +85,6 @@ export class UserProfileComponent {
     this.userService.getUser(this.userId!).subscribe(user => {
       this.tempUser = user;
     })
-    this.cookieService.deleteCookie();
-    let u = new User(this.tempUser?.username!);
-    let jsonUser = this.tempUser.json() as Object;
-    this.cookieService.setCurrentUser(this.tempUser!);
     */
     this.editUser = false;
     
