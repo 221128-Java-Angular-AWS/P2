@@ -6,6 +6,7 @@ import com.revature.Squawk.models.UserAuth;
 import com.revature.Squawk.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.bcrypt.*;
 import java.util.List;
 
 
@@ -25,6 +26,16 @@ public class UserService {
     public List<User> authenticateUser(UserAuth userAuth){
         System.out.println(userAuth.username + userAuth.password);
         return userRepo.authUser(userAuth.username, userAuth.password);
+    }
+
+    public User authenticateUser2(UserAuth userAuth){
+        // System.out.println(userAuth.username + userAuth.password);
+        if(BCrypt.checkpw(userAuth.password, userRepo.authUser2(userAuth.username).getPassword())){
+            return userRepo.authUser2(userAuth.username);
+        }else{
+            return null;
+        }
+        // return userRepo.authUser2(userAuth.username);
     }
 
     public User getUser(Integer userId){

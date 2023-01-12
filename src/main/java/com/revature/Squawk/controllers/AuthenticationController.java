@@ -25,6 +25,12 @@ public class AuthenticationController {
         System.out.println(userAuth.username + userService.authenticateUser(userAuth));
         return userService.authenticateUser(userAuth);
     }
+    @PostMapping(value = "/login2")
+    @ResponseStatus(value = HttpStatus.ACCEPTED)
+    public @ResponseBody User authenticateUser2(@RequestBody UserAuth userAuth){
+        // System.out.println(userAuth.username + userService.authenticateUser(userAuth));
+        return userService.authenticateUser2(userAuth);
+    }
 
     @GetMapping(value = "/ping")
     @ResponseStatus(value = HttpStatus.OK)
