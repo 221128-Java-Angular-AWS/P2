@@ -27,7 +27,6 @@ export class FeedComponent {
       alert("Must be signed in to create posts");
     }
     else if(text != "" || this.imageLink != ""){
-      // NOTE: I added "The Riddler" to satisfy the method signature due to the expanded Post class constructor. -Travis M.
       this.postsService.createPost(text, this.imageLink, this.currentUser).subscribe(post => {
         console.log("Returned Post: ", post);
         this.posts.push(post);
@@ -55,7 +54,7 @@ export class FeedComponent {
       this.activeRoute.params.subscribe((routeParams = {}) => {
         this.pageChanged(routeParams);
       });
-      
+
     }
     else{
       this.postsService.getPosts()
