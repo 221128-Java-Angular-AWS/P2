@@ -55,7 +55,6 @@ export class UserProfileComponent {
     }else{
       this.activeUser = false;
     }
-    console.log(this.loggedInUser, this.currentUser, this.activeUser);
     
   }
 
