@@ -1,23 +1,31 @@
 
 <div id="navbar" *ngIf="!isLoginPage()">
-    <table>
-        <tr>
-            <th><label>Search For User: </label></th>
-            <th><input #searchbar id="searchbar" type="search" (search)="searchForUsers(searchbar.value)"></th>
-            <th><button id="searchButton" (click)="searchForUsers(searchbar.value)">Search</button></th>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <div id="searchResults" *ngIf="users.length > 0 || noResults">
-                    <div *ngFor="let user of users">
-                        <!--These will link to the person's profile eventually-->
-                        <div class="searchResult" [routerLink]="['user', user.userId]" (click)="resetSearch()"><div>{{user.username}}</div><div style="color:gray">Posts: {{user.posts?.length}}</div></div>
+    <div id="iconDiv" routerLink="/home"><img id="squawkIcon" src="assets/iconSquawk.png" alt="icon"><b>Squawk</b></div>
+    <div>
+        <table>
+            <tr>
+                <th><label>Search For User: </label></th>
+                <th><input #searchbar id="searchbar" type="search" (search)="searchForUsers(searchbar.value)"></th>
+                <th><button id="searchButton" (click)="searchForUsers(searchbar.value)">Search</button></th>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div id="searchResults" *ngIf="users.length > 0 || noResults">
+                        <div *ngFor="let user of users">
+                            <!--These will link to the person's profile eventually-->
+                            <div class="searchResult" [routerLink]="['user', user.userId]" (click)="resetSearch()"><div>{{user.username}}</div><div style="color:gray">Posts: {{user.posts?.length}}</div></div>
+                        </div>
+                        <div *ngIf="noResults" id="noSearchResults">No Users Found</div>
                     </div>
-                    <div *ngIf="noResults" id="noSearchResults">No Users Found</div>
-                </div>
-            </td>
-            <td></td>
-        </tr>
-    </table>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div style="display: flex; height: 100%; align-items: center; padding-right: 5px;">
+        <b>Dark mode here!</b>
+        &nbsp;&nbsp;&nbsp;
+        <app-logout></app-logout>
+    </div>
 </div>
