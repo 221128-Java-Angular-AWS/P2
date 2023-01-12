@@ -26,45 +26,19 @@ export class LoginComponent {
 
   onSubmit() { 
     this.submitted=true; 
-    // this.checkUsernamePassword();
+    this.checkUsernamePassword();
   }
 
   checkUsernamePassword(): User | void {
-    this.authService.authenticateUser(this.username, this.password).subscribe(users => {
-      this.user = users[0];
-      this.printNotification(this.user);
-      this.cookieService.setCurrentUser(this.user);
+    this.authService.authenticateUser(this.username, this.password).subscribe(user => {
+      this.printNotification(user);
+      console.log(user);
+      this.cookieService.setCurrentUser(user);
     });
-
     if (this.cookieService.getCurrentUser() != undefined) {
       this.router.navigate(['home']);
     }
   }
-
-  checkUP(): User | void {
-    this.authService.authenticateUser2(this.username, this.password).subscribe(users => {
-      this.user = users;
-      this.cookieService.setCurrentUser(this.user);
-      console.log(this.user);
-    });
-  }
-/*
-  checkUP = async () =>{
-    let match = await this.authService.authenticate(this.username, this.password)!
-    if(match){
-      console.log('logged in')
-    }else{
-      console.log('denied')
-    }
-    
-    let res = await this.authService.authenticate(this.username, this.password);
-    if(res! == true){
-      console.log('logged in')
-    }
-    else{
-      console.log('denied')
-    }
-  }*/
 
   goToUserPage(id : number) {
     this.router.navigate(['/home'])

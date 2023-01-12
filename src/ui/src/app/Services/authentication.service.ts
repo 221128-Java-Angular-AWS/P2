@@ -33,40 +33,14 @@ export class AuthenticationService {
     return throwError(errorMessage);
   }
 
-  authenticateUser(username: string, password: string): Observable<User[]> {
-    let userAuth: UserAuth = new UserAuth(username, password);
-    
-    return this.http.post<User[]>(this.baseUrl + "/auth/login", JSON.stringify(userAuth), this.httpOptions).pipe(
-        catchError(this.errorHandler)
-        );        
-    }
-    authenticateUser2(username: string, password: string): Observable<User> {
+    authenticateUser(username: string, password: string): Observable<User> {
       let userAuth: UserAuth = new UserAuth(username, password);
       
-      return this.http.post<User>(this.baseUrl + "/auth/login2", JSON.stringify(userAuth), this.httpOptions).pipe(
+      return this.http.post<User>(this.baseUrl + "/auth/login", JSON.stringify(userAuth), this.httpOptions).pipe(
           catchError(this.errorHandler)
           );        
       }
-    /*
-   async authenticate(username: string, password: string){
-    let match = false;
-    let pass = '';
-    this.userService.searchUsers(username).subscribe(async (response) => {
-      let userarr = await response.filter(u => u.username === username);
-      pass = userarr[0].password!;
-      console.log('match2: ', await bcrypt.compare(password, pass));
-      
-    });
-    return this.match2(password, pass);
-  }
-  async match2(password: string, savedPassword: string):Promise<boolean>{
-    console.log(password)
-    console.log(savedPassword)
-    return await bcrypt.compare(password, savedPassword);
-  }*/
 
-
-  
   }
 
 
