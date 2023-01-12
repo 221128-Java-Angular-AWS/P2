@@ -10,10 +10,12 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
   users: User[] = [];
+  noResults = false;
 
   constructor(private userService: UsersService, public router: Router){}
 
   searchForUsers(filter: string){
+    this.noResults = false;
     if(filter == ""){
       this.users = [];
     }
@@ -21,6 +23,9 @@ export class NavbarComponent {
       this.userService.searchUsers(filter)
       .subscribe((users) => {
         this.users = users;
+        if(users.length == 0){
+          this.noResults = true;
+        }
       });
     }
   }
@@ -28,6 +33,7 @@ export class NavbarComponent {
   resetSearch(){
     this.users = [];
     (<HTMLInputElement>document.getElementById("searchbar")).value = "";
+    this.noResults = false;
   }
 
   isLoginPage() {
