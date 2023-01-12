@@ -24,9 +24,7 @@ public class PostController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public @ResponseBody Post createNewPost(@RequestBody Post post){
         post.setDatePosted(LocalDateTime.now());
-        System.out.println(post);
         Post returnPost = postService.createPost(post);
-        System.out.println("Return: " + returnPost);
         return returnPost;
     }
 

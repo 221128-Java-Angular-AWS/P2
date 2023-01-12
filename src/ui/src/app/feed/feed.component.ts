@@ -27,11 +27,14 @@ export class FeedComponent {
       alert("Must be signed in to create posts");
     }
     else if(text != "" || this.imageLink != ""){
-      // NOTE: I added "The Riddler" to satisfy the method signature due to the expanded Post class constructor. -Travis M.
-      this.postsService.createPost(text, this.imageLink, this.currentUser).subscribe(post => {
-        console.log("Returned Post: ", post);
-        this.posts.push(post);
-      });
+      if(text.length > 1000){
+        alert("Message exceeds max character length of 1000");
+      }else{
+        this.postsService.createPost(text, this.imageLink, this.currentUser).subscribe(post => {
+          console.log("Returned Post: ", post);
+          this.posts.push(post);
+        });
+      }
 
       (<HTMLInputElement>document.getElementById("newPostText")).value = "";
       this.imageLink = "";
@@ -41,7 +44,11 @@ export class FeedComponent {
   addImageLink(): void{
     let link = prompt("add a link to an image");
     if(link != null){
-      this.imageLink = link;
+      if (this.imageLink.length > 1000){
+        alert("Image link exceeds max character length of 1000");
+      }else{
+        this.imageLink = link;
+      }
     }
   }
 
