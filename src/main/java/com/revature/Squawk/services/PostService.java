@@ -30,7 +30,7 @@ public class PostService {
     }
 
     public List<Post> getPosts(Integer userId){
-        return new ArrayList<Post>();
+        return postRepo.findByUserId(userId);
     }
 
     public Post updatePost(Post post){

@@ -24,8 +24,8 @@ export class NavbarComponent {
     }
   }
 
-  goToUserProfile(userId:number|null|undefined){
-    //navigate to the user profile
-    console.log(userId);
+  resetSearch(){
+    this.users = [];
+    (<HTMLInputElement>document.getElementById("searchbar")).value = "";
   }
 }

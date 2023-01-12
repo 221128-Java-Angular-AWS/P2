@@ -2,7 +2,7 @@
   <div *ngFor="let post of posts" class="postContainer">
     <app-post [posts]="posts" [post]="post" [removePostFromFeed]="removePostFromFeed"></app-post>
   </div>
-  <div id="feed">
+  <div id="feed" *ngIf="showNewPostArea">
       <div id="newPost">
           <textarea id="newPostText" #postText placeholder="Create a new post!"></textarea>
           <br>

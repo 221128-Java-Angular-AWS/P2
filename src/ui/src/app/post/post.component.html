@@ -2,7 +2,7 @@
   <span [style]="{'font-size':'20px'}">{{post.username}}</span>
   <span> posted:</span>
   <span [style]="{'font-size':'12px', 'float': 'right'}">{{post.datePosted}} | date:'MM-dd-yyyy hh:mm:ss a'</span>
-  <button (click)="deletePost(post)">X</button>
+  <button *ngIf="canDelete" (click)="deletePost(post)">X</button>
   <div class="postContent">{{post.message}}<div *ngIf="post.imageLink != ''"><img class="postImage" [src]="post.imageLink"></div></div>
 
   <iframe *ngIf="embedYoutube" width="560" height="315" [src]=safeYoutubeLink title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

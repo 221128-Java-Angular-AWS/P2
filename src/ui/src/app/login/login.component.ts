@@ -4,7 +4,7 @@ import { userMap } from '../userMap';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from 'app/Services/authentication.service';
 import { CookieService } from 'app/Services/cookie-service.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ import { CookieService } from 'app/Services/cookie-service.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private authService: AuthenticationService, private cookieService: CookieService) {}
+  constructor(private router: Router, private authService: AuthenticationService, private cookieService: CookieService) {}
 
   submitted: boolean = false;
   username: string = "";
@@ -24,7 +24,8 @@ export class LoginComponent {
 
   onSubmit() { 
     this.submitted=true; 
-    this.checkUsernamePassword();}
+    this.checkUsernamePassword();
+  }
 
   checkUsernamePassword(): User | void {
     
@@ -35,7 +36,9 @@ export class LoginComponent {
     });
   }
 
-  goToUserPage() {}
+  goToUserPage(id : number) {
+    this.router.navigate(['/home', id])
+  }
 
   resetUserPassword(): void {
     this.username="";
@@ -44,6 +47,6 @@ export class LoginComponent {
 
   printNotification(user: User) {
       this.strout = user.username + " just signed in";
-
+      this.goToUserPage(user.userId);
   }
 }
