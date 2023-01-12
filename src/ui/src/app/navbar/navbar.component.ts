@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UsersService } from 'app/Services/users.service';
 import { User } from 'app/model/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,7 @@ import { User } from 'app/model/user';
 export class NavbarComponent {
   users: User[] = [];
 
-  constructor(private userService: UsersService){}
+  constructor(private userService: UsersService, public router: Router){}
 
   searchForUsers(filter: string){
     if(filter == ""){
@@ -27,5 +28,9 @@ export class NavbarComponent {
   resetSearch(){
     this.users = [];
     (<HTMLInputElement>document.getElementById("searchbar")).value = "";
+  }
+
+  isLoginPage() {
+    return this.router.url === '/login';
   }
 }

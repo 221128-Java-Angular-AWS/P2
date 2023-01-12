@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,12 @@ export class AppComponent {
   //This value will be grabbed from the session cookie
   userId = 1;
 
-  constructor () {
+  constructor (public router: Router) {
 
   }
+
+  isLoginPage() {
+    return this.router.url === '/login';
+  }
+
 }
