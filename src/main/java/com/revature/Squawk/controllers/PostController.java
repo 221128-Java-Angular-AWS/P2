@@ -46,7 +46,7 @@ public class PostController {
 
     @GetMapping(value = "/user")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public @ResponseBody List<Post> getUserPosts(@RequestBody Integer userId){
+    public @ResponseBody List<Post> getUserPosts(@RequestParam Integer userId){
         return postService.getPosts(userId);
     }
 
