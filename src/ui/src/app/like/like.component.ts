@@ -137,18 +137,22 @@ export class LikeComponent {
     this.user = new RequestUser(this.userId);
     this.post = new RequestPost(this.postId);
     this.like = new RequestLike(this.user, this.post);
-    if (this.hasLiked == false) {
-      this.doPostRequest();
-      // this causes the user to have to hit the button twice for it to update
-      // for simplicity I will assume the request worked and update the button immediately
-      //this.doGetUserLikePost();
-      this.hasLiked = true;
+    if (this.userId == -1){
+      alert("Must be logged in to like posts.")
     } else {
-      this.doDeleteUserLikePost();
-      // this causes the user to have to hit the button twice for it to update
-      // for simplicity I will assume the request worked and update the button immediately
-      //his.doGetUserLikePost();
-      this.hasLiked = false;
+      if (this.hasLiked == false) {
+        this.doPostRequest();
+        // this causes the user to have to hit the button twice for it to update
+        // for simplicity I will assume the request worked and update the button immediately
+        //this.doGetUserLikePost();
+        this.hasLiked = true;
+      } else {
+        this.doDeleteUserLikePost();
+        // this causes the user to have to hit the button twice for it to update
+        // for simplicity I will assume the request worked and update the button immediately
+        //his.doGetUserLikePost();
+        this.hasLiked = false;
+      }
     }
   }
 }
