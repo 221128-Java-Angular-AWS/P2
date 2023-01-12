@@ -33,5 +33,7 @@ button {
 
 .postImage{
   max-height: 300px;
+  max-width: 100%;
+  box-sizing: border-box;
   margin-top: 10px;
 }

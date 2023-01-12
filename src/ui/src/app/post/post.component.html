@@ -1,7 +1,7 @@
 <div class="post">
   <span [style]="{'font-size':'20px'}">{{post.username}}</span>
   <span> posted:</span>
-  <span [style]="{'font-size':'12px', 'float': 'right'}">{{post.datePosted}}</span>
+  <span [style]="{'font-size':'12px', 'float': 'right'}">{{post.datePosted | date:'MMM d, y h:mm a'}}</span>
   <button *ngIf="canDelete" (click)="deletePost(post)">X</button>
   <div class="postContent">{{post.message}}<div *ngIf="post.imageLink != ''"><img class="postImage" [src]="post.imageLink"></div></div>
 
