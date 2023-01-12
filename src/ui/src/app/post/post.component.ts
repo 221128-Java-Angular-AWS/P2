@@ -32,6 +32,7 @@ export class PostComponent {
     let comment = new Comment((post.postId ? post.postId : 1), (user.userId ? user.userId : 1), message, user, post);
     this.commentService.postComment((post.postId ? post.postId : 1), comment).subscribe((comment) => {
       this.post.comments.push(comment);
+      this.commentService.getComments(this.post.postId ? this.post.postId : 1);
     });
   }
 

@@ -32,26 +32,22 @@ export class CommentComponent {
   createReply(post: Post, comment: Comment, message: string) {
     let user = new User("test", 1);
     let reply = new Reply((comment.commentId ? comment.commentId : 1), (user.userId ? user.userId : 1), message, (user.username ? user.username : "test"), post, comment, user, post.postId);
-    this.commentService.postReply(comment.postId, (comment.commentId ? comment.commentId : 1), comment, reply).subscribe();
-    this.post.comments.forEach((value, index) => {
-      if (value === comment) {
-        this.post.comments[index].replies?.push(reply);
-      }
+    this.commentService.postReply(comment.postId, (comment.commentId ? comment.commentId : 1), comment, reply).subscribe((reply) => {
+      this.post.comments.forEach((value, index) => {
+        if (value === comment) {
+          if (this.post.comments[index].replies === null) {
+            this.post.comments[index].replies = [];
+          }
+
+          this.post.comments[index].replies?.push(reply);
+          this.commentService.getReplies((reply.postId ? reply.postId : 1), reply.commentId);
+        }
+      });
     });
   }
 
   deleteReply(comment: Comment, reply: Reply) {
     let i: number = 0;
     this.commentService.deleteReply((reply.postId ? reply.postId : 1), reply.commentId, reply).subscribe();
-    this.post.comments.forEach((value, index) => {
-      if (value === comment) {
-        i = index;
-        this.post.comments[index].replies?.forEach((value, index) => {
-          if (value === reply) {
-            this.post.comments[i].replies?.splice(index, 1);
-          }
-        })
-      }
-    });
   }
 }
