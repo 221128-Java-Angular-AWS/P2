@@ -22,15 +22,16 @@ export class LoginComponent {
   strFormOutput?: string;
   user?: User;
   u?: User;
-  strout?: string = "Here is the first name!";
+  //strout?: string = "Here is the first name!";
 
   onSubmit() { 
+    console.log("clicked submit")
     this.submitted=true; 
     this.checkUsernamePassword();
   }
 
   checkUsernamePassword(): User | void {
-    
+    console.log("in username and password about to call authe .")
     this.authService.authenticateUser(this.username, this.password).subscribe(users => {
       this.user = users[0];
       this.cookieService.setCurrentUser(this.user);
