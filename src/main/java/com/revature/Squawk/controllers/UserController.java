@@ -40,7 +40,7 @@ public class UserController {
         return userService.searchUsers(filter);
     }
 
-    @PutMapping
+    @PutMapping(value="/update")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public @ResponseBody User updateUser(@RequestBody User user){
         return userService.updateUser(user);
