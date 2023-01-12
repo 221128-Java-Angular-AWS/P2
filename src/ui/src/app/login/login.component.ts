@@ -15,6 +15,7 @@ import { Router, ActivatedRoute} from '@angular/router';
 export class LoginComponent {
   constructor(private authService: AuthenticationService, private cookieService: CookieService, private route: ActivatedRoute, private router: Router) {}
 
+
   submitted: boolean = false;
   username: string = "";
   password: string ="";
@@ -25,7 +26,8 @@ export class LoginComponent {
 
   onSubmit() { 
     this.submitted=true; 
-    this.checkUsernamePassword();}
+    this.checkUsernamePassword();
+  }
 
   checkUsernamePassword(): User | void {
     
@@ -40,7 +42,9 @@ export class LoginComponent {
     }
   }
 
-  goToUserPage() {}
+  goToUserPage(id : number) {
+    this.router.navigate(['/home', id])
+  }
 
   resetUserPassword(): void {
     this.username="";
@@ -49,6 +53,6 @@ export class LoginComponent {
 
   printNotification(user: User) {
       this.strout = user.username + " just signed in";
-
+      this.goToUserPage(user.userId);
   }
 }

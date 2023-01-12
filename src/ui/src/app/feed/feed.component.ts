@@ -1,5 +1,8 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Post, PostsService } from '../Services/posts.service';
+import { User } from 'app/model/user';
+import { CookieService } from 'app/Services/cookie-service.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -9,15 +12,23 @@ import { Post, PostsService } from '../Services/posts.service';
 export class FeedComponent {
 
   posts: Post[] = [];
+  currentUser: User | undefined;
+  showNewPostArea: boolean = true;
 
   imageLink: string = "";
-  constructor(private postsService: PostsService) {
+  constructor(private postsService: PostsService, private cookieService: CookieService, private router: Router, private activeRoute: ActivatedRoute) {
   }
 
   createPost(text: string): void{
-    if(text != "" || this.imageLink != ""){
+    if(this.currentUser == undefined){
+     this.currentUser = this.cookieService.getCurrentUser()
+    }
+    if(this.currentUser == undefined){
+      alert("Must be signed in to create posts");
+    }
+    else if(text != "" || this.imageLink != ""){
       // NOTE: I added "The Riddler" to satisfy the method signature due to the expanded Post class constructor. -Travis M.
-      this.postsService.createPost(text, this.imageLink, "The Riddler").subscribe(post => {
+      this.postsService.createPost(text, this.imageLink, this.currentUser).subscribe(post => {
         console.log("Returned Post: ", post);
         this.posts.push(post);
       });
@@ -39,10 +50,31 @@ export class FeedComponent {
   }
 
   ngOnInit(): void {
-    this.postsService.getPosts()
-    .subscribe((posts) => {
-      this.posts = posts;
-    });
+    this.currentUser = this.cookieService.getCurrentUser();
+    if(this.router.url.includes("user")){
+      this.activeRoute.params.subscribe((routeParams = {}) => {
+        this.pageChanged(routeParams);
+      });
+      
+    }
+    else{
+      this.postsService.getPosts()
+      .subscribe((posts) => {
+        this.posts = posts;
+      });
+    }
+  }
+
+  pageChanged(routeParams: Params){
+    this.postsService.getPostsFromUser(routeParams["id"])
+      .subscribe((posts) => {
+        this.posts = posts;
+      });
+    if(this.currentUser?.userId == routeParams["id"]){
+      this.showNewPostArea = true;
+    }else{
+      this.showNewPostArea = false;
+    }
   }
 
   removePost(post: Post): void {

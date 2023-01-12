@@ -1,5 +1,5 @@
 <html>
-
+    
     <div *ngIf="!editUser" class="row container-fluid" id="show/hide">
 
         <body>
@@ -12,14 +12,14 @@
             <p>Firstname: {{currentUser.firstName}}</p>
             <p>Lastname: {{currentUser.lastName}}</p>
             <p>Bio: <br>{{currentUser.bio}}</p>
-        </div>
+            </div>
             <div *ngIf ="activeUser" class="center-button">
                 <button type="button" class="edit-button" (click)="editMode()"> Edit </button>
             </div>
 
         </body>
-    </div>
     
+    </div>
     <div *ngIf="editUser" class="row container-fluid" id="show/hide">
 
         <body>
@@ -45,3 +45,4 @@
     </div>
 
 </html>
+<app-logout></app-logout>
