@@ -15,6 +15,7 @@ public class LikeService {
     }
 
     public Like likePost(Like like){
+        System.out.println("@ service" );
         // check for existing like here could disable on front end if user already liked post
         if (getLike(like) == null) {
             likeRepo.save(like);

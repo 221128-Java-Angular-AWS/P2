@@ -12,10 +12,10 @@ import java.util.List;
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
-    @Query(value = "SELECT * FROM users u WHERE u.username = :username and u.password = :password", nativeQuery = true)
-    List<User> authUser(
-            @Param("username") String username,
-            @Param("password") String password
+
+    @Query(value = "SELECT * FROM users u WHERE u.username = :username", nativeQuery = true)
+    User authUser(
+            @Param("username") String username
     );
 
     @Query(value = "select * from users;", nativeQuery = true)

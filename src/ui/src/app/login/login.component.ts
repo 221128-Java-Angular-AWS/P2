@@ -30,13 +30,11 @@ export class LoginComponent {
   }
 
   checkUsernamePassword(): User | void {
-    
-    this.authService.authenticateUser(this.username, this.password).subscribe(users => {
-      this.user = users[0];
-      this.printNotification(this.user);
-      this.cookieService.setCurrentUser(this.user);
+    this.authService.authenticateUser(this.username, this.password).subscribe(user => {
+      this.printNotification(user);
+      console.log(user);
+      this.cookieService.setCurrentUser(user);
     });
-
     if (this.cookieService.getCurrentUser() != undefined) {
       this.router.navigate(['home']);
     }

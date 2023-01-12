@@ -10,6 +10,7 @@
     max-width: 920px;
     width: 90%;
     margin:auto;
+    margin-bottom: 10px;
 }
 
 #newPost{
@@ -40,12 +41,12 @@
 }
 
 #imagePreviewDelete{
-    color:rgb(0,70,255); 
+    color:rgb(0,70,255);
     font-size:20px;
-    font-weight: bold; 
-    background-color: transparent; 
+    font-weight: bold;
+    background-color: transparent;
     border:none;
-    vertical-align: top; 
+    vertical-align: top;
     margin-top: 10px;
 }
 

@@ -4,10 +4,8 @@
   <span [style]="{'font-size':'12px', 'float': 'right'}">{{post.datePosted | date:'MMM d, y h:mm a'}}</span>
   <button *ngIf="canDelete" (click)="deletePost(post)">X</button>
   <div class="postContent">{{post.message}}<div *ngIf="post.imageLink != ''"><img class="postImage" [src]="post.imageLink"></div></div>
-
   <iframe *ngIf="embedYoutube" width="560" height="315" [src]=safeYoutubeLink title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-  <div [style]="{'margin-bottom': '5px'}">{{post.likes.length}} likes - {{post.comments.length}} comments</div>
+  <div><app-like [postItem]="post"></app-like>{{post.comments.length}} comments</div>
   <div [style]="{'margin-left': '25px', 'margin-top':'20px'}" *ngIf="post.comments.length > 0 && !post.clicked">
     <span>{{post.comments[0].username}}</span>
     <span [style]="{'font-size':'12px'}"> commented:</span>

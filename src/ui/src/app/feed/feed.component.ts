@@ -62,7 +62,7 @@ export class FeedComponent {
       this.activeRoute.params.subscribe((routeParams = {}) => {
         this.pageChanged(routeParams);
       });
-      
+
     }
     else{
       this.postsService.getPosts()
