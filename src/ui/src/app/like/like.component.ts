@@ -24,9 +24,9 @@ export class LikeComponent {
   currentUser: User | undefined;
   posts: Post[] = [];
 
-  userId: number = 1;
-  postId: number = 7; // same
-  likeId: number = 0;
+  userId: number = -1;
+  postId: number = -1; // same
+  likeId: number = -1;
 
   @Input()
   postItem!: Post;
@@ -48,20 +48,12 @@ export class LikeComponent {
     } 
     this.getActiveUser();
     this.doGetUserLikePost();
-    this.doGetLikeCount();
-    console.log(this.postId);
-    // trying to get the posts to get the post information, still limited by post being in the template
-    //this.postsService.getPosts().subscribe((posts => {
-    //  this.posts = posts;
-    //}));
-    
+    this.doGetLikeCount();   
   }
 
 
   getActiveUser() {
     this.currentUser = this.cookie.getCurrentUser();
-    console.log("@ get active user current user: ")
-    console.log(this.currentUser);
   }
 
   
@@ -79,8 +71,6 @@ export class LikeComponent {
     this.remote.doPostLikePostAsUser(this.like).subscribe(() =>
     this.doGetLikeCount()
     );
-    // breadcrumbs
-    console.log("liked");
   }
 
 
@@ -94,9 +84,6 @@ export class LikeComponent {
     this.user = new RequestUser(this.userId);
     this.post = new RequestPost(this.postId);
     this.like = new RequestLike(this.user, this.post);
-    console.log("@ like count: ")
-    console.log(this.like);
-    console.log(this.postItem);
     
     this.remote.doGetLikeCountForPost(this.like).subscribe(
       (likeCount: number | undefined) => 
@@ -136,8 +123,6 @@ export class LikeComponent {
     this.remote.doDeleteLikeForPostUser(this.like).subscribe(() =>
       this.doGetLikeCount()
     );
-    // breadcrumbs
-    console.log("unliked");
   }
 
 
@@ -145,8 +130,6 @@ export class LikeComponent {
   // this works now, I shouyld clean up some of the mess in here but ill just finish 
   // plugging in functionality and move on to helping or doing something else
   handleButtonClick(postId: any) {
-    console.log("Like clicked. userId: " + this.currentUser?.userId + " postId: " + postId);
-    console.log("on click has liked: " + this.hasLiked);
     this.postId = postId * 1;
     if (this.currentUser?.userId != null) {
       this.userId = this.currentUser?.userId
@@ -154,20 +137,22 @@ export class LikeComponent {
     this.user = new RequestUser(this.userId);
     this.post = new RequestPost(this.postId);
     this.like = new RequestLike(this.user, this.post);
-    console.log("on click has liked after rebuild: ");
-    console.log(this.hasLiked);
-    if (this.hasLiked == false) {
-      this.doPostRequest();
-      // this causes the user to have to hit the button twice for it to update
-      // for simplicity I will assume the request worked and update the button immediately
-      //this.doGetUserLikePost();
-      this.hasLiked = true;
+    if (this.userId == -1){
+      alert("Must be logged in to like posts.")
     } else {
-      this.doDeleteUserLikePost();
-      // this causes the user to have to hit the button twice for it to update
-      // for simplicity I will assume the request worked and update the button immediately
-      //his.doGetUserLikePost();
-      this.hasLiked = false;
+      if (this.hasLiked == false) {
+        this.doPostRequest();
+        // this causes the user to have to hit the button twice for it to update
+        // for simplicity I will assume the request worked and update the button immediately
+        //this.doGetUserLikePost();
+        this.hasLiked = true;
+      } else {
+        this.doDeleteUserLikePost();
+        // this causes the user to have to hit the button twice for it to update
+        // for simplicity I will assume the request worked and update the button immediately
+        //his.doGetUserLikePost();
+        this.hasLiked = false;
+      }
     }
   }
 }
