@@ -26,11 +26,7 @@ export class LoginComponent {
 
   onSubmit() { 
     this.submitted=true; 
-<<<<<<< HEAD
     // this.checkUsernamePassword();
-=======
-    this.checkUsernamePassword();
->>>>>>> e6c5d232728e9f0406e1df0fc000c13122123423
   }
 
   checkUsernamePassword(): User | void {
@@ -45,7 +41,6 @@ export class LoginComponent {
     }
   }
 
-<<<<<<< HEAD
   checkUP(): User | void {
     this.authService.authenticateUser2(this.username, this.password).subscribe(users => {
       this.user = users;
@@ -71,12 +66,9 @@ export class LoginComponent {
     }
   }*/
 
-  goToUserPage() {}
-=======
   goToUserPage(id : number) {
     this.router.navigate(['/home'])
   }
->>>>>>> e6c5d232728e9f0406e1df0fc000c13122123423
 
   resetUserPassword(): void {
     this.username="";
