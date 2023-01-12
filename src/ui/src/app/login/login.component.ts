@@ -43,7 +43,7 @@ export class LoginComponent {
   }
 
   goToUserPage(id : number) {
-    this.router.navigate(['/home', id])
+    this.router.navigate(['/home'])
   }
 
   resetUserPassword(): void {
