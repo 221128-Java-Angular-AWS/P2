@@ -33,8 +33,8 @@ export class LoginComponent {
     
     this.authService.authenticateUser(this.username, this.password).subscribe(users => {
       this.user = users[0];
-      this.printNotification(this.user);
       this.cookieService.setCurrentUser(this.user);
+      this.goToUserPage(this.user.userId);
     });
 
     if (this.cookieService.getCurrentUser() != undefined) {
@@ -51,8 +51,4 @@ export class LoginComponent {
     this.password="";
   }
 
-  printNotification(user: User) {
-      this.strout = user.username + " just signed in";
-      this.goToUserPage(user.userId);
-  }
 }

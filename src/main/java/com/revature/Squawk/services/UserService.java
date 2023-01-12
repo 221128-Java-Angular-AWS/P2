@@ -24,6 +24,7 @@ public class UserService {
 
     public List<User> authenticateUser(UserAuth userAuth){
         return userRepo.authUser(userAuth.username, userAuth.password);
+
     }
 
     public User getUser(Integer userId){

@@ -41,6 +41,12 @@ public class User {
     @JsonManagedReference(value = "like_user")
     List<Like> likes;
 
+    /*
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @JsonManagedReference(value = "log_user")
+    List<Log> logs;
+    */
+
     public User() {
     }
 
