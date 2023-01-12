@@ -43,6 +43,7 @@ export class UserProfileComponent {
 
     let newUser = new User('', -1);
     if (this.currentUser != undefined ) {
+    let tempId = this.currentUser.userId;
     newUser.userId = this.currentUser.userId;}
     
     newUser.username = uName;
@@ -53,8 +54,8 @@ export class UserProfileComponent {
     this.currentUser = newUser;
     this.userService.updateUser(newUser).subscribe();
     /*
-    --- I'm having trouble setting the cookie as the returned u object ---
-    this.userService.getUser(newUser.userId!).subscribe(user => {
+    //--- I'm having trouble setting the cookie as the returned u object ---
+    this.userService.getUser(tempId!).subscribe(user => {
       this.tempUser = user.getValue();
     })
     this.cookieService.deleteCookie();
