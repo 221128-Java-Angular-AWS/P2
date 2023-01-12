@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CookieService } from 'app/Services/cookie-service.service';
 import { User } from 'app/model/user';
 import { UsersService } from 'app/Services/users.service';
+import { UserAuth } from 'app/userAuth';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,13 +11,14 @@ import { UsersService } from 'app/Services/users.service';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent { 
-
+  strOut?: string;
   @Input() activeUser = false;
 
   @Input() userId = -1;
 
   editUser = false;
 
+  tempUser?: User;
   
 
   currentUser: User = new User('', this.userId);
@@ -54,6 +56,7 @@ export class UserProfileComponent {
       this.activeUser = false;
     }
     console.log(this.loggedInUser, this.currentUser, this.activeUser);
+    
   }
 
   
@@ -68,16 +71,22 @@ export class UserProfileComponent {
   save(uName: string, fName: string, lName: string, newDesc: string): void {
 
     let newUser = new User('', -1);
-    newUser.userId = this.currentUser.userId;
+    if (this.currentUser != undefined ) {
+    newUser.userId = this.currentUser.userId;}
+    
     newUser.username = uName;
     newUser.firstName = fName;
     newUser.lastName = lName;
     newUser.bio = newDesc;
-
+      
     this.currentUser = newUser;
-    
     this.userService.updateUser(newUser).subscribe();
-
+    /*
+    this.userService.getUser(this.userId!).subscribe(user => {
+      this.tempUser = user;
+    })
+    */
     this.editUser = false;
+    
   }
 }
