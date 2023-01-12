@@ -98,32 +98,19 @@ export class LikeService {
 
 }
 
-// export class Like {
-//   constructor(postId: number, userId: number, likeId?: number) {
-//     this.postId = postId;
-//     this.userId = userId;
-//     this.likeId = likeId;
-    
-//   }
-
-//   likeId: number | null | undefined;
-//   postId: number;
-//   userId: number;
-// }
-
 // all of this spaghetti down here is to match the expected input of the server...
 export class RequestUser {
   constructor(userId: number) {
     this.userId = userId;
   }
-  userId: number;
+  userId: number | undefined;
 }
   
 export class RequestPost {
   constructor(postId: number) {
     this.postId = postId;
   }
-  postId: number;
+  postId: number | undefined;
 }
 
 // the actual class structure I need to pass in the JSON body

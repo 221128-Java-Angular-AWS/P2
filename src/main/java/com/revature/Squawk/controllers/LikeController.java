@@ -21,8 +21,9 @@ public class LikeController {
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
     public @ResponseBody Like likePost(@RequestBody Like like){
+        System.out.println("@ controller: " + like.toString());
         // instead probably change to either return like count or -1
-        like = likeService.likePost(like);
+        // like = likeService.likePost(like);
 //        Integer likeCount = likeService.getLikeCount(like.getPost().getPostId());
 //        System.out.println(likeCount);
         return likeService.likePost(like);
