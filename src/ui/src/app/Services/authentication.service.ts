@@ -33,6 +33,15 @@ export class AuthenticationService {
     return throwError(errorMessage);
   }
 
+/*
+  authenticateUser(username: string, password: string): Observable<User[]> {
+    let userAuth: UserAuth = new UserAuth(username, password);
+    
+    return this.http.post<User[]>(this.baseUrl + "/auth/login", JSON.stringify(userAuth), this.httpOptions).pipe(
+        catchError(this.errorHandler)
+        );
+    }*/
+
     authenticateUser(username: string, password: string): Observable<User> {
       let userAuth: UserAuth = new UserAuth(username, password);
       
@@ -40,6 +49,7 @@ export class AuthenticationService {
           catchError(this.errorHandler)
           );        
       }
+
 
   }
 
