@@ -14,8 +14,10 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/posts")
 public class PostController {
-    private PostService postService;
-    private LogService logService;
+
+    private final PostService postService;
+    private final LogService logService;
+
 
     @Autowired
     public PostController(PostService postService, LogService logService) {
@@ -28,11 +30,11 @@ public class PostController {
     public @ResponseBody Post createNewPost(@RequestBody Post post){
         post.setDatePosted(LocalDateTime.now());
         Post returnPost = postService.createPost(post);
-        Integer userId = returnPost.getUserId();
-        this.logService.logMsg("Created a post", returnPost.getUser());
+        //Integer userId = returnPost.getUserId();
+        this.logService.logMsg(String.format("Created a post: %s", returnPost.getMessage()), returnPost.getUser());
         return returnPost;
     }
-
+    
     @GetMapping(value = "/{postId}")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public @ResponseBody Post getPost(@PathVariable Integer postId){

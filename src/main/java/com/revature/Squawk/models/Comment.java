@@ -1,27 +1,31 @@
 package com.revature.Squawk.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
-@Entity(name = "Comments")
+@Entity(name = "comments")
 public class Comment {
-
     @Id
     @Column(name = "comment_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer commentId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JsonBackReference (value = "comment_post")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JsonBackReference(value = "comment_post")
     @JoinColumn(name = "post_id")
+    @JsonProperty
     private Post post;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JsonBackReference (value = "comment_user")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JsonBackReference(value = "comment_user")
     @JoinColumn(name = "user_id")
+    @JsonProperty
     private User user;
 
     @Column(name = "posted_date")
@@ -29,6 +33,10 @@ public class Comment {
 
     @Column
     private String message;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "comment")
+    @JsonManagedReference(value = "reply_comment")
+    List<Reply> replies;
 
     public Comment() {
     }
@@ -46,6 +54,15 @@ public class Comment {
         this.user = user;
         this.postedDate = postedDate;
         this.message = message;
+    }
+
+    public Comment(Integer commentId, Post post, User user, LocalDateTime postedDate, String message, List<Reply> replies) {
+        this.commentId = commentId;
+        this.post = post;
+        this.user = user;
+        this.postedDate = postedDate;
+        this.message = message;
+        this.replies = replies;
     }
 
     public Integer getCommentId() {
@@ -72,14 +89,6 @@ public class Comment {
         this.user = user;
     }
 
-    public LocalDateTime getPostedDate() {
-        return postedDate;
-    }
-
-    public void setPostedDate(LocalDateTime postedDate) {
-        this.postedDate = postedDate;
-    }
-
     public String getMessage() {
         return message;
     }
@@ -88,7 +97,33 @@ public class Comment {
         this.message = message;
     }
 
-    public String getUsername() { return user.getUsername(); }
+    public LocalDateTime getPostedDate() {
+        return postedDate;
+    }
+
+    public void setPostedDate(LocalDateTime postedDate) {
+        this.postedDate = postedDate;
+    }
+
+    public List<Reply> getReplies() {
+        return replies;
+    }
+
+    public void setReplies(List<Reply> replies) {
+        this.replies = replies;
+    }
+
+    public Integer getPostId() {
+        return post.getPostId();
+    }
+
+    public String getUsername() {
+        return user.getUsername();
+    }
+
+    public Integer getUserId() {
+        return user.getUserId();
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -109,8 +144,8 @@ public class Comment {
                 "commentId=" + commentId +
                 ", post=" + post +
                 ", user=" + user +
-                ", postedDate=" + postedDate +
-                ", message='" + message + '\'' +
+                ", datePosted=" + postedDate +
+                ", message='" + message +
                 '}';
     }
 }

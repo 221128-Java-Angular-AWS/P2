@@ -22,7 +22,7 @@ public class Log {
     private User user;
 
 
-    @Column
+    @Column(length = 1200)
     private String event;
 
     public Log () {}

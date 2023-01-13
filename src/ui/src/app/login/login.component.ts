@@ -22,7 +22,7 @@ export class LoginComponent {
   strFormOutput?: string;
   user?: User;
   u?: User;
-  //strout?: string = "Here is the first name!";
+  strout?: string = "Here is the first name!";
 
   onSubmit() { 
     console.log("clicked submit")
@@ -47,11 +47,11 @@ export class LoginComponent {
       this.router.navigate(['home']);
     }
   }
-/*
-  goToUserPage(id : number) {
+
+  goToUserPage() {
     this.router.navigate(['/home'])
   }
-*/
+
 
   resetUserPassword(): void {
     this.username="";
@@ -60,7 +60,7 @@ export class LoginComponent {
 /*
   printNotification(user: User) {
     this.strout = user.username + " just signed in";
-    this.goToUserPage(user.userId);
+    this.goToUserPage();
 }
 */
 

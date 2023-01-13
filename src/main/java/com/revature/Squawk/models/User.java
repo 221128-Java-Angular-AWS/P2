@@ -22,7 +22,7 @@ public class User {
     private String lastName;
 
     @Column(unique = true)
-    private String username;
+    private String username = "tester";
 
     @Column
     private String password;
@@ -41,11 +41,14 @@ public class User {
     @JsonManagedReference(value = "like_user")
     List<Like> likes;
 
-    /*
+
+    @Column (length = 1000)
+    private String image;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    @JsonManagedReference(value = "log_user")
-    List<Log> logs;
-    */
+    @JsonManagedReference(value = "reply_user")
+    List<Reply> replies;
+
 
     public User() {
     }
@@ -54,16 +57,17 @@ public class User {
         this.userId = userId;
     }
     
-    public User(String firstName, String lastName, String username, String password, String email, String bio) {
+    public User(String firstName, String lastName, String username, String password, String email, String bio, String image) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.email = email;
         this.bio = bio;
+        this.image = image;
     }
 
-    public User(Integer userId, String firstName, String lastName, String username, String password, String email, String bio) {
+    public User(Integer userId, String firstName, String lastName, String username, String password, String email, String bio, String image) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -71,6 +75,7 @@ public class User {
         this.password = password;
         this.email = email;
         this.bio = bio;
+        this.image = image;
     }
 
     public Integer getUserId() {
@@ -129,17 +134,25 @@ public class User {
         this.bio = bio;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(userId, user.userId) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(email, user.email) && Objects.equals(bio, user.bio);
+        return Objects.equals(userId, user.userId) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(email, user.email) && Objects.equals(bio, user.bio) && Objects.equals(posts, user.posts) && Objects.equals(likes, user.likes) && Objects.equals(image, user.image);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, firstName, lastName, username, password, email, bio);
+        return Objects.hash(userId, firstName, lastName, username, password, email, bio, posts, likes, image);
     }
 
     @Override
@@ -152,6 +165,9 @@ public class User {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", bio='" + bio + '\'' +
+                ", posts=" + posts +
+                ", likes=" + likes +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

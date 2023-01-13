@@ -20,6 +20,9 @@ export class UserProfileComponent {
 
   tempUser?: User;
   
+  imageLink: string = "";
+
+  profilePic: string | undefined = "assets/profilepic.jpg";
 
   currentUser: User = new User('', this.userId);
   loggedInUser: User | undefined = new User('', this.userId);
@@ -40,11 +43,17 @@ export class UserProfileComponent {
       let id = this.loggedInUser ? <number>this.loggedInUser.userId : 1;
       this.getUser(id);
     }
+
   }
 
   getUser(userId: number){
     this.userService.getUser(userId).subscribe((response:User) => {
       this.currentUser = response;
+
+      if (this.currentUser.image !== "") {
+        this.profilePic = this.currentUser.image;
+      }
+
       this.checkActiveUser();
     })
   }
@@ -67,7 +76,7 @@ export class UserProfileComponent {
     this.editUser = false;
   }
 
-  save(uName: string, fName: string, lName: string, newDesc: string): void {
+  save(uName: string, fName: string, lName: string, newDesc: string, image: string): void {
 
     let newUser = new User('', -1);
     if (this.currentUser != undefined ) {
@@ -77,9 +86,16 @@ export class UserProfileComponent {
     newUser.firstName = fName;
     newUser.lastName = lName;
     newUser.bio = newDesc;
+    newUser.image = image;
       
     this.currentUser = newUser;
+
+    if (this.currentUser.image !== "") {
+      this.profilePic = this.currentUser.image;
+    }
+
     this.userService.updateUser(newUser).subscribe();
+
     /*
     this.userService.getUser(this.userId!).subscribe(user => {
       this.tempUser = user;
@@ -87,7 +103,21 @@ export class UserProfileComponent {
       this.cookieService.setUser(this.tempUser)
     })
     */
-    this.editUser = false;
-    
+    this.editUser = false; 
+  }
+
+  editPic(): void{
+    let link = prompt("Add a link to change your profile picture!");
+    if(link != null){
+      if (this.imageLink.length > 1000){
+        alert("Image link exceeds max character length of 1000");
+      }else{
+        this.imageLink = link;
+      }
+    } else {
+      this.imageLink = "assets/profilepic.jpg";
+      console.log("null image!");
+    }
+    console.log(this.imageLink);
   }
 }
