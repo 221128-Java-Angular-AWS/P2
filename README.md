@@ -36,7 +36,7 @@
 
 # Contributors
 
-### Kirill Klimov - email@revature.net
+### Kirill Klimov - kirill674@revature.net
 
  <img src="src\ui\src\assets\profilepic.jpg" alt="KirillPortrait" width="80" height="80">
 
