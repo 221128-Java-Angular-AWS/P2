@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { User } from 'app/user';
+import { User } from 'app/model/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +16,8 @@ export class CookieService {
   getCurrentUser(): User | undefined {
     return this.user;
   }
-  
+
+  deleteCookie(): void {
+    this.user = undefined;
+  }
 }

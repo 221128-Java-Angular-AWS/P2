@@ -1,5 +1,5 @@
 <html>
-
+    
     <div *ngIf="!editUser" class="row container-fluid" id="show/hide">
 
         <body>
@@ -7,19 +7,19 @@
             <h2> User Profile </h2>
 
             <img src="assets/profilepic.jpg" alt="profile picture" width="100" height="100">
-
+            <div *ngIf="currentUser">
             <p>Username: {{currentUser.username}}</p>
             <p>Firstname: {{currentUser.firstName}}</p>
             <p>Lastname: {{currentUser.lastName}}</p>
             <p>Bio: <br>{{currentUser.bio}}</p>
-
-            <div *ngIf="activeUser" class="center-button">
+            </div>
+            <div *ngIf ="activeUser" class="center-button">
                 <button type="button" class="edit-button" (click)="editMode()"> Edit </button>
             </div>
 
         </body>
+    
     </div>
-
     <div *ngIf="editUser" class="row container-fluid" id="show/hide">
 
         <body>
@@ -27,21 +27,22 @@
             <h2> User Profile </h2>
 
             <img src="assets/profilepic.jpg" alt="profile picture" width="100" height="100">
-            
+            <div *ngIf="currentUser">
             <p>Username: <input id ="username" #username type = "text" value={{currentUser.username}}></p>
             <p>Firstname: <input id = "firstName" #firstName type = "text" value={{currentUser.firstName}}></p>
             <p>Lastname: <input id = "lastName" #lastName type = "text" value={{currentUser.lastName}}></p>
             <p>Bio: <br><textarea id = "bio" #bio value = {{currentUser.bio}}></textarea></p>
             
             <div class="center-button">
-
+                    
                 <button style="margin-right: 5px;" (click)="save(username.value, firstName.value, lastName.value, bio.value)"> Save </button>
                 <button (click)="cancel()"> Cancel </button>
-
+                        
             </div>
-
+        </div>
         </body>
 
     </div>
 
 </html>
+<app-logout></app-logout>

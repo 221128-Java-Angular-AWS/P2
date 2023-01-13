@@ -1,2 +1,5 @@
-<button id="like" (click)="doPostRequest()">Likes: {{likeCount}}</button>
-<button id="unlike" (click)="doDeleteUserLikePost()">Unlike Likes: {{likeCount}}</button>
+<!-- -->
+<span *ngIf="hasLiked == false; else elseBlock"><button id="like" (click)="handleButtonClick([postItem.postId])">
+        Like</button> {{likeCount}} - likes</span>
+<span><ng-template #elseBlock><button id="like" (click)="handleButtonClick([postItem.postId])">
+            Un-Like</button> {{likeCount}} - likes</ng-template></span>

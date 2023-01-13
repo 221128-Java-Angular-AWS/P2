@@ -63,21 +63,36 @@ export class PostComponent {
   }
 
   deletePost(post: Post): void {
-    this.postsService.deletePostById(post.postId!);
-    this.removePostFromFeed(post);
+    try {
+      this.postsService.deletePostById(post.postId!);
+    }
+    catch (err: any) {
+      console.log(err);
+    }
+    finally {
+      this.removePostFromFeed(post);
+    }
   }
 
   parseForYoutube(message: String) {
     if (message.includes("youtube.com/watch?v=")) {
-      this.embedYoutube = true;
       let cutoff = message.lastIndexOf("youtube.com/watch?v=") + 20;
       let valid = /^[-a-zA-Z0-9_]*$/;
-      for (let i = cutoff; i < message.length; i++) {
-        if (!message[i].match(valid)) {
-          return "https://youtube.com/embed/" + message.slice(cutoff, i);
+      try {
+        for (let i = cutoff; i < message.length; i++) {
+          if (!message[i].match(valid)) {
+            this.embedYoutube = true;
+            return "https://youtube.com/embed/" + message.slice(cutoff, i);
+          }
         }
-      } return "https://youtube.com/embed/" + message.slice(cutoff);
+        this.embedYoutube = true;
+        return "https://youtube.com/embed/" + message.slice(cutoff);
+      }
+      catch (err: any) {
+        console.log(err);
+        return '';
+      }
     }
-    return '';
+      return '';
   }
 }
