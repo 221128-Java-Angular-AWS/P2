@@ -104,17 +104,21 @@ public class Post {
         return user.getUsername();
     }
 
+    public String getImage() {
+        return user.getImage();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Post post = (Post) o;
-        return Objects.equals(postId, post.postId) && Objects.equals(message, post.message) && Objects.equals(imageLink, post.imageLink) && Objects.equals(datePosted, post.datePosted) && Objects.equals(user, post.user);
+        return Objects.equals(postId, post.postId) && Objects.equals(message, post.message) && Objects.equals(imageLink, post.imageLink) && Objects.equals(datePosted, post.datePosted) && Objects.equals(user, post.user) && Objects.equals(likes, post.likes) && Objects.equals(comments, post.comments);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(postId, message, imageLink, datePosted, user);
+        return Objects.hash(postId, message, imageLink, datePosted, user, likes, comments);
     }
 
     @Override
@@ -125,6 +129,8 @@ public class Post {
                 ", imageLink='" + imageLink + '\'' +
                 ", datePosted=" + datePosted +
                 ", user=" + user +
+                ", likes=" + likes +
+                ", comments=" + comments +
                 '}';
     }
 }

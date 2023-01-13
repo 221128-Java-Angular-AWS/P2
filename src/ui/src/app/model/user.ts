@@ -11,9 +11,11 @@ export class User{
   posts?: Post[];
   securityQuestion?: string;
   securityAnswer?: string;
+  image?: string;
 
   constructor(username: string, userId?:  number|null, password?: string, email?: string, 
-    firstName?: string, lastName?: string, bio?: string, securityQuestion?: string, securityAnswer?: string) {
+    firstName?: string, lastName?: string, bio?: string, securityQuestion?: string, securityAnswer?: string, image?: string) {
+
       this.userId = userId;
       this.username = username;
       this.password = password;
@@ -23,6 +25,7 @@ export class User{
       this.bio = bio;
       this.securityQuestion = securityQuestion;
       this.securityAnswer = securityAnswer;
+      this.image = image;
     }
 }
 

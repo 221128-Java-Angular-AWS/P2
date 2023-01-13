@@ -47,9 +47,14 @@ public class UserService {
         originalUser.setFirstName(user.getFirstName());
         originalUser.setLastName(user.getLastName());
         originalUser.setBio(user.getBio());
+
         originalUser.setSecurityQuestion(user.getSecurityQuestion());
         originalUser.setSecurityAnswer(user.getSecurityAnswer());
 
+        originalUser.setImage(user.getImage());
+
+
+        System.out.println(originalUser);
         return userRepo.save(originalUser);
     }
 

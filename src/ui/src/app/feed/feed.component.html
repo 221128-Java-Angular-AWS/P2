@@ -13,7 +13,7 @@
           </div>
       </div>
   </div>
-  <div *ngFor="let post of posts" class="postContainer">
+  <div *ngFor="let post of posts.slice().reverse()" class="postContainer">
     <app-post [post]="post" [removePostFromFeed]="removePostFromFeed"></app-post>
   </div>
 </div>
