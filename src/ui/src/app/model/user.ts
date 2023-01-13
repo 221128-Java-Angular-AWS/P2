@@ -9,8 +9,10 @@ export class User{
   lastName?: string;
   bio?: string;
   posts?: Post[];
+  image?: string;
+
   constructor(username: string, userId?:  number|null, password?: string, email?: string, 
-    firstName?: string, lastName?: string, bio?: string) {
+    firstName?: string, lastName?: string, bio?: string, image?: string) {
       this.userId = userId;
       this.username = username;
       this.password = password;
@@ -18,5 +20,6 @@ export class User{
       this.firstName = firstName;
       this.lastName = lastName;
       this.bio = bio;
+      this.image = image;
     }
 }
