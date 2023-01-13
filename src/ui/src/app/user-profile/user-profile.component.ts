@@ -22,7 +22,7 @@ export class UserProfileComponent {
   
   imageLink: string = "";
 
-  profilePic: string | undefined = "assets/profilepic.jpg";
+  profilePic: string | undefined | null = "assets/profilepic.jpg";
 
   currentUser: User = new User('', this.userId);
   loggedInUser: User | undefined = new User('', this.userId);
@@ -51,10 +51,10 @@ export class UserProfileComponent {
       this.currentUser = response;
 
       if (this.currentUser.image !== "" && this.currentUser.image !== null) {
-        console.log("Custom Pic");
         this.profilePic = this.currentUser.image;
       } else {
-        console.log("Default Pic");
+        this.currentUser.image = "assets/profilepic.jpg";
+        this.profilePic = this.currentUser.image;
       }
 
       this.checkActiveUser();
