@@ -231,8 +231,8 @@ A persistent navigation bar allows users to navigate the website, as well as to 
 [audie-github]: https://github.com/
 [brayden-linkedin]: https://www.linkedin.com/
 [brayden-github]: https://github.com/braydensn
-[william-linkedin]: https://www.linkedin.com/
-[william-github]: https://github.com/
+[william-linkedin]: https://www.linkedin.com/in/william-osborne-b62910b0/
+[william-github]: https://github.com/WEOzzy
 [travisp-linkedin]: https://www.linkedin.com/in/travis-pomeroy-2a949b163/
 [travisp-github]: https://github.com/TPomerz
 [matthew-linkedin]: https://www.linkedin.com/
