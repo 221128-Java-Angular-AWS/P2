@@ -22,7 +22,7 @@ public class User {
     private String lastName;
 
     @Column(unique = true)
-    private String username;
+    private String username = "tester";
 
     @Column
     private String password;
@@ -40,6 +40,10 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @JsonManagedReference(value = "like_user")
     List<Like> likes;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @JsonManagedReference(value = "reply_user")
+    List<Reply> replies;
 
     public User() {
     }

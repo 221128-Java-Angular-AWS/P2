@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CommentComponent } from './comment/comment.component';
 import { ResetCredentialsComponent } from './reset-credentials/reset-credentials.component';
 import { LoginComponent } from './login/login.component';
 import { LikeComponent } from './like/like.component';
@@ -32,6 +33,7 @@ import { LogoutComponent } from './logout/logout.component';
     SettingsComponent,
     NavbarComponent,
     LoginRegisterComponent,
+    CommentComponent,
     ResetCredentialsComponent,
     LoginComponent,
     LikeComponent,
