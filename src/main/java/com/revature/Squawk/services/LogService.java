@@ -22,6 +22,7 @@ public class LogService {
 
 
     public void logMsg(String event, User user) {
+
         long nowTStamp = System.currentTimeMillis();
         Timestamp currentTime = new Timestamp(nowTStamp);
         System.out.println("test1");

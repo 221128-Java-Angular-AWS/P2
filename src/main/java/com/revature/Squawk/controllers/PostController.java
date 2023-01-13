@@ -29,7 +29,7 @@ public class PostController {
         post.setDatePosted(LocalDateTime.now());
         Post returnPost = postService.createPost(post);
         Integer userId = returnPost.getUserId();
-        this.logService.logMsg("Created a post", userId);
+        this.logService.logMsg("Created a post", returnPost.getUser());
         return returnPost;
     }
 
@@ -56,8 +56,7 @@ public class PostController {
     @PutMapping
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public @ResponseBody Post updatePost(@RequestBody Post post){
-        Integer userId = post.getUserId();
-        logService.logMsg("Updated a post", userId);
+        logService.logMsg("Updated a post", post.getUser());
         return postService.updatePost(post);
     }
 
