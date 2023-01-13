@@ -6,6 +6,7 @@ import { CommentsService } from 'app/Services/comments.service';
 import { CookieService } from 'app/Services/cookie-service.service';
 import { User } from 'app/model/user';
 import { Reply } from 'app/reply';
+import { UsersService } from 'app/Services/users.service';
 
 @Component({
   selector: 'app-post',
@@ -26,12 +27,16 @@ export class PostComponent {
   canDelete: boolean = false;
 
   clicked: boolean = false;
+  
+  currentUser: User | undefined;
+  profilePic: string | undefined | null = 'assets/profilepic.jpg';
 
   constructor(
     private postsService: PostsService,
     private commentService: CommentsService,
     public _sanitizer: DomSanitizer,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private userService: UsersService
   ) { }
 
   embedYoutube: Boolean = false;

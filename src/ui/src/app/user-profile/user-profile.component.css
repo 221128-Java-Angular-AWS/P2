@@ -39,6 +39,7 @@ img {
     border-style: solid;
     border-color: white;
 }
+
 .buttons {
     display: inline;
 }
@@ -47,3 +48,11 @@ img {
     text-align: center;
     margin-bottom: 20px;
 } */
+
+
+.picButton {
+    display: inline;
+    float: right;
+    margin-right: 30px;
+    z-index: 4;
+}

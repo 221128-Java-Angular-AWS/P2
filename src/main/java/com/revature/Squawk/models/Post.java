@@ -104,6 +104,10 @@ public class Post {
         return user.getUsername();
     }
 
+    public String getImage() {
+        return user.getImage();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -124,7 +128,6 @@ public class Post {
                 ", message='" + message + '\'' +
                 ", imageLink='" + imageLink + '\'' +
                 ", datePosted=" + datePosted +
-                ", user=" + user +
                 '}';
     }
 }
