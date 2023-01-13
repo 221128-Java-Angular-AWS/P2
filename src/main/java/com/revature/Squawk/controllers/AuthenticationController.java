@@ -21,16 +21,21 @@ public class AuthenticationController {
         this.logService = logService;
         this.userService = userService;
     }
-
+    
     @PostMapping(value = "/login")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public @ResponseBody List<User> authenticateUser(@RequestBody UserAuth userAuth){
-        List<User> auth = userService.authenticateUser(userAuth);
-        if(!auth.isEmpty()) {
-            Integer authUserId =auth.get(0).getUserId();
+    
+    public @ResponseBody User authenticateUser(@RequestBody UserAuth userAuth){
+        User auth = userService.authenticateUser(userAuth);
+        System.out.println(auth.toString() + "\n" );
+        if(auth != null) {
+            Integer authUserId =auth.getUser();
             logService.logMsg("Successfuly signed in", authUserId);
         }
         return auth;
+    //public @ResponseBody User authenticateUser(@RequestBody UserAuth userAuth){
+        // System.out.println(userAuth.username + userService.authenticateUser(userAuth));
+    //    return userService.authenticateUser(userAuth);
     }
 
     @GetMapping(value = "/ping")

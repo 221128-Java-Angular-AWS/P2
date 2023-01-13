@@ -20,11 +20,12 @@ public class LogService {
         this.userRepository = userRepository;
     }
 
-    public void logMsg(String event, Integer userId) {
+
+    public void logMsg(String event, User user) {
         long nowTStamp = System.currentTimeMillis();
         Timestamp currentTime = new Timestamp(nowTStamp);
         System.out.println("test1");
-        Log log = new Log(currentTime, userId, event);
+        Log log = new Log(currentTime, user, event);
         System.out.println("test2");
         this.logRepository.save(log);
     }

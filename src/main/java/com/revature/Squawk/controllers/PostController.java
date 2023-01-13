@@ -1,6 +1,7 @@
 package com.revature.Squawk.controllers;
 
 import com.revature.Squawk.models.Post;
+import com.revature.Squawk.services.LogService;
 import com.revature.Squawk.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,9 +15,11 @@ import java.util.List;
 @RequestMapping(value = "/posts")
 public class PostController {
     private PostService postService;
+    private LogService logService;
 
     @Autowired
-    public PostController(PostService postService) {
+    public PostController(PostService postService, LogService logService) {
+        this.logService = logService;
         this.postService = postService;
     }
 
@@ -24,9 +27,9 @@ public class PostController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public @ResponseBody Post createNewPost(@RequestBody Post post){
         post.setDatePosted(LocalDateTime.now());
-        System.out.println(post);
         Post returnPost = postService.createPost(post);
-        System.out.println("Return: " + returnPost);
+        Integer userId = returnPost.getUserId();
+        this.logService.logMsg("Created a post", userId);
         return returnPost;
     }
 
@@ -53,6 +56,8 @@ public class PostController {
     @PutMapping
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public @ResponseBody Post updatePost(@RequestBody Post post){
+        Integer userId = post.getUserId();
+        logService.logMsg("Updated a post", userId);
         return postService.updatePost(post);
     }
 

@@ -14,6 +14,8 @@
   border-color: lightgray;
   margin: 10px 0px;
   background-color: azure;
+  border-radius: 5px;
+  overflow-wrap: break-word;
 }
 
 .commentContent {
@@ -23,6 +25,7 @@
   border-color: lightgray;
   margin: 10px 0px;
   background-color: azure;
+  border-radius: 5px;
 }
 
 button {
@@ -33,5 +36,11 @@ button {
 
 .postImage{
   max-height: 300px;
+  max-width: 100%;
+  box-sizing: border-box;
   margin-top: 10px;
+}
+
+.post{
+  margin-bottom: 20px;
 }

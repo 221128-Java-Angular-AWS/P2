@@ -31,13 +31,18 @@ export class LoginComponent {
   }
 
   checkUsernamePassword(): User | void {
-    console.log("in username and password about to call authe .")
+   /*
     this.authService.authenticateUser(this.username, this.password).subscribe(users => {
       this.user = users[0];
       this.cookieService.setCurrentUser(this.user);
       this.goToUserPage(this.user.userId);
-    });
+*/
+    this.authService.authenticateUser(this.username, this.password).subscribe(user => {
+      //this.printNotification(user);
+      console.log(user);
+      this.cookieService.setCurrentUser(user);
 
+    });
     if (this.cookieService.getCurrentUser() != undefined) {
       this.router.navigate(['home']);
     }
@@ -51,5 +56,11 @@ export class LoginComponent {
     this.username="";
     this.password="";
   }
+/*
+  printNotification(user: User) {
+    this.strout = user.username + " just signed in";
+    this.goToUserPage(user.userId);
+}
+*/
 
 }

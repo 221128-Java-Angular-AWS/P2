@@ -15,22 +15,36 @@ public class Log {
     @Column(name = "date_time")
     private Timestamp dateTime;
 
-    /*
-    @ManyToOne(cascade = CascadeType.ALL)
+
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JsonBackReference( value = "log_user")
     @JoinColumn(name =  "user_id")
-    private Integer userId;
-    */
+    private User user;
 
 
+/*
     @Column(name = "user_id")
     private Integer userId;
-
+*/
     @Column
     private String event;
 
     public Log () {}
 
+    public Log(Timestamp dateTime, User user, String event) {
+        this.dateTime = dateTime;
+        this.user = user;
+        this.event = event;
+    }
+
+    public Log(Integer id, Timestamp dateTime, User user, String event) {
+        this.id = id;
+        this.dateTime = dateTime;
+        this.user = user;
+        this.event = event;
+    }
+
+    /*
     public Log (Timestamp dateTime, Integer userId, String event){
         this.dateTime = dateTime;
         this.userId = userId;
@@ -43,6 +57,7 @@ public class Log {
         this.userId = userId;
         this.event = event;
     }
+*/
 
     public Integer getId() {
         return id;
@@ -60,12 +75,12 @@ public class Log {
         this.dateTime = dateTime;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser(Integer userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getEvent() {
@@ -76,6 +91,7 @@ public class Log {
         this.event = event;
     }
 
+    /*
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -97,5 +113,19 @@ public class Log {
                 ", userId=" + userId +
                 ", event='" + event + '\'' +
                 '}';
+    }
+    */
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Log log = (Log) o;
+        return Objects.equals(id, log.id) && Objects.equals(dateTime, log.dateTime) && Objects.equals(user, log.user) && Objects.equals(event, log.event);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, dateTime, user, event);
     }
 }

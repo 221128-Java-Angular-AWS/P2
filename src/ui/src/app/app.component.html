@@ -1,8 +1,16 @@
 <app-navbar></app-navbar>
 <div id="pageContent">
+<<<<<<< HEAD
 <nav>
   <a routerLink="/login">Log In</a> | <a routerLink="/home">Home</a>
 </nav>
+=======
+  <table class="" *ngIf="!isLoginPage()">
+    <tr>
+        <th><a routerLink="/login">Log Out</a> | <a routerLink="/home">Home</a></th>
+    </tr>
+</table>
+>>>>>>> ba46d9b78f826462cde434abd2596d46312d5b8f
 <!--
 <app-login-register></app-login-register>
 <app-feed></app-feed>
