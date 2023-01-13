@@ -52,5 +52,26 @@ public class UserController {
         userService.deleteUser(user);
     }
 
+    // password reset functionality first request will be to get the user to recover and return the user id and
+    // security question
+    @GetMapping(value = "/recover")
+    @ResponseStatus(value = HttpStatus.ACCEPTED)
+    public @ResponseBody User recoverUser(@RequestParam String username, @RequestParam String email) {
+        // return User object with security question, omit the answer and do that in another step
+        // TODO: another request that should take the security answer and a new password
+        // TODO: on the front end redirect back to login
+        // TODO: if this is still a fully populated user object I could sanitize it before sending it back
+        return userService.getSecurityQuestion(username, email);
+    }
 
+    @PostMapping(value = "/recover")
+    @ResponseStatus(value = HttpStatus.ACCEPTED)
+    public @ResponseBody boolean updatePassword(@RequestBody User user) {
+        // return User object with security question, omit the answer and do that in another step
+        // TODO: another request that should take the security answer and a new password
+        // TODO: on the front end redirect back to login
+        // password should already be encrypted at this point mirroring the registration component
+        boolean test = userService.resetPassword(user.getUserId(), user.getSecurityAnswer(), user.getPassword());
+        return test;
+    }
 }

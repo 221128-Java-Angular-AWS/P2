@@ -33,6 +33,13 @@ public class User {
     @Column
     private String bio;
 
+    // adding in password reset functionality
+    @Column(name = "security_question", length = 500)
+    private String securityQuestion;
+
+    @Column(name = "security_answer", length = 500)
+    private String securityAnswer;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @JsonManagedReference(value = "post_user")
     List<Post> posts;
@@ -49,6 +56,7 @@ public class User {
     }
     
     public User(String firstName, String lastName, String username, String password, String email, String bio) {
+        System.out.println("most args no id hit");
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -58,6 +66,7 @@ public class User {
     }
 
     public User(Integer userId, String firstName, String lastName, String username, String password, String email, String bio) {
+        System.out.println("most args hit");
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -66,6 +75,36 @@ public class User {
         this.email = email;
         this.bio = bio;
     }
+
+    // updated all args constructor with password reset required fields
+    public User(Integer userId, String firstName, String lastName, String username, String password, String email, String bio, String securityQuestion, String securityAnswer) {
+        System.out.println("all args hit");
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.bio = bio;
+        this.securityQuestion = securityQuestion;
+        this.securityAnswer = securityAnswer;
+    }
+
+    /*
+    // constructor to create a user from the password reset request, no security answer for security reasons
+    public User(Integer userId, String securityQuestion) {
+        System.out.println("id, question hit");
+        this.userId = userId;
+        this.securityQuestion = securityQuestion;
+    }
+
+    // constructor for validating the user's security question and updating password
+    public User(Integer userId, String password, String securityAnswer) {
+        System.out.println("answer constructor hit");
+        this.userId = userId;
+        this.password = password;
+        this.securityAnswer = securityAnswer;
+    }*/
 
     public Integer getUserId() {
         return userId;
@@ -123,6 +162,24 @@ public class User {
         this.bio = bio;
     }
 
+    // adding in getters and setters for password reset functionality
+    public String getSecurityQuestion() {
+        return securityQuestion;
+    }
+
+    public void setSecurityQuestion(String securityQuestion) {
+        this.securityQuestion = securityQuestion;
+    }
+
+    public String getSecurityAnswer() {
+        return securityAnswer;
+    }
+
+    public void setSecurityAnswer(String securityAnswer) {
+        this.securityAnswer = securityAnswer;
+    }
+
+    // TODO: do we actually need to update equals and hashcode to include password reset security question/answer
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

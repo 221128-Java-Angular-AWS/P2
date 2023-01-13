@@ -18,10 +18,12 @@ export class LoginRegisterComponent {
   registerForm = this.formBuilder.group({
     username: ['', Validators.required],
     password: ['', Validators.required],
-    email: [''],
+    email: [''], // email should be required
     firstName: [''],
     lastName: [''],
-    bio: ['']
+    bio: [''],
+    securityQuestion: ['', Validators.required],
+    securityAnswer: ['', Validators.required]
   });
 
   constructor(
@@ -34,7 +36,9 @@ export class LoginRegisterComponent {
   onSubmit(): void{
     let pass = bcrypt.hashSync(this.registerForm.value.password!, 10);
     // let pass = this.registerForm.value.password!;
-    this.usersService.createUser(this.registerForm.value.username!, pass, this.registerForm.value.email!, this.registerForm.value.firstName!, this.registerForm.value.lastName!, this.registerForm.value.bio!).subscribe(user =>{
+    this.usersService.createUser(this.registerForm.value.username!, pass, this.registerForm.value.email!, 
+      this.registerForm.value.firstName!, this.registerForm.value.lastName!, this.registerForm.value.bio!, 
+      this.registerForm.value.securityQuestion!, this.registerForm.value.securityAnswer!).subscribe(user =>{
       this.cookieService.setCurrentUser(user);
       this.router.navigate(['/home']);
       console.log("posted user: "+ JSON.stringify(user));

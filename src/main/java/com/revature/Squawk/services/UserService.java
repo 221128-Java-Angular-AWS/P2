@@ -40,12 +40,15 @@ public class UserService {
         return userRepo.findByUsernameContainsIgnoreCase(filter);
     }
 
+    // I added security question and answer here
     public User updateUser(User user){
         User originalUser = userRepo.findById(user.getUserId()).orElseThrow();
         originalUser.setUsername(user.getUsername());
         originalUser.setFirstName(user.getFirstName());
         originalUser.setLastName(user.getLastName());
         originalUser.setBio(user.getBio());
+        originalUser.setSecurityQuestion(user.getSecurityQuestion());
+        originalUser.setSecurityAnswer(user.getSecurityAnswer());
 
         return userRepo.save(originalUser);
     }
@@ -57,5 +60,20 @@ public class UserService {
         return userRepo.allUsers();
     }
 
+    // TODO: remove breadcrumbs
+    public User getSecurityQuestion(String username, String email) {
+        return userRepo.recoverUser(username, email);
+    }
 
+    // maybe custom exception here for incorrect security answer but that can be assumed for now
+    public boolean resetPassword(Integer userId, String securityAnswer, String password) {
+        User user = userRepo.findById(userId).orElseThrow();
+        if (securityAnswer.equals(user.getSecurityAnswer())) {
+            Integer updated = userRepo.passwordUpdate(password, userId);
+            if (updated == 1) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

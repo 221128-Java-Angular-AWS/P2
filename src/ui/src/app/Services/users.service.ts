@@ -19,8 +19,9 @@ export class UsersService {
       'Content-Type': 'application/json'
     })
   }
-  createUser(username: string, password: string, email: string, firstName: string, lastName: string, bio: string){
-    let newUser = new User(username, null, password, email, firstName, lastName, bio);
+  createUser(username: string, password: string, email: string, firstName: string, lastName: string, bio: string, 
+    securityQuestion:string, securityAnswer: string){
+    let newUser = new User(username, null, password, email, firstName, lastName, bio, securityQuestion, securityAnswer);
     return this.http.post<User>(this.baseUrl + this.userUrl, JSON.stringify(newUser), this.httpOptions);
   }
   public getUser(id : number) : Observable<User> {

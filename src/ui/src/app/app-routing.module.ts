@@ -9,6 +9,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { PostDetailComponent } from './pages/post-detail/post-detail.component';
 import { UserPageComponent } from './pages/user-page/user-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 const routes : Routes = [
  // {path: 'credentials', component: ResetCredentialsComponent},
@@ -18,7 +19,8 @@ const routes : Routes = [
   {path: 'login', component : LoginPageComponent },
   {path: 'home', component : HomeComponent},
   {path: 'post/:id', component : PostDetailComponent},
-  {path: 'user/:id', component : UserPageComponent}
+  {path: 'user/:id', component : UserPageComponent},
+  {path: 'forgot-password', component : PasswordResetComponent },
 ];
 
 @NgModule({
