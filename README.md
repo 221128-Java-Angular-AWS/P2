@@ -224,7 +224,7 @@ A persistent navigation bar allows users to navigate the website, as well as to 
 <!-- Contributor Links -->
 
 [kirill-linkedin]: https://www.linkedin.com/in/kirill-klimov-001/
-[kirill-github]: https://github.com/
+[kirill-github]: https://github.com/kklimov1
 [travism-linkedin]: https://www.linkedin.com/in/travis-morse-7574107a/
 [travism-github]: https://github.com/travis503
 [audie-linkedin]: https://www.linkedin.com/in/
