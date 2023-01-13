@@ -20,6 +20,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { UserPageComponent } from './pages/user-page/user-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { LogoutComponent } from './logout/logout.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 
 
@@ -40,7 +41,8 @@ import { LogoutComponent } from './logout/logout.component';
     LogoutComponent,
     HomeComponent,
     UserPageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    PasswordResetComponent
    // RegisterComponent
 
   ],
