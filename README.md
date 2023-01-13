@@ -82,7 +82,7 @@
 
 <br>
 
-### Travis Pomeroy - email@revature.net
+### Travis Pomeroy - travis928@revature.net
 
  <img src="src\ui\src\assets\profilepic.jpg" alt="Logo" width="80" height="80">
 
@@ -233,8 +233,8 @@ A persistent navigation bar allows users to navigate the website, as well as to 
 [brayden-github]: https://github.com/
 [william-linkedin]: https://www.linkedin.com/
 [william-github]: https://github.com/
-[travisp-linkedin]: https://www.linkedin.com/
-[travisp-github]: https://github.com/
+[travisp-linkedin]: https://www.linkedin.com/in/travis-pomeroy-2a949b163/
+[travisp-github]: https://github.com/TPomerz
 [matthew-linkedin]: https://www.linkedin.com/
 [matthew-github]: https://github.com/
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-grey?style=for-the-badge&logo=linkedin

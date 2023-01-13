@@ -93,8 +93,10 @@ export class UserProfileComponent {
       
     this.currentUser = newUser;
 
-    if (this.currentUser.image !== "") {
+    if (this.currentUser.image !== "" && this.currentUser.image !== null) {
       this.profilePic = this.currentUser.image;
+    } else {
+      this.profilePic = "assets/profilepic.jpg"
     }
 
     this.userService.updateUser(newUser).subscribe();
