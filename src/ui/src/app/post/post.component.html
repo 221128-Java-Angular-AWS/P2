@@ -27,6 +27,17 @@
                     {{ post.message }}
                   </p>
 
+                  <div class="my-1" style="padding-bottom: 20px; padding-left: 60px; text-align: center;" *ngIf="post.imageLink != ''">
+                    <img class="postImage" [src]="post.imageLink" height="50%" width="50%">
+                  </div>
+
+                  <div style="padding-bottom: 20px; padding-left: 60px; text-align: center;">
+                    <iframe *ngIf="embedYoutube" width="560" height="315" [src]=safeYoutubeLink
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+                  </div>
+                  
                   <table class="table">
                     <tbody>
                       <tr>
