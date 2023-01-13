@@ -39,4 +39,5 @@ public class AuthenticationController {
     public @ResponseBody List<User> allUsers() {
         return userService.allUsers();
     }
+
 }

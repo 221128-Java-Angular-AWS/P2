@@ -64,7 +64,6 @@ public class User {
         this.userId = userId;
     }
 
-
     public User(String firstName, String lastName, String username, String password, String email, String bio, String image) {
         this.firstName = firstName;
         this.lastName = lastName;

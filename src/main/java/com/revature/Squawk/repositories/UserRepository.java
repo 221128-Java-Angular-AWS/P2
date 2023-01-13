@@ -21,6 +21,24 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(value = "select * from users;", nativeQuery = true)
     List<User> allUsers();
 
+    // for password reset
+    // TODO: probably don't need a list but only a User object
+    @Query(value = "SELECT * FROM users WHERE username = :username AND email = :email", nativeQuery = true)
+    User recoverUser(
+            @Param("username") String username,
+            @Param("email") String email
+    );
+
+
+    // update password
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE users SET password = :password WHERE user_id = :userId", nativeQuery = true)
+    Integer passwordUpdate(
+            @Param("password") String password,
+            @Param("userId") Integer userId
+    );
+
 
     public List<User> findByUsernameContainsIgnoreCase(String filter);
 }
