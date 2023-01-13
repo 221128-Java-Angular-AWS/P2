@@ -1,5 +1,5 @@
 #navbar{
-    position:absolute;
+    position:sticky;
     top: 0;
     left:0;
     text-align: center;
@@ -14,7 +14,7 @@
 #navbar table{
     margin:auto;
     vertical-align: middle;
-    margin-top: 12px;
+    margin-top: 8px;
     border-spacing: 0px;
 }
 
@@ -27,6 +27,7 @@
 
 #searchButton{
     height:25px;
+    font-size: 15px;
 }
 
 #searchResults{

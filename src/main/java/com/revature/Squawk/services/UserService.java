@@ -23,6 +23,7 @@ public class UserService {
         return userRepo.save(user);
     }
 
+
     public User authenticateUser(UserAuth userAuth){
         // System.out.println(userAuth.username + userAuth.password);
         if(BCrypt.checkpw(userAuth.password, userRepo.authUser(userAuth.username).getPassword())){
