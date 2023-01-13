@@ -50,22 +50,6 @@ public class CommentController {
         return commentService.getCommentsByPostId(postId);
     }
 
-/*  
-@PutMapping
-    @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public @ResponseBody Comment updateComment(@RequestBody Comment comment){
-        Comment c = commentService.updateComment(comment);
-        logService.logMsg("Updated a comment", c.getUser());
-        return c;
-    }
-
-    @DeleteMapping
-    @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public void deleteComment(@RequestBody Comment comment){
-        User user = comment.getUser();
-        commentService.deleteComment(comment);
-        logService.logMsg("Deleted a comment", user);
-        */
 
     @PutMapping(value = "/{postId}/comments")
     @ResponseStatus(value = HttpStatus.OK)

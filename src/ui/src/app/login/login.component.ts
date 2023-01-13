@@ -37,20 +37,17 @@ export class LoginComponent {
       this.goToUserPage(this.user.userId);
 */
     this.authService.authenticateUser(this.username, this.password).subscribe(user => {
-      this.printNotification(user);
-      console.log(user);
       this.cookieService.setCurrentUser(user);
-
+      if (this.cookieService.getCurrentUser() != undefined) {
+          this.router.navigate(['/home']);
+        }
     });
-    if (this.cookieService.getCurrentUser() != undefined) {
-      this.router.navigate(['/home']);
-    }
+    
   }
 
   goToUserPage() {
     this.router.navigate(['/home'])
   }
-
 
   resetUserPassword(): void {
     this.username="";
