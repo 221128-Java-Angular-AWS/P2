@@ -85,4 +85,14 @@ public class Log {
     public int hashCode() {
         return Objects.hash(id, dateTime, user, event);
     }
+
+    @Override
+    public String toString() {
+        return "Log{" +
+                "id=" + id +
+                ", dateTime=" + dateTime +
+                ", user=" + user +
+                ", event='" + event + '\'' +
+                '}';
+    }
 }

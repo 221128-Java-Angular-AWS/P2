@@ -40,7 +40,7 @@ public class CommentController {
         comment.setPost(post);
         comment.setPostedDate(now);
         Comment newComment = commentService.createComment(comment);
-        logService.logMsg(String.format("Created comment: %s", newComment.getMessage()), newComment.getUser());
+        logService.logMsg(String.format("%s Created comment: %s", newComment.getUsername(),newComment.getMessage()), newComment.getUser());
         return newComment;
     }
 
@@ -73,7 +73,7 @@ public class CommentController {
         Comment comment = commentService.getCommentById(newComment.getCommentId());
         if (comment != null && Objects.equals(comment.getPost().getPostId(), postId)) {
             comment.setMessage(newComment.getMessage());
-            logService.logMsg(String.format("Updated comment #%d", comment.getCommentId()), comment.getUser());
+            logService.logMsg(String.format("%s Updated comment: #%d", comment.getUsername() ,comment.getCommentId()), comment.getUser());
             return commentService.updateComment(comment);
         }
 
@@ -87,7 +87,7 @@ public class CommentController {
         if (comment != null && Objects.equals(comment.getPost().getPostId(), postId)) {
             replyService.deleteReplyByCommentId(comment.getCommentId());
             commentService.deleteComment(comment);
-            logService.logMsg(String.format("Deleted comment: %s", comment.getMessage()), comment.getUser());
+            logService.logMsg(String.format("Deleted comment: %s", comment.getUsername() ,comment.getMessage()), comment.getUser());
         }
     }
 }

@@ -28,7 +28,7 @@ public class AuthenticationController {
     public @ResponseBody User authenticateUser(@RequestBody UserAuth userAuth){
         User auth = userService.authenticateUser(userAuth);
         if(auth != null) {
-            logService.logMsg("Successfuly signed in", auth);
+            logService.logMsg(String.format("%s Successfuly signed in", auth.getUsername()), auth);
         }
         return auth;
     }

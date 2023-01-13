@@ -1,9 +1,11 @@
 package com.revature.Squawk.controllers;
 
 import com.revature.Squawk.models.Comment;
+import com.revature.Squawk.models.Log;
 import com.revature.Squawk.models.Post;
 import com.revature.Squawk.models.Reply;
 import com.revature.Squawk.services.CommentService;
+import com.revature.Squawk.services.LogService;
 import com.revature.Squawk.services.PostService;
 import com.revature.Squawk.services.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +22,14 @@ public class ReplyController {
     private final PostService postService;
     private final CommentService commentService;
     private final ReplyService replyService;
+    private final LogService logService;
 
     @Autowired
-    public ReplyController(PostService postService, CommentService commentService, ReplyService replyService) {
+    public ReplyController(PostService postService, CommentService commentService, ReplyService replyService, LogService logService) {
         this.postService = postService;
         this.commentService = commentService;
         this.replyService = replyService;
+        this.logService =logService;
     }
 
     @PostMapping(value = "/{postId}/comments/{commentId}")
@@ -38,7 +42,9 @@ public class ReplyController {
         reply.setComment(comment);
         reply.setPostedDate(now);
         System.out.println(reply.toString());
-        return replyService.createReply(reply);
+        Reply replyOut = replyService.createReply(reply);
+        this.logService.logMsg(String.format("%s Replied to the comment: %s", replyOut.getUsername(), post.getMessage()), reply.getUser());
+        return replyOut;
     }
 
     @GetMapping(value = "/{postId}/comments/{commentId}")
@@ -53,7 +59,9 @@ public class ReplyController {
         Reply reply = replyService.getByReplyId(newReply.getReplyId());
         if (reply != null && Objects.equals(reply.getPost().getPostId(), postId) && Objects.equals(reply.getComment().getCommentId(), commentId)) {
             reply.setMessage(newReply.getMessage());
-            return replyService.updateReply(reply);
+            Reply replyOut = replyService.updateReply(reply);
+            this.logService.logMsg(String.format("%s Updated reply to: %s", replyOut.getUsername(), replyOut.getMessage()), replyOut.getUser());
+            return replyOut;
         }
 
         return null;
@@ -64,6 +72,7 @@ public class ReplyController {
     public void deleteReply(@PathVariable Integer postId, @PathVariable Integer commentId, @RequestBody Reply oldReply) {
         Reply reply = replyService.getByReplyId(oldReply.getReplyId());
         if (reply != null && Objects.equals(reply.getPost().getPostId(), postId) && Objects.equals(reply.getComment().getCommentId(), commentId)) {
+            this.logService.logMsg(String.format("%s is attempting to delete: %s", reply.getUsername(), reply.getMessage()), reply.getUser());
             replyService.deleteReply(reply);
         }
     }

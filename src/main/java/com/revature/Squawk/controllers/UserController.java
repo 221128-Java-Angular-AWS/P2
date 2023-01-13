@@ -28,7 +28,7 @@ public class UserController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public @ResponseBody User createUser(@RequestBody User user){
         User newUser = userService.createUser(user);
-        this.logService.logMsg("Created a new user", newUser);
+        this.logService.logMsg(String.format("Created a new user %s", newUser.getUsername()), newUser);
         return newUser;
     }
 
@@ -47,13 +47,16 @@ public class UserController {
     @PutMapping(value="/update")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public @ResponseBody User updateUser(@RequestBody User user){
-        logService.logMsg("Updated user", user);
-        return userService.updateUser(user);
+        User userUpd = userService.updateUser(user);
+        logService.logMsg(String.format("Updated user %s", userUpd.getUsername()), userUpd);
+        return userUpd;
     }
 
     @DeleteMapping
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public void deleteUser(@RequestBody User user){
+        //May make an empty row if deleting
+        logService.logMsg(String.format("Deleted user if exists: %s", user.getUsername()), user);
         userService.deleteUser(user);
     }
 

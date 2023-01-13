@@ -25,7 +25,6 @@ export class LoginComponent {
   strout?: string = "Here is the first name!";
 
   onSubmit() { 
-    console.log("clicked submit")
     this.submitted=true; 
     this.checkUsernamePassword();
   }
@@ -38,13 +37,13 @@ export class LoginComponent {
       this.goToUserPage(this.user.userId);
 */
     this.authService.authenticateUser(this.username, this.password).subscribe(user => {
-      //this.printNotification(user);
+      this.printNotification(user);
       console.log(user);
       this.cookieService.setCurrentUser(user);
 
     });
     if (this.cookieService.getCurrentUser() != undefined) {
-      this.router.navigate(['home']);
+      this.router.navigate(['/home']);
     }
   }
 
@@ -57,11 +56,11 @@ export class LoginComponent {
     this.username="";
     this.password="";
   }
-/*
+
   printNotification(user: User) {
     this.strout = user.username + " just signed in";
     this.goToUserPage();
 }
-*/
+
 
 }
