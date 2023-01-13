@@ -27,22 +27,12 @@ public class AuthenticationController {
     
     public @ResponseBody User authenticateUser(@RequestBody UserAuth userAuth){
         User auth = userService.authenticateUser(userAuth);
-        System.out.println(auth.toString() + "\n" );
         if(auth != null) {
-            //User authUserId =auth.getUser();
             logService.logMsg("Successfuly signed in", auth);
         }
         return auth;
-    //public @ResponseBody User authenticateUser(@RequestBody UserAuth userAuth){
-        // System.out.println(userAuth.username + userService.authenticateUser(userAuth));
-    //    return userService.authenticateUser(userAuth);
     }
 
-    @GetMapping(value = "/ping")
-    @ResponseStatus(value = HttpStatus.OK)
-    public String ping() {
-        return "pong!";
-    }
 
     @GetMapping(value = "/all")
     @ResponseStatus(value = HttpStatus.ACCEPTED)

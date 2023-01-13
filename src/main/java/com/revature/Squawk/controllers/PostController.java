@@ -63,6 +63,7 @@ public class PostController {
     @DeleteMapping
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public void deletePost(@RequestBody Post post){
+        logService.logMsg("Deleted a post", post.getUser());
         postService.deletePost(post);
     }
 

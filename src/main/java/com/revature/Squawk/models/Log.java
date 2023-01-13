@@ -1,8 +1,8 @@
 package com.revature.Squawk.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
 import java.sql.Timestamp;
+import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.Objects;
 
 @Entity(name = "logs")
@@ -22,10 +22,6 @@ public class Log {
     private User user;
 
 
-/*
-    @Column(name = "user_id")
-    private Integer userId;
-*/
     @Column
     private String event;
 
@@ -44,20 +40,6 @@ public class Log {
         this.event = event;
     }
 
-    /*
-    public Log (Timestamp dateTime, Integer userId, String event){
-        this.dateTime = dateTime;
-        this.userId = userId;
-        this.event = event;
-    }
-
-    public Log(Integer id,  Timestamp dateTime, Integer userId, String event) {
-        this.id = id;
-        this.dateTime = dateTime;
-        this.userId = userId;
-        this.event = event;
-    }
-*/
 
     public Integer getId() {
         return id;
@@ -90,31 +72,6 @@ public class Log {
     public void setEvent(String event) {
         this.event = event;
     }
-
-    /*
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Log log = (Log) o;
-        return Objects.equals(id, log.id) && Objects.equals(dateTime, log.dateTime) && Objects.equals(userId, log.userId) && Objects.equals(event, log.event);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, dateTime, userId, event);
-    }
-
-    @Override
-    public String toString() {
-        return "Log{" +
-                "id=" + id +
-                ", dateTime=" + dateTime +
-                ", userId=" + userId +
-                ", event='" + event + '\'' +
-                '}';
-    }
-    */
 
     @Override
     public boolean equals(Object o) {

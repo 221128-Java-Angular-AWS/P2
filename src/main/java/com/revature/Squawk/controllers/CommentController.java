@@ -26,8 +26,7 @@ public class CommentController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public @ResponseBody Comment createComment(@RequestBody Comment comment) {
         Comment c = commentService.createComment(comment);
-        User user = c.getUser();
-        logService.logMsg("Created a comment", user);
+        logService.logMsg("Created a comment", c.getUser());
         return c;
     }
 
@@ -41,15 +40,13 @@ public class CommentController {
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public @ResponseBody Comment updateComment(@RequestBody Comment comment){
         Comment c = commentService.updateComment(comment);
-        User user = c.getUser();
-        logService.logMsg("Created a comment", user);
+        logService.logMsg("Updated a comment", c.getUser());
         return c;
     }
 
     @DeleteMapping
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public void deleteComment(@RequestBody Comment comment){
-        //Integer userId = comment.getUser().getUserId();
         User user = comment.getUser();
         commentService.deleteComment(comment);
         logService.logMsg("Deleted a comment", user);

@@ -47,10 +47,11 @@ export class LoginComponent {
       this.router.navigate(['home']);
     }
   }
-
+/*
   goToUserPage(id : number) {
     this.router.navigate(['/home'])
   }
+*/
 
   resetUserPassword(): void {
     this.username="";

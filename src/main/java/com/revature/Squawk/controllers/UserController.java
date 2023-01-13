@@ -1,6 +1,7 @@
 package com.revature.Squawk.controllers;
 
 import com.revature.Squawk.models.User;
+import com.revature.Squawk.services.LogService;
 import com.revature.Squawk.services.UserService;
 import jdk.jfr.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +17,19 @@ import java.util.Optional;
 @RequestMapping(value = "/users")
 public class UserController {
     private UserService userService;
-
+    private LogService logService;
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, LogService logService) {
+        this.logService = logService;
         this.userService = userService;
     }
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
     public @ResponseBody User createUser(@RequestBody User user){
-        return userService.createUser(user);
+        User newUser = userService.createUser(user);
+        this.logService.logMsg("Created a new user", newUser);
+        return newUser;
     }
 
     @GetMapping
@@ -43,6 +47,7 @@ public class UserController {
     @PutMapping(value="/update")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public @ResponseBody User updateUser(@RequestBody User user){
+        logService.logMsg("Updated user", user);
         return userService.updateUser(user);
     }
 
