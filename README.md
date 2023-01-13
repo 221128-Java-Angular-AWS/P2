@@ -55,7 +55,7 @@
 
 <br>
 
-### Audie Ni - email@revature.net
+### Audie Ni - audie520@revature.net
 
  <img src="src\ui\src\assets\profilepic.jpg" alt="Logo" width="80" height="80">
 
@@ -227,8 +227,8 @@ A persistent navigation bar allows users to navigate the website, as well as to 
 [kirill-github]: https://github.com/
 [travism-linkedin]: https://www.linkedin.com/in/travis-morse-7574107a/
 [travism-github]: https://github.com/travis503
-[audie-linkedin]: https://www.linkedin.com/in/
-[audie-github]: https://github.com/
+[audie-linkedin]: https://www.linkedin.com/in/audie-ni-116283126/
+[audie-github]: https://github.com/tasukaru
 [brayden-linkedin]: https://www.linkedin.com/
 [brayden-github]: https://github.com/
 [william-linkedin]: https://www.linkedin.com/
