@@ -128,9 +128,6 @@ public class Post {
                 ", message='" + message + '\'' +
                 ", imageLink='" + imageLink + '\'' +
                 ", datePosted=" + datePosted +
-                ", user=" + user +
-                ", likes=" + likes +
-                ", comments=" + comments +
                 '}';
     }
 }
