@@ -50,8 +50,11 @@ export class UserProfileComponent {
     this.userService.getUser(userId).subscribe((response:User) => {
       this.currentUser = response;
 
-      if (this.currentUser.image !== "") {
+      if (this.currentUser.image !== "" && this.currentUser.image !== null) {
+        console.log("Custom Pic");
         this.profilePic = this.currentUser.image;
+      } else {
+        console.log("Default Pic");
       }
 
       this.checkActiveUser();
@@ -90,8 +93,10 @@ export class UserProfileComponent {
       
     this.currentUser = newUser;
 
-    if (this.currentUser.image !== "") {
+    if (this.currentUser.image !== "" && this.currentUser.image !== null) {
       this.profilePic = this.currentUser.image;
+    } else {
+      this.profilePic = "assets/profilepic.jpg"
     }
 
     this.userService.updateUser(newUser).subscribe();
