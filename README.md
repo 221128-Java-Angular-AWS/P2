@@ -64,7 +64,7 @@
 
 <br>
 
-### Brayden Norton - email@revature.net
+### Brayden Nordine - brayden018@revature.net
 
  <img src="src\ui\src\assets\profilepic.jpg" alt="Logo" width="80" height="80">
 
@@ -230,7 +230,7 @@ A persistent navigation bar allows users to navigate the website, as well as to 
 [audie-linkedin]: https://www.linkedin.com/in/
 [audie-github]: https://github.com/
 [brayden-linkedin]: https://www.linkedin.com/
-[brayden-github]: https://github.com/
+[brayden-github]: https://github.com/braydensn
 [william-linkedin]: https://www.linkedin.com/
 [william-github]: https://github.com/
 [travisp-linkedin]: https://www.linkedin.com/in/travis-pomeroy-2a949b163/
