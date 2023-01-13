@@ -41,6 +41,7 @@ public class User {
     @JsonManagedReference(value = "like_user")
     List<Like> likes;
 
+
     @Column (length = 1000)
     private String image;
 
