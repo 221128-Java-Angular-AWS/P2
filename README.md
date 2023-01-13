@@ -77,8 +77,8 @@
 
  <img src="src\ui\src\assets\profilepic.jpg" alt="Logo" width="80" height="80">
 
-[![linkedin-shield]][william-linkedin]
-[![github-shield]][william-github]
+[![linkedin-shield]][[william-linkedin](https://www.linkedin.com/in/william-osborne-b62910b0/)]
+[![github-shield]][[william-github](https://github.com/WEOzzy)]
 
 <br>
 
