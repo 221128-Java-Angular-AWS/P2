@@ -14,6 +14,9 @@ export class FeedComponent {
   posts: Post[] = [];
   currentUser: User | undefined;
   showNewPostArea: boolean = true;
+  params!: Params;
+  isUserPage: boolean = false;
+  isFeedPage: boolean = false;
 
   imageLink: string = "";
   constructor(private postsService: PostsService, private cookieService: CookieService, private router: Router, private activeRoute: ActivatedRoute) {
@@ -61,14 +64,19 @@ export class FeedComponent {
     if(this.router.url.includes("user")){
       this.activeRoute.params.subscribe((routeParams = {}) => {
         this.pageChanged(routeParams);
+        this.params = routeParams;
       });
-
+      this.isUserPage = true;
+      this.isFeedPage = false;
     }
+
     else{
       this.postsService.getPosts()
       .subscribe((posts) => {
         this.posts = posts;
       });
+      this.isFeedPage = true;
+      this.isUserPage = false;
     }
   }
 
@@ -77,11 +85,7 @@ export class FeedComponent {
       .subscribe((posts) => {
         this.posts = posts;
       });
-    if(this.currentUser?.userId == routeParams["id"]){
-      this.showNewPostArea = true;
-    }else{
-      this.showNewPostArea = false;
-    }
+    this.showNewPostArea = true;
   }
 
   removePost(post: Post): void {
