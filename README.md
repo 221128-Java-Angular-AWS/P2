@@ -73,7 +73,7 @@
 
 <br>
 
-### William Osborne - email@revature.net
+### William Osborne - william185@revature.net
 
  <img src="src\ui\src\assets\profilepic.jpg" alt="Logo" width="80" height="80">
 
