@@ -63,7 +63,6 @@ public class User {
     public User(Integer userId) {
         this.userId = userId;
     }
-    
 
     public User(String firstName, String lastName, String username, String password, String email, String bio, String image) {
         this.firstName = firstName;
@@ -155,7 +154,7 @@ public class User {
     public void setBio(String bio) {
         this.bio = bio;
     }
-    
+
     // adding in getters and setters for password reset functionality
     public String getSecurityQuestion() {
         return securityQuestion;

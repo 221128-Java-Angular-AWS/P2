@@ -142,8 +142,6 @@ public class Comment {
     public String toString() {
         return "Comment{" +
                 "commentId=" + commentId +
-                ", post=" + post +
-                ", user=" + user +
                 ", datePosted=" + postedDate +
                 ", message='" + message +
                 '}';

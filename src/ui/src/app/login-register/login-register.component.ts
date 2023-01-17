@@ -42,6 +42,8 @@ export class LoginRegisterComponent {
       this.cookieService.setCurrentUser(user);
       this.router.navigate(['/home']);
       console.log("posted user: "+ JSON.stringify(user));
+    }, err =>{
+      alert('this username has already been taken');
     })
     this.registerForm.reset();
   }

@@ -36,7 +36,7 @@
 
 # Contributors
 
-### Kirill Klimov - email@revature.net
+### Kirill Klimov - kirill674@revature.net
 
  <img src="src\ui\src\assets\profilepic.jpg" alt="KirillPortrait" width="80" height="80">
 
@@ -55,7 +55,7 @@
 
 <br>
 
-### Audie Ni - email@revature.net
+### Audie Ni - audie520@revature.net
 
  <img src="src\ui\src\assets\profilepic.jpg" alt="Logo" width="80" height="80">
 
@@ -91,7 +91,7 @@
 
 <br>
 
-### Matthew Shen - email@revature.net
+### Matthew Shen - matthew945@revature.net
 
  <img src="src\ui\src\assets\profilepic.jpg" alt="Logo" width="80" height="80">
 
@@ -223,12 +223,12 @@ A persistent navigation bar allows users to navigate the website, as well as to 
 
 <!-- Contributor Links -->
 
-[kirill-linkedin]: https://www.linkedin.com/in/
-[kirill-github]: https://github.com/
+[kirill-linkedin]: https://www.linkedin.com/in/kirill-klimov-001/
+[kirill-github]: https://github.com/kklimov1
 [travism-linkedin]: https://www.linkedin.com/in/travis-morse-7574107a/
 [travism-github]: https://github.com/travis503
-[audie-linkedin]: https://www.linkedin.com/in/
-[audie-github]: https://github.com/
+[audie-linkedin]: https://www.linkedin.com/in/audie-ni-116283126/
+[audie-github]: https://github.com/tasukaru
 [brayden-linkedin]: https://www.linkedin.com/
 [brayden-github]: https://github.com/braydensn
 [william-linkedin]: https://www.linkedin.com/in/william-osborne-b62910b0/

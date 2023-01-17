@@ -139,9 +139,6 @@ public class Reply {
     public String toString() {
         return "Reply{" +
                 "replyId=" + replyId +
-                ", post=" + post +
-                ", user=" + user +
-                ", comment=" + comment +
                 ", postedDate=" + postedDate +
                 ", message='" + message + '\'' +
                 '}';

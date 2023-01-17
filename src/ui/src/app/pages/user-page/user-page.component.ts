@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Post } from 'app/Services/posts.service';
 
 @Component({
   selector: 'app-user-page',
@@ -12,7 +13,7 @@ export class UserPageComponent {
 
     //This value will be grabbed from the session cookie
     userId = 1;
-  
+
     constructor () {
   
     }
